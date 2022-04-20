@@ -1,0 +1,19 @@
+{
+    "$schema": "./../../node_modules/@mashroom/mashroom-json-schemas/schemas/mashroom-plugins.json",
+    "devModeBuildScript": "build",
+    "plugins": [
+        {
+            "name": "Mashroom Content Asset Processing Services",
+            "type": "services",
+            "namespace": "assetProc",
+            "bootstrap": "./dist/mashroom-bootstrap-services.js",
+            "defaultConfig": {
+                "scaleUp": false,
+                "defaultQuality": 75,
+                "cacheEnable": true,
+                "cacheDefaultTTLSec": 31536000,
+                "cacheFolder": "./data/asset-proc-cache"
+            }
+        }
+    ]
+}

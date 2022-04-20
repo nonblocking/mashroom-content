@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport"/>
+    <title>Markdown Renderer App</title>
+
+    <link rel="stylesheet" href="app.css">
+    <script src="app.js"></script>
+</head>
+<body>
+
+    <div id="app-container">
+        Loading...
+    </div>
+
+    <script type="text/javascript">
+        (function () {
+
+            document.addEventListener("DOMContentLoaded", function () {
+                var element = document.getElementById("app-container");
+                var portalAppConfig = {
+                    contentType: 'markdown',
+                    contentProp: 'content',
+                    titleProp: 'title',
+                    contentId: '123456',
+                    belowFold: false,
+                    fullscreenImageOnClick: true,
+                    style: '.my-class { background-color: #CCC; } \nstrong { color: red }',
+                };
+                var portalAppSetup = {
+                    appId: 'abcdef',
+                    lang: 'en',
+                    appConfig: portalAppConfig
+                };
+                var portalClientServices = {
+                    contentService: {
+                        imageBreakpoints: [],
+                        imagePreferredFormats: [],
+                        getContent: function () {
+                            return Promise.resolve({
+                                data: {
+                                    title: 'Test',
+                                    content: 'This is a test with **bold** text \n\n```js\nalert("foo")\n```\n\ncool!\n\n![my image](/mashroom_portal_ui.png#200x200)\n\nxxx',
+                                },
+                                meta: {
+
+                                }
+                            });
+                        }
+                    }
+                };
+                window.startMashroomContentMarkdownRendererApp(element, portalAppSetup, portalClientServices);
+            });
+        })();
+
+    </script>
+</body>
+</html>

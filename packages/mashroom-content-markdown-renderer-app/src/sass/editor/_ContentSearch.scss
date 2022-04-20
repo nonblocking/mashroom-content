@@ -1,0 +1,46 @@
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.content-search {
+
+    .content-search-bar {
+        margin: 10px 0;
+        position: relative;
+
+        input {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+
+            &:focus {
+                padding-top: 6px;
+            }
+        }
+
+        .searching {
+            &:before {
+                position: absolute;
+                display: block;
+                text-align: center;
+                top: 5px;
+                right: 35px;
+                font-family: $FONT_ICON;
+                font-weight: 900;
+                content: "\f110";
+                font-size: 18px;
+                animation: spin 1s infinite steps(8);
+            }
+        }
+    }
+
+    .content-hits {
+        margin: 15px 5px;
+    }
+}

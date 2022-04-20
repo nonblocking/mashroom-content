@@ -1,0 +1,65 @@
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.mashroom-content-media-library-search-bar {
+    display: flex;
+    position: relative;
+
+    .searching {
+        &:before {
+            position: absolute;
+            display: block;
+            text-align: center;
+            top: 5px;
+            right: 35px;
+            font-family: $FONT_ICON;
+            font-weight: 900;
+            content: "\f110";
+            font-size: 18px;
+            animation: spin 1s infinite steps(8);
+        }
+    }
+
+    .type-filter {
+        margin-top: 3px;
+        margin-right: 20px;
+
+        select {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            padding-bottom: 3px;
+            width: 100px;
+
+            &:focus {
+                padding-bottom: 2px;
+            }
+        }
+    }
+
+    .fixed-type-filter {
+        margin-top: 3px;
+    }
+
+    .filter {
+        flex-grow: 2;
+
+        input {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+
+            &:focus {
+                padding-top: 6px;
+                padding-left: 11px;
+            }
+        }
+    }
+}

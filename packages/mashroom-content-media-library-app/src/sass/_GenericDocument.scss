@@ -1,0 +1,47 @@
+
+@mixin icon($content) {
+    display: block;
+    padding-top: calc(50% - 60px);
+    padding-left: calc(50% - 20px);
+
+    &:before {
+        font-family: $FONT_ICON;
+        font-weight: bold;
+        content: $content;
+        font-size: 48px;
+    }
+}
+
+.mashroom-content-media-library-asset-generic-document {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#EEE, 0.5);
+
+    .icon-pdf {
+        @include icon('\f1c1');
+    }
+
+    .icon-wordprocessing {
+        @include icon('\f1c2');
+    }
+
+    .icon-spreadsheet {
+        @include icon('\f1c3');
+    }
+
+    .icon-presentation {
+        @include icon('\f1c4');
+    }
+
+    .icon-archive {
+        @include icon('\f1c6');
+    }
+
+    .icon-audio {
+        @include icon('\f1c7');
+    }
+
+    .icon-file {
+        @include icon('\f15b');
+    }
+}

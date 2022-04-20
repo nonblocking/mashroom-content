@@ -1,0 +1,25 @@
+
+$FONT_ICON: 'Font Awesome 5 Free';
+$FONT_ICON_BRANDS: 'Font Awesome 5 Brands';
+
+@mixin toolbarIcon($content) {
+    &:before {
+        font-family: $FONT_ICON;
+        font-weight: bold;
+        content: $content;
+    }
+}
+
+.mashroom-content-markdown-renderer-app-config-editor {
+    padding: 10px;
+
+    @import "../common/style";
+
+    @import "MainActions";
+    @import "ContentEdit";
+    @import "ContentEditContent";
+    @import "ContentEditStyle";
+    @import "ContentSearch";
+    @import "ContentSearchHits";
+
+}

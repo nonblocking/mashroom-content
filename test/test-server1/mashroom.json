@@ -1,0 +1,76 @@
+{
+    "$schema": "../../node_modules/@mashroom/mashroom-json-schemas/schemas/mashroom-server-config.json",
+    "name": "Mashroom CMS Demo",
+    "port": 5050,
+    "pluginPackageFolders": [
+        {
+            "path": "./node_modules/@mashroom",
+            "devMode": false
+        },
+        {
+            "path": "./plugins",
+            "devMode": false
+        },
+        {
+            "path": "../../packages",
+            "devMode": true
+        }],
+    "indexPage": "/portal",
+    "plugins": {
+        "Mashroom Content Services": {
+            "provider": "Mashroom Content Internal Storage Provider",
+            "cacheEnable": false
+        },
+        "Mashroom Content Internal Storage Provider": {
+            "assetsFolder": "./data/assets"
+        },
+        "Mashroom Content Asset Processing Services": {
+            "scaleUp": false,
+            "defaultQuality": 75,
+            "cacheEnable": true,
+            "cacheDefaultTTLSec": 300
+        },
+        "Mashroom Portal WebApp": {
+            "adminApp": "Mashroom Portal Admin App",
+            "defaultTheme": "Mashroom Portal Default Theme",
+            "warnBeforeAuthenticationExpiresSec": 120,
+            "addDemoPages": false
+        },
+        "Mashroom Portal Default Theme": {
+            "showEnvAndVersions": true,
+            "showPortalAppHeaders": true
+        },
+        "Mashroom Session Middleware": {
+            "provider": "memory",
+            "session": {
+                "cookie": {
+                    "maxAge": 1800000
+                }
+            }
+        },
+        "Mashroom Security Services": {
+            "provider": "Mashroom Security Simple Provider",
+            "acl": "./acl.json"
+        },
+        "Mashroom Security Simple Provider": {
+            "users": "./users.json",
+            "loginPage": "/login",
+            "authenticationTimeoutSec": 1200
+        },
+        "Mashroom Storage Services": {
+            "provider": "Mashroom Storage Filestore Provider"
+        },
+        "Mashroom Storage Filestore Provider": {
+            "dataFolder": "./data/storage",
+            "checkExternalChangePeriodMs": 2000
+        },
+        "Mashroom Internationalization Services": {
+            "availableLanguages": ["en", "de"],
+            "defaultLanguage": "en"
+        },
+        "Mashroom Http Proxy Services": {
+            "rejectUnauthorized": false,
+            "poolMaxSockets": 10
+        }
+    }
+}

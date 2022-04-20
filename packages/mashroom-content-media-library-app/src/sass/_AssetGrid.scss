@@ -1,0 +1,45 @@
+
+$GRID_SPACING: 20px;
+
+.mashroom-content-media-library-asset-grid {
+    margin-top: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+
+    .asset-grid-item {
+        margin-right: $GRID_SPACING;
+        margin-bottom: $GRID_SPACING;
+        width: 270px;
+        padding: 10px;
+        cursor: pointer;
+        position: relative;
+
+        .mashroom-content-media-library-asset-actions {
+            display: none;
+        }
+
+        .asset-grid-item-thumb {
+            height: 200px;
+        }
+
+        .asset-grid-item-info {
+            padding: 5px;
+
+            .title {
+                max-width: 90%;
+                word-wrap: break-word;
+                font-weight: bold;
+            }
+        }
+
+        &:hover {
+            background-color: #CCC;
+
+            .mashroom-content-media-library-asset-actions {
+                display: block;
+            }
+        }
+    }
+
+}

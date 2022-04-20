@@ -1,0 +1,15 @@
+{
+    "$schema": "../../node_modules/@mashroom/mashroom-json-schemas/schemas/mashroom-plugins.json",
+    "devModeBuildScript": "build",
+    "plugins": [
+        {
+            "name": "Mashroom Content Strapi Provider",
+            "type": "content-provider",
+            "bootstrap": "./dist/mashroom-bootstrap.js",
+            "defaultConfig": {
+                "strapiUrl": "http://localhost:1337",
+                "apiToken": null
+            }
+        }
+    ]
+}

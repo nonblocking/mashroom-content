@@ -1,0 +1,25 @@
+
+.content-edit-style {
+    @import "../../../node_modules/codemirror/lib/codemirror";
+    @import "../../../node_modules/codemirror/theme/idea";
+
+    .css-editor {
+        margin-top: 20px;
+        font-size: 0.9em;
+    }
+
+    .form-row {
+        padding-bottom: 5px;
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+    }
+
+}

@@ -1,0 +1,83 @@
+
+.content-edit-content {
+
+    .form-row {
+        padding-bottom: 5px;
+
+        label {
+            font-weight: bold;
+        }
+
+        a {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        &.horizontal {
+            display: flex;
+
+            label {
+                width: 120px;
+            }
+
+            select, input {
+                width: calc(100% - 120px);
+            }
+        }
+    }
+    @import "../../../node_modules/react-mde/lib/styles/scss/react-mde-all";
+
+    .react-mde {
+        margin-top: 5px;
+
+        .icon-bold {
+            @include toolbarIcon('\f032');
+        }
+
+        .icon-italic {
+            @include toolbarIcon('\f033');
+        }
+
+        .icon-strikethrough {
+            @include toolbarIcon('\f0cc');
+        }
+
+        .icon-link {
+            @include toolbarIcon('\f0c1');
+        }
+
+        .icon-ordered-list {
+            @include toolbarIcon('\f0cb');
+        }
+
+        .icon-unordered-list {
+            @include toolbarIcon('\f0ca');
+        }
+
+        .icon-image {
+            @include toolbarIcon('\f03e');
+        }
+
+        .icon-video {
+            @include toolbarIcon('\f008');
+        }
+
+        .icon-youtube {
+            @include toolbarIcon('\f167');
+            &:before {
+                font-family: $FONT_ICON_BRANDS;
+            }
+        }
+
+        .icon-vimeo {
+            @include toolbarIcon('\f40a');
+            &:before {
+                font-family: $FONT_ICON_BRANDS;
+            }
+        }
+
+        button {
+            padding: 0 2px !important;
+        }
+    }
+}

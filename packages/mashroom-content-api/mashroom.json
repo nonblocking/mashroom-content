@@ -1,0 +1,74 @@
+{
+    "$schema": "../../node_modules/@mashroom/mashroom-json-schemas/schemas/mashroom-plugins.json",
+    "devModeBuildScript": "build",
+    "plugins": [
+        {
+            "name": "Mashroom Content Services",
+            "type": "services",
+            "namespace": "content",
+            "bootstrap": "./dist/backend/services/mashroom-bootstrap-services.js",
+            "requires": [
+                "Mashroom Content Asset Processing Services"
+            ],
+            "defaultConfig": {
+                "provider": "Mashroom Content Internal Storage Provider",
+                "cacheEnable": true,
+                "cacheTTLSec": 1800
+            }
+        },
+        {
+            "name": "Mashroom Content Provider Loader",
+            "type": "plugin-loader",
+            "bootstrap": "./dist/backend/plugins/loader/mashroom-bootstrap-plugin-loader.js",
+            "loads": "content-provider"
+        },
+        {
+            "name": "Mashroom Content Provider API",
+            "type": "api",
+            "requires": [
+                "Mashroom Content Services"
+            ],
+            "bootstrap": "./dist/backend/api/mashroom-bootstrap-api.js",
+            "defaultConfig": {
+                "path": "/content",
+                "uploadTmpDir": null,
+                "images": {
+                    "breakpoints": [750, 1080, 1366, 1920],
+                    "preferredFormats": ["avif", "webp"]
+                }
+            }
+        },
+        {
+            "name": "Mashroom Content Client Service Page Enhancement",
+            "type": "portal-page-enhancement",
+            "requires": [
+                "Mashroom Content Provider API"
+            ],
+            "bootstrap": "./dist/backend/page/mashroom-bootstrap-page-enhancement.js",
+            "pageResources": {
+                "js": [{
+                    "path": "contentClientService.js",
+                    "location": "header",
+                    "inline": false
+                }, {
+                    "dynamicResource": "contentApiGlobalProperties",
+                    "inline": true
+                }]
+            },
+            "defaultConfig": {
+                "order": "500",
+                "resourcesRoot": "./dist/public"
+            }
+        },
+        {
+            "name": "Mashroom Content Client Service App Enhancement",
+            "type": "portal-app-enhancement",
+            "requires": [
+                "Mashroom Content Client Service Page Enhancement"
+            ],
+            "portalCustomClientServices": {
+                "contentService": "MASHROOM_CONTENT_API_CLIENT_SERVICE"
+            }
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+
+.mashroom-content-media-library-asset-upload {
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    .progress-container {
+        position: absolute;
+        width: 100%;
+        top: calc(50% - 10px);
+
+        .progress-bar {
+            height: 14px;
+            border: 1px solid var(--mashroom-portal-color-primary-dark, #3d3967);
+            border-radius: 5px;
+
+            .progress {
+                height: 12px;
+                background-color: var(--mashroom-portal-color-primary, #504B88);
+            }
+        }
+
+        .upload-cancel {
+            margin: 10px 0;
+        }
+    }
+
+    .upload-error {
+        position: absolute;
+        width: 100%;
+        top: 30%;
+    }
+}

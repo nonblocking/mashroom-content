@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "types": [
+      "@types/node",
+      "@types/jest"
+    ],
+    "skipLibCheck": true
+  }
+}

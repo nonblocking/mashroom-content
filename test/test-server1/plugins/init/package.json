@@ -1,0 +1,19 @@
+{
+    "name": "init",
+    "mashroom": {
+        "plugins": [
+            {
+                "name": "Content Init API",
+                "type": "api",
+                "requires": [
+                    "Mashroom Portal Services",
+                    "Mashroom Content Services"
+                ],
+                "bootstrap": "./initApi.js",
+                "defaultConfig": {
+                    "path": "/initContent"
+                }
+            }
+        ]
+    }
+}

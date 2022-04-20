@@ -1,0 +1,533 @@
+openapi: 3.0.0
+info:
+    version: 1.0.0
+    title: Mashroom Content API
+    description: An API abstraction that allows it to transparently switch the Headless CMS/Content Provider
+
+servers:
+    -   url: http://localhost:5050
+
+paths:
+    /content/api/{type}:
+        get:
+            summary: Search for content
+            parameters:
+                -   name: type
+                    in: path
+                    required: true
+                    description: The content type
+                    schema:
+                        type: string
+                -   name: filter
+                    in: query
+                    description: Only content that matches given filter query. The filter is a stringified MashroomContentApiFilter object (see type-definitions)
+                    examples:
+                        simple:
+                            value: filter[foo]=bar
+                        complex:
+                            value: filter[$and][0][html][$exists]=true&filter[$and][1][tags][$in][0]=foo&filter[$and][1][tags][$in][1]=bar
+                    schema:
+                        type: object
+                -   name: locale
+                    in: query
+                    description: Deliver content for given locale
+                    example: de
+                    schema:
+                        type: string
+                -   name: status
+                    in: query
+                    description: Only content with some specific status
+                    example: published
+                    schema:
+                       $ref: '#/components/schemas/ContentStatus'
+                -   name: sort
+                    in: query
+                    description: Sort the result by given properties
+                    example: sort[foo]=DESC&sort[bar]=ASC
+                    schema:
+                        type: object
+                -   name: limit
+                    in: query
+                    description: Limit the number of hits
+                    schema:
+                        type: string
+                -   name: skip
+                    in: query
+                    description: Skip some hits (for paging)
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: Successfully returned a list of contents
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ContentSearchResult'
+                '400':
+                    description: Invalid request
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+        post:
+            summary: Create some content
+            parameters:
+                -   name: type
+                    in: path
+                    required: true
+                    description: The content type
+                    schema:
+                        type: string
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/NewOrPartialContent'
+            responses:
+                '200':
+                    description: Successfully created a content
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ContentWrapper'
+    /content/api/{type}/searches:
+        post:
+            summary: Search content (alternative to the get request above)
+            parameters:
+                -   name: type
+                    in: path
+                    required: true
+                    description: The content type
+                    schema:
+                        type: string
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ContentSearchRequest'
+            responses:
+                '200':
+                    description: Successfully returned a list of contents
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ContentSearchResult'
+                '400':
+                    description: Invalid request
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+    /content/api/{type}/{id}:
+        get:
+            summary: Get content
+            parameters:
+                -   name: type
+                    in: path
+                    required: true
+                    description: The content type
+                    schema:
+                        type: string
+                -   name: id
+                    in: path
+                    required: true
+                    description: The content ID
+                    schema:
+                        type: string
+                -   name: locale
+                    in: query
+                    description: Deliver content for given locale
+                    example: de
+                    schema:
+                        type: string
+                -   name: version
+                    in: query
+                    description: Get given version
+                    example: 2
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: Successfully returned a content
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ContentWrapper'
+        put:
+            summary: Update the content
+            parameters:
+                -   name: type
+                    in: path
+                    required: true
+                    description: The content type
+                    schema:
+                        type: string
+                -   name: id
+                    in: path
+                    required: true
+                    description: The content ID
+                    schema:
+                        type: string
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/NewOrPartialContent'
+            responses:
+                '200':
+                    description: Successfully updated
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ContentWrapper'
+        delete:
+            summary: Remove the content
+            parameters:
+                -   name: type
+                    in: path
+                    required: true
+                    description: The content type
+                    schema:
+                        type: string
+                -   name: id
+                    in: path
+                    required: true
+                    description: The content ID
+                    schema:
+                        type: string
+                -   name: locale
+                    in: query
+                    description: Delete only specific translations
+                    example: de
+                    schema:
+                        type: array
+                        items:
+                            type: string
+                -   name: version
+                    in: query
+                    description: Delete only this given version
+                    example: 2
+                    schema:
+                        type: array
+                        items:
+                            type: string
+            responses:
+                '200':
+                    description: Successfully removed
+    /content/api/{type}/{id}/versions:
+        get:
+            summary: Get content versions
+            parameters:
+                -   name: type
+                    in: path
+                    required: true
+                    description: The content type
+                    schema:
+                        type: string
+                -   name: id
+                    in: path
+                    required: true
+                    description: The content ID
+                    schema:
+                        type: string
+                -   name: locale
+                    in: query
+                    description: Deliver content for given locale
+                    example: de
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: Successfully returned a content
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ContentVersionsResult'
+    /content/assets:
+        get:
+            summary: Search assets
+            parameters:
+                -   name: type
+                    in: query
+                    description: The asset type (e.g. image/png or image)
+                    example: image
+                    schema:
+                        type: string
+                -   name: titleContains
+                    in: query
+                    description: Search in title
+                    example: starfish.png
+                    schema:
+                        type: string
+                -   name: limit
+                    in: query
+                    description: Limit the number of hits
+                    schema:
+                        type: string
+                -   name: skip
+                    in: query
+                    description: Skip some hits (for paging)
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: Successfully returned a list of assets
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/AssetSearchResult'
+                '400':
+                    description: Invalid request
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+        post:
+            summary: Upload an asset (image, video, document)
+            requestBody:
+                required: true
+                content:
+                    multipart/form-data:
+                        schema:
+                            $ref: '#/components/schemas/AssetUpload'
+            responses:
+                '200':
+                    description: Successfully uploaded
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Asset'
+    /content/assets/{id}:
+        delete:
+            summary: Delete given asset
+            parameters:
+                -   name: id
+                    in: path
+                    description: The asset id
+                    required: true
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: Successfully deleted
+                '404':
+                    description: Asset not found
+    /content/assets/{proxyName}/{assetPath}:
+        get:
+            summary: Fetch a content asset via proxy (assetProxies in the provider setup)
+            parameters:
+                -   name: _w
+                    in: query
+                    description: Resize to given with (only if asset processing enabled)
+                    example: 1200
+                    schema:
+                        type: string
+                -   name: _format
+                    in: query
+                    description: Convert image to given format (only if asset processing enabled)
+                    example: webp
+                    schema:
+                        $ref: '#/components/schemas/AssetImageFormats'
+                -   name: _q
+                    in: query
+                    description: Convert with given quality in percent (only if asset processing enabled)
+                    example: 75
+                    schema:
+                        type: string
+                -   name: _sourceFormat
+                    in: query
+                    description: The format can also be given as extension, in that case you have to pass the source format here (only if asset processing enabled)
+                    example: png
+                    schema:
+                        $ref: '#/components/schemas/AssetImageFormats'
+            responses:
+                '200':
+                    description: The asset content
+                    content:
+                        '*/*':
+                            schema:
+                                type: string
+                                format: binary
+components:
+    schemas:
+        ContentSearchRequest:
+            type: object
+            properties:
+                filter:
+                    type: object
+                locale:
+                    type: string
+                status:
+                    $ref: '#/components/schemas/ContentStatus'
+                sort:
+                    type: object
+                limit:
+                    type: number
+                skip:
+                    type: number
+            additionalProperties: false
+        SearchResultMeta:
+            type: object
+            required:
+                - total
+            properties:
+                total:
+                    type: integer
+            additionalProperties: false
+        ContentSearchResult:
+            type: object
+            required:
+                - hits
+                - meta
+            properties:
+                hits:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ContentWrapper'
+                meta:
+                    $ref: '#/components/schemas/SearchResultMeta'
+            additionalProperties: false
+        Content:
+            type: object
+            additionalProperties: true
+        ContentStatus:
+            type: string
+            enum:
+                - published
+                - draft
+        ContentMeta:
+            type: object
+            properties:
+                locale:
+                    type: string
+                availableLocales:
+                    type: array
+                    items:
+                        type: string
+                version:
+                    type: string
+                status:
+                    $ref: '#/components/schemas/ContentStatus'
+            additionalProperties: false
+        ContentWrapper:
+            type: object
+            required:
+                - id
+                - data
+                - meta
+            properties:
+                id:
+                    type: string
+                data:
+                    $ref: '#/components/schemas/Content'
+                meta:
+                    $ref: '#/components/schemas/ContentMeta'
+            additionalProperties: false
+        NewOrPartialContent:
+            type: object
+            required:
+                - data
+            properties:
+                data:
+                    type: object
+                    additionalProperties: true
+                meta:
+                    type: object
+                    properties:
+                        locale:
+                            type: string
+                        status:
+                            $ref: '#/components/schemas/ContentStatus'
+            additionalProperties: false
+        ContentVersionsResult:
+            type: object
+            required:
+                - versions
+            properties:
+                versions:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ContentWrapper'
+            additionalProperties: false
+        AssetImageFormats:
+            type: string
+            enum:
+                - png
+                - jpeg
+                - jpg
+                - webp
+                - avif
+        AssetUpload:
+            type: object
+            required:
+                - file
+            properties:
+                file:
+                    type: string
+                    format: binary
+                path:
+                    type: string
+                    description: Optional upload path (may be ignored)
+                contentRefType:
+                    type: string
+                contentRefId:
+                    type: string
+                contentRefFieldName:
+                    type: string
+                contentRefLocale:
+                    type: string
+        AssetSearchResult:
+            type: object
+            required:
+                - hits
+                - meta
+            properties:
+                hits:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Asset'
+                meta:
+                    $ref: '#/components/schemas/SearchResultMeta'
+            additionalProperties: false
+        Asset:
+            type: object
+            required:
+                - id
+                - url
+                - meta
+            properties:
+                id:
+                    type: string
+                url:
+                    type: string
+                meta:
+                    $ref: '#/components/schemas/AssetMeta'
+        AssetMeta:
+            type: object
+            required:
+                - title
+                - fileName
+                - mimeType
+            properties:
+                title:
+                    type: string
+                fileName:
+                    type: string
+                mimeType:
+                    type: string
+                width:
+                    type: number
+                height:
+                    type: number

@@ -1,0 +1,35 @@
+
+.mashroom-content-media-library-drop-target {
+    position: relative;
+
+    .drop-feedback {
+        pointer-events: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: #EEE;
+        opacity: 0.8;
+        z-index: 10000;
+        display: none;
+
+        .drop-icon {
+            position: absolute;
+            font-size: 120px;
+            color: white;
+            left: calc(50% - 41px);
+            top: calc(50% - 41px);
+
+            &:before {
+                font-family: $FONT_ICON;
+                font-weight: bold;
+                content: '\f574';
+            }
+        }
+
+        &.show {
+            display: block;
+        }
+    }
+}

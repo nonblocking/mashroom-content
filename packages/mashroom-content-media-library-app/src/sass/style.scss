@@ -1,0 +1,18 @@
+
+$FONT_ICON: 'Font Awesome 5 Free';
+
+.mashroom-content-media-library-app {
+    padding: 10px;
+
+    @import "DropTarget";
+    @import "MainActions";
+    @import "SearchBar";
+    @import "AssetActions";
+    @import "Assets";
+    @import "AssetGrid";
+    @import "Image";
+    @import "Video";
+    @import "GenericDocument";
+    @import "Upload";
+
+}

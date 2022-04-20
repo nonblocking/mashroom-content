@@ -1,0 +1,68 @@
+{
+    "$schema": "../../node_modules/@mashroom/mashroom-json-schemas/schemas/mashroom-plugins.json",
+    "devModeBuildScript": "build",
+    "plugins": [
+        {
+            "name": "Mashroom Content Markdown Renderer App",
+            "type": "portal-app2",
+            "requires": [
+                "Mashroom Content Client Service App Enhancement",
+                "Mashroom Content Media Library App"
+            ],
+            "clientBootstrap": "startMashroomContentMarkdownRendererApp",
+            "resources": {
+                "js": ["app.js"],
+                "css": ["app.css"]
+            },
+            "local": {
+                "resourcesRoot": "./dist",
+                "ssrBootstrap": "./dist/app-ssr.js"
+            },
+            "defaultConfig": {
+                "title": {
+                    "en": "Markdown Content Display",
+                    "de": "Markdown Inhalt Anzeige"
+                },
+                "description": {
+                    "en": "Displays Markdown Content from the CMS System",
+                    "de": "Zeigt Markdown Inhalt an aus dem CMS System"
+                },
+                "category": "Content",
+                "editor": {
+                    "editorPortalApp": "Mashroom Content Markdown Renderer App Config Editor",
+                    "position": "in-place"
+                },
+                "caching": {
+                    "ssrHtml": "same-config"
+                },
+                "appConfig": {
+                    "contentType": "markdowns",
+                    "contentProp": "content",
+                    "titleProp": "title",
+                    "contentId": null,
+                    "style": null,
+                    "belowFold": false,
+                    "fullscreenImageOnClick": true
+                }
+            }
+        },
+        {
+            "name": "Mashroom Content Markdown Renderer App Config Editor",
+            "type": "portal-app2",
+            "clientBootstrap": "startMashroomContentMarkdownRendererAppConfigEditor",
+            "resources": {
+                "js": ["editor.js"]
+            },
+            "local": {
+                "resourcesRoot": "./dist"
+            },
+            "defaultConfig": {
+                "title": "Markdown Renderer AppConfig Editor",
+                "category": "hidden",
+                "appConfig": {
+                    "editorTarget": null
+                }
+            }
+        }
+    ]
+}

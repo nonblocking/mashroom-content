@@ -1,0 +1,115 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport"/>
+    <title>Markdown Renderer App Config Editor</title>
+
+    <script src="editor.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+
+    <style>
+        body {
+            max-width: 600px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app-container" class="mashroom-portal-app-wrapper">
+        Loading...
+    </div>
+
+    <script type="text/javascript">
+        (function () {
+
+            document.addEventListener("DOMContentLoaded", function () {
+                var element = document.getElementById("app-container");
+                var editorTarget = {
+                    appId: "xx",
+                    pluginName: 'Mashroom Content Markdown Renderer App',
+                    appConfig: {
+                        contentType: 'markdown',
+                        contentProp: 'content',
+                        titleProp: 'title',
+                        contentId: '123456',
+                        belowFold: false,
+                        fullscreenImageOnClick: true,
+                        style: '.my-class { background-color: #CCC; } \nstrong { color: red }',
+                    },
+                    updateAppConfig: (appConfig) => {
+                        console.info('New app config:', appConfig);
+                        alert('appConfig updated!');
+                    },
+                    close: () => {
+                        alert('closing editor!');
+                    },
+                };
+                var portalAppSetup = {
+                    appId: 'yy',
+                    lang: 'en',
+                    appConfig: {
+                        editorTarget,
+                    },
+                };
+                var portalClientServices = {
+                    portalAppService: {
+                        loadAppModal: function(appName) {
+                            alert('Load ' + appName);
+                        }
+                    },
+                    portalUserService: {
+                        getDefaultLanguage: function() {
+                            return Promise.resolve('en');
+                        },
+                        getAvailableLanguages: function() {
+                            return Promise.resolve(['en', 'de', 'fr']);
+                        },
+                    },
+                    contentService: {
+                        imageBreakpoints: [],
+                        imagePreferredFormats: [],
+                        getContent: function () {
+                            return Promise.resolve({
+                                data: {
+                                    title: 'Test',
+                                    content: '## Stuff\n\n::a[Jump to local video]{gotoId=localVideo}\nThis is a test with **bold** text \n\n```js\nalert("foo")\n```\n\ncool!\n\n![my image](/mashroom_portal_ui.png#200x200)\n\nxxx ## Videos\n\n### Youtube\n\n::youtube{id=z9eoubnO-pE}\n\n### Vimeo\n\n::vimeo{id=612710291 privateKey=dba51808e0}\n\n::h3[Local]{id=localVideo}\n\n::video{src=/sandbox.mp4}',
+                                },
+                                meta: {
+
+                                }
+                            });
+                        },
+                        searchContent: function() {
+                            return new Promise((resolve) => {
+                                var randomCount = Math.trunc(Math.random() * 5) + 1;
+                                var hits = [];
+                                for (var i = 0; i < randomCount; i++) {
+                                    hits.push({
+                                        id: i,
+                                        data: {
+                                            title: 'Content #' + i,
+                                            content: 'Here some **random** text. It is ' + Date.now() + ' now btw'
+                                        }
+                                    });
+                                }
+                                setTimeout(function() {
+                                    resolve({
+                                       hits: hits,
+                                       meta: {
+                                           total: randomCount
+                                       }
+                                    })
+                                }, 500);
+                            });
+                        }
+                    }
+                };
+
+                window.startMashroomContentMarkdownRendererAppConfigEditor(element, portalAppSetup, portalClientServices);
+            });
+        })();
+
+    </script>
+</body>
+</html>

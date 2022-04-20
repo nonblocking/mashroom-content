@@ -1,0 +1,14 @@
+
+.mashroom-content-media-library-asset-actions {
+    position: absolute;
+    background-color: rgba(white, 0.8);
+    padding: 2px 5px;
+
+    .asset-action-remove {
+        &:before {
+            font-family: $FONT_ICON;
+            font-weight: bold;
+            content: '\f2ed';
+        }
+    }
+}

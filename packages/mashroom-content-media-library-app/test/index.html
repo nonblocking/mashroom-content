@@ -1,0 +1,186 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport"/>
+    <title>Media Library App</title>
+
+    <script src="index.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+
+    <style>
+        body {
+            max-width: 1200px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app-container">
+        Loading...
+    </div>
+
+    <script type="text/javascript">
+        (function () {
+
+            document.addEventListener("DOMContentLoaded", function () {
+                var element = document.getElementById("app-container");
+                var portalAppConfig = {
+                    modalMode: true,
+                    //typeFilter: null,
+                     typeFilter: 'image',
+                };
+                var portalAppSetup = {
+                    appId: 'abcdef',
+                    lang: 'en',
+                    appConfig: portalAppConfig
+                };
+                var portalClientServices = {
+                    contentService: {
+                        uploadAsset: function(file) {
+                            var progress = 0;
+                            var cancelled = false;
+                            return {
+                                then: (successCallback, errorCallback, notifyCallback) => {
+                                    var handler = function() {
+                                        if (cancelled) {
+                                            errorCallback(new Error('Aborted'));
+                                            return;
+                                        }
+                                        if (progress >= 100) {
+                                            successCallback({
+                                                id: String(Date.now()),
+                                                url: '/uploaded.pdf',
+                                                meta: {
+                                                    title: 'uploaded.pdf',
+                                                    fileName: 'uploaded.pdf',
+                                                    mimeType: 'application/pdf',
+                                                    size: 22222222
+                                                }
+                                            });
+                                            return;
+                                        }
+                                        progress += 10;
+                                        if (notifyCallback) {
+                                            notifyCallback({progress});
+                                        }
+                                        setTimeout(handler, 500);
+                                    }
+                                    setTimeout(handler, 500);
+                                },
+                                cancel: () => {
+                                    cancelled = true;
+                                },
+                            };
+                        },
+                        searchAssets: function() {
+                            console.info('Search assets:', arguments);
+                            return new Promise((resolve) => {
+                               setTimeout(function() {
+                                   resolve({
+                                       hits: [
+                                           {
+                                               id: '1',
+                                               url: '/mashroom_portal_ui.png',
+                                               meta: {
+                                                   title: 'mashroom_portal_ui.png',
+                                                   fileName: 'mashroom_portal_ui.png',
+                                                   mimeType: 'image/png',
+                                                   width: 600,
+                                                   height: 400,
+                                                   size: 123000
+                                               }
+                                           },
+                                           {
+                                               id: '2',
+                                               url: '/sandbox.mp4',
+                                               meta: {
+                                                   title: 'sandbox.mp4',
+                                                   fileName: 'sandbox.mp4',
+                                                   mimeType: 'video/mp4',
+                                                   size: 34343443
+                                               }
+                                           },
+                                           {
+                                               id: '3',
+                                               url: '/whatever.pdf',
+                                               meta: {
+                                                   title: 'whatever.pdf',
+                                                   fileName: 'whatever.pdf',
+                                                   mimeType: 'application/pdf',
+                                                   size: 12321323
+                                               }
+                                           },
+                                           {
+                                               id: '4',
+                                               url: '/test.docx',
+                                               meta: {
+                                                   title: 'test.docx',
+                                                   fileName: 'text.docx',
+                                                   mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                                   size: 222222
+                                               }
+                                           },
+                                           {
+                                               id: '5',
+                                               url: '/test.xlsx',
+                                               meta: {
+                                                   title: 'test.xlsx',
+                                                   fileName: 'text.xlsx',
+                                                   mimeType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                                                   size: 4444444
+                                               }
+                                           },
+                                           {
+                                               id: '6',
+                                               url: '/test.pptx',
+                                               meta: {
+                                                   title: 'test.pptx',
+                                                   fileName: 'text.pptx',
+                                                   mimeType: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                                                   size: 7777
+                                               }
+                                           },
+                                           {
+                                               id: '7',
+                                               url: '/mashroom_portal_ui.png#22',
+                                               meta: {
+                                                   title: 'mashroom_portal_ui2.png',
+                                                   fileName: 'mashroom_portal_ui2.png',
+                                                   mimeType: 'image/png',
+                                                   width: 1280,
+                                                   height: 768,
+                                                   size: 15555555
+                                               }
+                                           },
+                                           {
+                                               id: '8',
+                                               url: '/mysong.mp3',
+                                               meta: {
+                                                   title: 'mysong.mp3',
+                                                   fileName: 'mysong.mp3',
+                                                   mimeType: 'audio/mp3',
+                                                   size: 77778888
+                                               }
+                                           },
+                                       ],
+                                       meta: {
+                                           total: 8
+                                       }
+                                   });
+                               }, 500);
+                            });
+                        },
+                        removeAsset: function() {
+                            return Promise.resolve();
+                        }
+                    }
+                };
+                window.startMashroomContentMediaLibraryApp(element, portalAppSetup, portalClientServices);
+            });
+        })();
+
+    </script>
+</body>
+</html>

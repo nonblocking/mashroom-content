@@ -1,0 +1,36 @@
+{
+    "$schema": "../../node_modules/@mashroom/mashroom-json-schemas/schemas/mashroom-plugins.json",
+    "devModeBuildScript": "build",
+    "plugins": [
+        {
+            "name": "Mashroom Content Media Library App",
+            "type": "portal-app2",
+            "requires": [
+                "Mashroom Content Client Service App Enhancement"
+            ],
+            "clientBootstrap": "startMashroomContentMediaLibraryApp",
+            "resources": {
+                "js": ["index.js"]
+            },
+            "local": {
+                "resourcesRoot": "./dist"
+            },
+            "defaultConfig": {
+                "title": {
+                    "en": "Media Library",
+                    "de": "Medien Bibliothek"
+                },
+                "description": {
+                    "en": "Display an manage the assets in the CMS System",
+                    "de": "Anzeige und Management der Assets im CMS System"
+                },
+                "category": "Content",
+                "appConfig": {
+                    "modalMode": false,
+                    "typeFilter": null,
+                    "responseChannelTopic": "media-library-response"
+                }
+            }
+        }
+    ]
+}

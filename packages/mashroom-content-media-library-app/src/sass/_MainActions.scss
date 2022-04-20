@@ -1,0 +1,54 @@
+
+.mashroom-content-media-library-main-actions {
+    margin-bottom: 10px;
+
+    .upload {
+
+        .upload-button-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+
+            label {
+                background-color: var(--mashroom-portal-color-primary, #504B88);
+                color: white;
+                border-radius: 0;
+                border: none;
+                padding: 6px 12px;
+                cursor: pointer;
+                outline: none !important;
+                font-family: var(--mashroom-portal-font-default, 'Helvetica Neue', Helvetica, Arial, sans-serif);
+                font-size: 1em;
+
+                &:hover {
+                    background-color: var(--mashroom-portal-color-primary-dark, #3d3967);
+                }
+
+                &:active {
+                    background-color: var(--mashroom-portal-color-primary-dark, #3d3967);
+                }
+
+                .icon-upload:before {
+                    font-family: $FONT_ICON;
+                    font-weight: bold;
+                    content: '\f574';
+                    padding-right: 10px;
+                }
+            }
+
+            input[type=file] {
+                position: absolute;
+                left: 0;
+                top: 0;
+                opacity: 0;
+                padding-left: 100%;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .close {
+        display: table;
+        margin-left: auto;
+    }
+}

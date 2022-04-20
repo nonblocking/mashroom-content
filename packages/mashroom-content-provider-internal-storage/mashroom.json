@@ -1,0 +1,17 @@
+{
+    "$schema": "../../node_modules/@mashroom/mashroom-json-schemas/schemas/mashroom-plugins.json",
+    "devModeBuildScript": "build",
+    "plugins": [
+        {
+            "name": "Mashroom Content Internal Storage Provider",
+            "type": "content-provider",
+            "bootstrap": "./dist/mashroom-bootstrap.js",
+            "requires": [
+                "Mashroom Storage Services"
+            ],
+            "defaultConfig": {
+                "assetsFolder": "./data/assets"
+            }
+        }
+    ]
+}
