@@ -7,7 +7,8 @@
     "license": "MIT",
     "files": [
         "dist/**",
-        "type-definitions/*"
+        "type-definitions/*",
+        "mashroom.json"
     ],
     "dependencies": {
         "image-size": "^1.0.0",

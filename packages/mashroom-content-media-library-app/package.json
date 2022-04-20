@@ -7,7 +7,8 @@
     "license": "MIT",
     "sideEffects": false,
     "files": [
-        "dist/**"
+        "dist/**",
+        "mashroom.json"
     ],
     "devDependencies": {
         "@mashroom-content/mashroom-content-api": "1.0.0-alpha.0",

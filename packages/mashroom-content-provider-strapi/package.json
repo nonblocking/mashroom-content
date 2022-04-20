@@ -6,7 +6,8 @@
     "repository": "github:nonblocking/mashroom-content",
     "license": "MIT",
     "files": [
-        "dist/**"
+        "dist/**",
+        "mashroom.json"
     ],
     "dependencies": {
         "node-fetch": "^2.6.7"

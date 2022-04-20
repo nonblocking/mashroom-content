@@ -6,7 +6,8 @@
     "repository": "github:nonblocking/mashroom-content",
     "license": "MIT",
     "files": [
-        "dist/**"
+        "dist/**",
+        "mashroom.json"
     ],
     "dependencies": {
         "fs-extra": "^10.0.0",
