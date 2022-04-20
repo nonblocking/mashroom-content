@@ -1,6 +1,6 @@
 {
     "name": "@mashroom-content/mashroom-content-asset-processing",
-    "version": "1.0.0",
+    "version": "1.0.0-alpha.0",
     "description": "Mashroom Content Asset services",
     "homepage": "https://www.mashroom-server.com",
     "repository": "github:nonblocking/mashroom-content",
@@ -10,16 +10,16 @@
         "type-definitions/*"
     ],
     "dependencies": {
-        "sharp": "^0.29.3",
-        "mime-types": "^2.1.34",
         "fs-extra": "^10.0.0",
-        "node-fetch": "^2.6.6"
+        "mime-types": "^2.1.34",
+        "node-fetch": "^2.6.6",
+        "sharp": "^0.29.3"
     },
     "devDependencies": {
-        "@types/sharp": "^0.29.5",
-        "@types/mime-types": "^2.1.1",
         "@types/fs-extra": "^9.0.13",
+        "@types/mime-types": "^2.1.1",
         "@types/node-fetch": "^2.5.12",
+        "@types/sharp": "^0.29.5",
         "image-size": "^1.0.0"
     },
     "scripts": {
