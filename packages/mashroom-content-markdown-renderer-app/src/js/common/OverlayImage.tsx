@@ -1,4 +1,4 @@
-import React, {useEffect, useCallback} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {createPortal} from 'react-dom';
 
 type Props = {
@@ -8,6 +8,7 @@ type Props = {
 }
 
 export default ({src, show, onClose}: Props) => {
+    const [loadImage, setLoadImage] = useState(false);
     const onEscCb = useCallback((e: KeyboardEvent) => {
         if (e.key === 'Escape') {
             onClose();
@@ -15,6 +16,7 @@ export default ({src, show, onClose}: Props) => {
     }, [onClose]);
     useEffect(() => {
         if (show) {
+            setLoadImage(true);
             global.document.addEventListener('keydown', onEscCb);
         } else {
             global.document.removeEventListener('keydown', onEscCb);
@@ -30,7 +32,7 @@ export default ({src, show, onClose}: Props) => {
         <div className="mashroom-content-markdown-renderer-app mashroom-content-markdown-renderer-app-config-editor" style={{ padding: 0 }}>
             <div className="mashroom-content-markdown-wrapper">
                 <div className={`image-overlay ${show ? 'show' : ''}`} onClick={onClose}>
-                    <img src={src} />
+                    {loadImage && <img src={src} />}
                 </div>
             </div>
         </div>,
