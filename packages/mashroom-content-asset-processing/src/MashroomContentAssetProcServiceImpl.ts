@@ -60,23 +60,28 @@ export default class MashroomContentAssetProcServiceImpl implements MashroomCont
         }
 
         // Image processing
-        if (asset.meta.mimeType.startsWith('image/')) {
-            const newMimeType = convert?.format ? lookupMimeType(convert.format) || '' : asset.meta.mimeType;
-            asset = {
-                stream: await this.processAsset(asset.stream, resize, convert),
-                meta: {
-                    ...asset.meta,
-                    mimeType: newMimeType,
-                    size: undefined,
+        try {
+            if (asset.meta.mimeType.startsWith('image/')) {
+                const newMimeType = convert?.format ? lookupMimeType(convert.format) || '' : asset.meta.mimeType;
+                asset = {
+                    stream: await this.processAsset(asset.stream, resize, convert),
+                    meta: {
+                        ...asset.meta,
+                        mimeType: newMimeType,
+                        size: undefined,
+                    }
                 }
             }
+
+            if (cacheFilePath) {
+                this._logger.debug('Putting asset to cache:', assetUri);
+                // Deliberately don't wait
+                await this._writeCacheEntry(cacheFilePath, asset);
+            }
+        } catch (e) {
+            this._logger.error('Image processing failed!', e);
         }
 
-        if (cacheFilePath) {
-            this._logger.debug('Putting asset to cache:', assetUri);
-            // Deliberately don't wait
-            await this._writeCacheEntry(cacheFilePath, asset);
-        }
         return asset;
     }
 
