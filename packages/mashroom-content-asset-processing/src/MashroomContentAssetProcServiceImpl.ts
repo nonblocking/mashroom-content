@@ -199,7 +199,7 @@ export default class MashroomContentAssetProcServiceImpl implements MashroomCont
         }
 
         const metaFromCacheEntry: MashroomContentAssetProcMeta = readJSONSync(`${cacheFilePath}_meta.json`);
-        const expires = metaFromCacheEntry.expires ??  cacheFileStat.mtimeMs + this.cacheDefaultTTLSec * 1000;
+        const expires = metaFromCacheEntry.expires ?? cacheFileStat.mtimeMs + this.cacheDefaultTTLSec * 1000;
 
         if (expires > Date.now()) {
             this._logger.debug('Loading asset from cache:', cacheFilePath);
