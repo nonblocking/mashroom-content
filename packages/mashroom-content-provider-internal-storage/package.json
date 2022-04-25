@@ -1,6 +1,6 @@
 {
     "name": "@mashroom-content/mashroom-content-provider-internal-storage",
-    "version": "1.0.0-alpha.1",
+    "version": "1.0.0-alpha.2",
     "description": "Mashroom Content Internal Storage Provider",
     "homepage": "https://www.mashroom-server.com",
     "repository": "github:nonblocking/mashroom-content",
@@ -14,7 +14,7 @@
         "nanoid": "^3.2.0"
     },
     "devDependencies": {
-        "@mashroom-content/mashroom-content-api": "1.0.0-alpha.1",
+        "@mashroom-content/mashroom-content-api": "1.0.0-alpha.2",
         "@types/fs-extra": "^9.0.13"
     },
     "scripts": {

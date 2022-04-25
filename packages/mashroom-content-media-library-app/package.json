@@ -1,6 +1,6 @@
 {
     "name": "@mashroom-content/mashroom-content-media-library-app",
-    "version": "1.0.0-alpha.1",
+    "version": "1.0.0-alpha.2",
     "description": "Mashroom Content Media Library App",
     "homepage": "https://www.mashroom-server.com",
     "repository": "github:nonblocking/mashroom-content",
@@ -11,7 +11,7 @@
         "mashroom.json"
     ],
     "devDependencies": {
-        "@mashroom-content/mashroom-content-api": "1.0.0-alpha.1",
+        "@mashroom-content/mashroom-content-api": "1.0.0-alpha.2",
         "@types/lodash.debounce": "^4.0.6",
         "@types/react": "^17.0.38",
         "@types/react-dom": "^17.0.11",
