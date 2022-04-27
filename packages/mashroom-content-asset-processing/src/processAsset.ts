@@ -1,0 +1,26 @@
+import {Duplex, Readable} from 'stream';
+import {MashroomContentAssetProcImageConvert, MashroomContentAssetProcImageResize} from '../type-definitions';
+import sharp from 'sharp';
+
+export default async (asset: Readable, defaultQuality: number, scaleUp: boolean, resize?: MashroomContentAssetProcImageResize, convert?: MashroomContentAssetProcImageConvert): Promise<Readable> => {
+    if (!resize?.width && !resize?.height && !convert?.format) {
+        return asset;
+    }
+
+    const procs: Array<Duplex> = [];
+    if (convert?.format) {
+        const {format, quality} = convert;
+        procs.push(sharp().toFormat(format, {
+            quality: quality || defaultQuality,
+        }));
+    }
+    if (resize?.width || resize?.height) {
+        const {width, height, fit = 'cover'} = resize;
+        procs.push(sharp().resize(width, height, {
+            withoutEnlargement: !scaleUp,
+            fit,
+        }));
+    }
+
+    return procs.reduce((stream, proc) => stream.pipe(proc), asset);
+}
