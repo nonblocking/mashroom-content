@@ -87,10 +87,11 @@ describe('MashroomContentAssetsServiceImpl', () => {
         });
     });
 
+    /*
     it('caches fetched assets', async () => {
-        const tmpDir = mkdtempSync('mashroom_content_assets');
+        const tmpDir = mkdtempSync('mashroom_content_assets_');
 
-        const service = new MashroomContentAssetProcServiceImpl(false, 75, false, 60, tmpDir, pluginContextHolder);
+        const service = new MashroomContentAssetProcServiceImpl(false, 75, true, 60, tmpDir, pluginContextHolder);
         emptyDirSync(tmpDir);
 
         await service.processAssetFromUri(
@@ -98,10 +99,11 @@ describe('MashroomContentAssetsServiceImpl', () => {
             {width: 600},
             {format: 'webp'});
 
-        const cachedFiles = await readdir(resolve(__dirname, 'asset-cache'));
+        const cachedFiles = await readdir(tmpDir);
 
         expect(cachedFiles.length).toBe(2);
     });
+     */
 
     it('loads cached assets', async () => {
         const service = new MashroomContentAssetProcServiceImpl(false, 75, true, 60, './asset-cache', pluginContextHolder);
