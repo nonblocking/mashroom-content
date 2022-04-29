@@ -2,7 +2,7 @@
 jest.setTimeout(30000);
 
 import {resolve} from 'path';
-import {writeFileSync} from 'fs';
+import {writeFileSync, mkdtempSync} from 'fs';
 import {emptyDirSync, readdir} from 'fs-extra';
 import nock from 'nock';
 import imageSizeOf from 'image-size';
@@ -88,16 +88,18 @@ describe('MashroomContentAssetsServiceImpl', () => {
     });
 
     it('caches fetched assets', async () => {
-        const service = new MashroomContentAssetProcServiceImpl(false, 75, false, 60, './asset-cache', pluginContextHolder);
-        // @ts-ignore
-        emptyDirSync(service._cacheFolder)
+        const tmpDir = mkdtempSync('mashroom_content_assets');
 
-        const asset = await service.processAssetFromUri(
+        const service = new MashroomContentAssetProcServiceImpl(false, 75, false, 60, tmpDir, pluginContextHolder);
+        emptyDirSync(tmpDir);
+
+        await service.processAssetFromUri(
             `file://${resolve(__dirname, 'assets', 'mashroom_portal_ui.png')}`,
             {width: 600},
             {format: 'webp'});
 
         const cachedFiles = await readdir(resolve(__dirname, 'asset-cache'));
+
         expect(cachedFiles.length).toBe(2);
     });
 
