@@ -88,7 +88,7 @@ describe('MashroomContentAssetsServiceImpl', () => {
     });
 
     it('caches fetched assets', async () => {
-        const service = new MashroomContentAssetProcServiceImpl(false, 75, false, 60, '.', pluginContextHolder);
+        const service = new MashroomContentAssetProcServiceImpl(false, 75, false, 60, './asset-cache', pluginContextHolder);
         // @ts-ignore
         emptyDirSync(service._cacheFolder)
 
