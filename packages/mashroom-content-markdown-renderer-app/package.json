@@ -25,11 +25,6 @@
         "remark-directive-rehype": "^0.4.0",
         "remark-gfm": "^2.0.0"
     },
-    "overrides": {
-        "react-codemirror2@7": {
-            "react": "^17"
-        }
-    },
     "devDependencies": {
         "@mashroom-content/mashroom-content-api": "1.0.0-alpha.4",
         "@types/codemirror": "^5.60.5",
