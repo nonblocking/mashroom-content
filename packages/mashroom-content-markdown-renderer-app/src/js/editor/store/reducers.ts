@@ -23,6 +23,7 @@ import {
     SET_CONTENT_SAVING_ERROR,
     SET_SEARCH_QUERY,
     SET_SEARCH_RESULT,
+    ADD_SEARCH_RESULT,
     SET_SEARCH_RUNNING,
     SET_SEARCH_ERROR,
 } from './actions';
@@ -263,6 +264,18 @@ const search: Reducer<EditorSearch> = (state, action): EditorSearch => {
             return {
                 ...state,
                 result: action.result,
+            };
+        }
+        case ADD_SEARCH_RESULT: {
+            return {
+                ...state,
+                result: {
+                    ...state.result!,
+                    hits: [
+                        ...state.result!.hits,
+                        ...action.hits,
+                    ],
+                },
             };
         }
         case SET_SEARCH_RUNNING: {

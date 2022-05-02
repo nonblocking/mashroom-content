@@ -15,15 +15,16 @@ export default () => {
     const {query, result, running, error} = useSelector((state: EditorState) => state.search);
     const dispatch = useDispatch();
     const {contentService} = useContext(EditorContext);
-    const debouncedSearch = useMemo(() => debounce(() => dispatch(searchContent(contentService, MAX_HITS, skip)), 250), []);
+    const debouncedSearch = useMemo(() => debounce(() => dispatch(searchContent(contentService, MAX_HITS)), 250), []);
     const updateQuery = useCallback((query: string) => {
         dispatch(setSearchQuery(query));
         debouncedSearch();
         setSkip(undefined);
     }, []);
     const showMore = useCallback(() => {
-        setSkip((skip || 0) + MAX_HITS);
-        debouncedSearch();
+        const newSkip = (skip || 0) + MAX_HITS;
+        dispatch(searchContent(contentService, MAX_HITS, newSkip));
+        setSkip(newSkip);
     }, []);
     const {formatMessage} = useContext(IntlContext);
     useEffect(() => {

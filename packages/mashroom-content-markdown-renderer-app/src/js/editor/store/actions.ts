@@ -1,6 +1,7 @@
 
 import type {MashroomContentClientService, MashroomContentApiContentSearchResult} from '@mashroom-content/mashroom-content-api/type-definitions';
 import type {EditorConfig, EditorDispatch, EditorMode, EditorState, EditorTab} from '../../types';
+import {MashroomContentApiContentWrapper} from '@mashroom-content/mashroom-content-api/type-definitions';
 
 export const SET_EDITOR_CONFIG = 'SET_EDITOR_CONFIG';
 export const SET_EDITOR_MODE = 'SET_EDITOR_MODE';
@@ -25,6 +26,7 @@ export const SET_CONTENT_SAVING = 'SET_CONTENT_SAVING';
 export const SET_CONTENT_SAVING_ERROR = 'SET_CONTENT_SAVING_ERROR';
 export const SET_SEARCH_QUERY = 'SET_SEARCH_QUERY';
 export const SET_SEARCH_RESULT = 'SET_SEARCH_RESULT';
+export const ADD_SEARCH_RESULT = 'ADD_SEARCH_RESULT';
 export const SET_SEARCH_RUNNING = 'SET_SEARCH_RUNNING';
 export const SET_SEARCH_ERROR = 'SET_SEARCH_ERROR';
 
@@ -55,6 +57,7 @@ export const setContentSavingError = (error: boolean) => ({ type: SET_CONTENT_SA
 
 export const setSearchQuery = (query: string) => ({ type: SET_SEARCH_QUERY, query });
 export const setSearchResult = (result: MashroomContentApiContentSearchResult<any> | undefined) => ({ type: SET_SEARCH_RESULT, result });
+export const addSearchResult = (hits: Array<MashroomContentApiContentWrapper<any>>) => ({ type: ADD_SEARCH_RESULT, hits });
 export const setSearchRunning = (running: boolean) => ({ type: SET_SEARCH_RUNNING, running });
 export const setSearchError = (error: boolean) => ({ type: SET_SEARCH_ERROR, error });
 
@@ -177,7 +180,11 @@ export const searchContent = (contentService: MashroomContentClientService, limi
     dispatch(setSearchRunning(true));
     contentService.searchContent<any>(contentType, filter, undefined, undefined, undefined, limit, skip).then(
         (result) => {
-            dispatch(setSearchResult(result));
+            if (!skip) {
+                dispatch(setSearchResult(result));
+            } else {
+                dispatch(addSearchResult(result.hits));
+            }
             dispatch(setSearchRunning(false));
         }
     ).catch((error) => {
