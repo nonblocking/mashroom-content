@@ -20,8 +20,8 @@
             },
             "defaultConfig": {
                 "title": {
-                    "en": "Markdown Content Display",
-                    "de": "Markdown Inhalt Anzeige"
+                    "en": "Markdown Display",
+                    "de": "Markdown Anzeige"
                 },
                 "description": {
                     "en": "Displays Markdown Content from the CMS System",
