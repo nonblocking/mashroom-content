@@ -35,4 +35,5 @@ export default {
     editorIconTitle_video: 'Video',
     editorIconTitle_vimeo: 'Vimeo Video',
     editorIconTitle_youtube: 'Youtube Video',
+    html5VideoNotSupported: 'The browser doesn\'t support video playing',
 };

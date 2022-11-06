@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {uploadFile} from '../store/actions';
 
 import type {MashroomContentClientService} from '@mashroom-content/mashroom-content-api/type-definitions';
-import type {State} from '../types';
+import type {State, Dispatch} from '../types';
 
 type Props = {
     contentService: MashroomContentClientService;
@@ -12,7 +12,7 @@ type Props = {
 
 export default ({contentService}: Props) => {
     const {typeFilter} = useSelector((state: State) => state.search);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch() as Dispatch;
     const upload = useCallback((files: FileList | null) => {
         if (files) {
             for (let i = 0; i < files.length; i++) {

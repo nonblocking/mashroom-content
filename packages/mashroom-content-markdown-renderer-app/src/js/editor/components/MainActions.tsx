@@ -33,7 +33,7 @@ const saveAndClose = (style: string | undefined | null, belowFold: boolean, full
 export default ({editorTarget}: Props) => {
     const mode = useSelector((state: EditorState) => state.mode);
     const {contentId, style, belowFold, fullscreenImageOnClick, saving} = useSelector((state: EditorState) => state.content);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch() as EditorDispatch;
     const {contentService} = useContext(EditorContext);
 
     return (

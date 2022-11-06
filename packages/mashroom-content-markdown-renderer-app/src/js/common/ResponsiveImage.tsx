@@ -86,7 +86,7 @@ export default ({imgProps, belowFold, fullscreenImageOnClick, imageBreakpoints, 
                     srcSet.push(`${src}${preferredWith ? ` ${preferredWith}w` : ''}`);
                 });
                 altSources.push(
-                    <source key={format} srcSet={srcSet.join(', ')} type={type}/>
+                    <source key={format ?? 'default'} srcSet={srcSet.join(', ')} type={type}/>
                 );
             });
         }
@@ -94,8 +94,10 @@ export default ({imgProps, belowFold, fullscreenImageOnClick, imageBreakpoints, 
         return (
             <>
                 <picture className={className} title={title} onClick={onClickHandler}>
-                    {altSources}
-                    <img {...processedImgProps} />
+                    <>
+                        {altSources}
+                        <img {...processedImgProps} />
+                    </>
                 </picture>
                 {fullscreenImageOnClick && <OverlayImage src={imgProps.src} show={showOverlay} onClose={() => setShowOverlay(false)}/>}
             </>

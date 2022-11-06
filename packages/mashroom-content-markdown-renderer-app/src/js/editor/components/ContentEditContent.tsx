@@ -11,12 +11,12 @@ import {setContentMarkdown, setContentTitle, setSelectedLanguage, removeEditorLa
 import ContentEditorIcon from './ContentEditorIcon';
 import EditorContext from '../EditorContext';
 
-import type {EditorState} from '../../types';
+import type {EditorState, EditorDispatch} from '../../types';
 
 export default () => {
     const {contentType, contentProp, titleProp} = useSelector((state: EditorState) => state.config);
     const {contentId, i18nContent, selectedLanguage, defaultLanguage, possibleLanguages, loading, loadingError} = useSelector((state: EditorState) => state.content);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch() as EditorDispatch;
     const {portalAppService, messageBus} = useContext(EditorContext);
     const {formatMessage} = useContext(IntlContext);
 

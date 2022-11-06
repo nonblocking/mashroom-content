@@ -18,6 +18,7 @@ import type {
     MashroomStorageObjectFilter,
     MashroomStorageObject,
     MashroomStorageSort,
+    MashroomStorageRecord,
 } from '@mashroom/mashroom-storage/type-definitions';
 import type {
     MashroomContentApiAssetProxyConfigs,
@@ -552,7 +553,7 @@ export default class MashroomContentProviderInternalStorageImpl implements Mashr
         return 'en';
     }
 
-    private mapToStorageFilter<T>(filter: MashroomContentApiFilter<T>): MashroomStorageObjectFilter<T> {
+    private mapToStorageFilter<T extends MashroomStorageRecord>(filter: MashroomContentApiFilter<T>): MashroomStorageObjectFilter<T> {
         const rewriteOperator = (op: string, target: any, parent: any): void => {
             switch (op) {
                 case '$contains': {

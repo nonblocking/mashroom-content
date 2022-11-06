@@ -329,6 +329,7 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
 
         const formData = new FormData();
         formData.append('files', file, { filename: meta.fileName });
+        formData.append('fileInfo', JSON.stringify({ name: meta.fileName, caption: meta.fileName }));
         if (path) {
             formData.append('path', path);
         }
@@ -368,7 +369,6 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
 
         try {
             const uploadedAssets = await result.json() as StrapiUploads;
-
             return this.mapAsset(uploadedAssets[0]);
         } catch (e) {
             logger.error('Uploading asset failed!', e);

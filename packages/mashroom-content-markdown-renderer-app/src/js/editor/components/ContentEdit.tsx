@@ -8,7 +8,7 @@ import ContentEditStyle from './ContentEditStyle';
 import ContentEditPreview from './ContentEditPreview';
 import EditorContext from '../EditorContext';
 
-import type {EditorState, EditorTab} from '../../types';
+import type {EditorState, EditorTab, EditorDispatch} from '../../types';
 
 type Tab = {
     id: EditorTab;
@@ -24,7 +24,7 @@ const TABS: Array<Tab> = [
 export default () => {
     const activeTabId = useSelector((state: EditorState) => state.tab);
     const {contentId, i18nContent, selectedLanguage, existingTranslations} = useSelector((state: EditorState) => state.content);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch() as EditorDispatch;
     const {contentService} = useContext(EditorContext);
     useEffect(() => {
         if (selectedLanguage && !i18nContent[selectedLanguage]) {

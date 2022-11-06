@@ -9,7 +9,7 @@ Content (CMS) plugins for [Mashroom Server](https://www.mashroom-server.com).
  * Allows it to transparently switch the Headless CMS/Content Provider
  * Includes two read-to-use content providers:
      * One that [uses the internal _Mashroom Storage_](packages/mashroom-content-provider-internal-storage/README.md)
-     * And one for the [Strapi Headless CMS](packages/mashroom-content-provider-strapi/README.md)
+     * For [Strapi Headless CMS](packages/mashroom-content-provider-strapi/README.md)
  * Automatic image proxying with optimizations (format conversion and resizing on-the-fly)
  * CDN integration
  * Includes a [Markdown Renderer App](packages/mashroom-content-markdown-renderer-app/README.md) with the following features

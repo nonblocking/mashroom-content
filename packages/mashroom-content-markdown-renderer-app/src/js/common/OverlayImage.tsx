@@ -8,6 +8,7 @@ type Props = {
 }
 
 export default ({src, show, onClose}: Props) => {
+    const [loadOverlay, setLoadOverlay] = useState(false);
     const [loadImage, setLoadImage] = useState(false);
     const onEscCb = useCallback((e: KeyboardEvent) => {
         if (e.key === 'Escape') {
@@ -15,6 +16,7 @@ export default ({src, show, onClose}: Props) => {
         }
     }, [onClose]);
     useEffect(() => {
+        setLoadOverlay(true);
         if (show) {
             setLoadImage(true);
             global.document.addEventListener('keydown', onEscCb);
@@ -23,8 +25,8 @@ export default ({src, show, onClose}: Props) => {
         }
     }, [show]);
 
-    if (!global.document?.body) {
-        // SSR
+    // Don't render createPortal() immediately because this would break the hydration
+    if (!loadOverlay) {
         return null;
     }
 

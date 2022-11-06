@@ -3,7 +3,7 @@ import '../../sass/editor/style.scss';
 
 import React from 'react';
 import {Provider as ReduxProvider} from 'react-redux';
-import {render, unmountComponentAtNode} from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import createStore from './store/store';
 import EditorContext from './EditorContext';
 import Editor from './components/Editor';
@@ -34,17 +34,18 @@ const bootstrap: MashroomPortalAppPluginBootstrapFunction = (portalAppHostElemen
         contentService,
     };
 
-    render((
+    const root = createRoot(portalAppHostElement);
+    root.render(
         <ReduxProvider store={store}>
             <EditorContext.Provider value={context}>
                 <Editor editorTarget={editorTarget} />
             </EditorContext.Provider>
         </ReduxProvider>
-    ), portalAppHostElement);
+    );
 
     return {
         willBeRemoved: () => {
-            unmountComponentAtNode(portalAppHostElement);
+            root.unmount();
         }
     };
 };

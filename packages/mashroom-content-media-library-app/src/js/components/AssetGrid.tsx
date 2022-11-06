@@ -1,15 +1,15 @@
 import React, {useCallback} from 'react';
 import {useSelector} from 'react-redux';
-import filesize from 'filesize';
+import {filesize} from 'filesize';
 import AssetActions from './AssetActions';
 import Image from './Image';
 import Video from './Video';
 import GenericDocument from './GenericDocument';
+import Upload from './Upload';
 
 import type {MashroomPortalMessageBus} from '@mashroom/mashroom-portal/type-definitions';
 import type {MashroomContentAsset, MashroomContentClientService} from '@mashroom-content/mashroom-content-api/type-definitions';
 import type {State} from '../types';
-import Upload from './Upload';
 
 const getPreviewComponent = ({url, meta}: MashroomContentAsset) => {
     if (meta.mimeType?.indexOf('image/') === 0) {
@@ -55,7 +55,7 @@ export default ({messageBus, contentService}: Props) => {
                             </div>
                             <div className="details">
                                <span>
-                                   {filesize(upload.file.size)}
+                                   {filesize(upload.file.size) as string}
                                </span>
                             </div>
                         </div>
@@ -76,7 +76,7 @@ export default ({messageBus, contentService}: Props) => {
                             <div className="details">
                                 {asset.meta.size && (
                                     <span>
-                                        {filesize(asset.meta.size)}
+                                        {filesize(asset.meta.size) as string}
                                         {asset.meta.width && asset.meta.height && ', '}
                                     </span>
                                 )}

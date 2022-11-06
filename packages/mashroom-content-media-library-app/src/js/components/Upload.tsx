@@ -3,14 +3,14 @@ import {useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
 import {cancelUploadFile} from '../store/actions';
 
-import type {Upload} from '../types';
+import type {Upload, Dispatch} from '../types';
 
 type Props = {
     upload: Upload;
 }
 
 export default ({upload: {id, error, progress}}: Props) => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch() as Dispatch;
 
     return (
         <div className="mashroom-content-media-library-asset-upload">

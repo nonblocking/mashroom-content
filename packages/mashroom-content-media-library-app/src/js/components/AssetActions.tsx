@@ -5,6 +5,7 @@ import {removeAsset} from '../store/actions';
 
 import type {SyntheticEvent} from 'react';
 import type {MashroomContentClientService, MashroomContentAsset} from '@mashroom-content/mashroom-content-api/type-definitions';
+import type {Dispatch} from '../types';
 
 type Props = {
     asset: MashroomContentAsset;
@@ -12,7 +13,7 @@ type Props = {
 }
 
 export default ({asset, contentService}: Props) => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch() as Dispatch;
     const remove = useCallback((e: SyntheticEvent) => {
         e.preventDefault();
         e.stopPropagation();

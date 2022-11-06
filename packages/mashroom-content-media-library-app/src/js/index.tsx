@@ -2,7 +2,7 @@
 import '../sass/style.scss';
 
 import React from 'react';
-import {render, unmountComponentAtNode} from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import {Provider as ReduxProvider} from 'react-redux';
 import createStore from './store/store';
 import App from './components/App';
@@ -17,7 +17,8 @@ const bootstrap: MashroomPortalAppPluginBootstrapFunction = (portalAppHostElemen
 
     const store = createStore();
 
-    render((
+    const root = createRoot(portalAppHostElement);
+    root.render(
         <ReduxProvider store={store}>
             <App
                 lang={lang}
@@ -28,11 +29,11 @@ const bootstrap: MashroomPortalAppPluginBootstrapFunction = (portalAppHostElemen
                 contentService={contentService}
             />
         </ReduxProvider>
-    ), portalAppHostElement);
+    );
 
     return {
         willBeRemoved: () => {
-            unmountComponentAtNode(portalAppHostElement);
+            root.unmount();
         }
     };
 };

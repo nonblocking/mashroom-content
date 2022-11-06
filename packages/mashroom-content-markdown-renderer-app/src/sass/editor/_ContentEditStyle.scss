@@ -1,11 +1,10 @@
 
 .content-edit-style {
-    @import "../../../node_modules/codemirror/lib/codemirror";
-    @import "../../../node_modules/codemirror/theme/idea";
 
     .css-editor {
         margin-top: 20px;
         font-size: 0.9em;
+        border : 1px solid #CCC;
     }
 
     .form-row {

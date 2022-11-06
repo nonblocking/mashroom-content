@@ -1,4 +1,4 @@
-import {Readable} from 'stream';
+import {type Readable} from 'stream';
 import {basename} from 'path';
 import {URL} from 'url';
 import fetch from 'node-fetch';
@@ -11,7 +11,7 @@ export default async (httpUri: string): Promise<MashroomContentAssetProc> => {
         throw new Error(`Http asset not found: ${httpUri}`);
     }
 
-    const stream = new Readable().wrap(response.body);
+    const stream = response.body as Readable;
 
     const mimeType = response.headers.get('content-type') || '';
     const sizeHeader = response.headers.get('content-length');

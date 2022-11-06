@@ -6,7 +6,7 @@ import {MAX_HITS} from '../constants';
 import {searchAssets, setSearchQuery, setSearchSkip, setTypeFilter} from '../store/actions';
 
 import type {MashroomContentClientService} from '@mashroom-content/mashroom-content-api/type-definitions';
-import type {State} from '../types';
+import type {State, Dispatch} from '../types';
 
 type Props = {
     contentService: MashroomContentClientService;
@@ -15,7 +15,7 @@ type Props = {
 export default ({contentService}: Props) => {
     const {query, running, skip, typeFilter} = useSelector((state: State) => state.search);
     const {modalMode, typeFilter: typeFilterConfig} = useSelector((state: State) => state.config);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch() as Dispatch;
     const {formatMessage} = useContext(IntlContext);
     const debouncedSearch = useMemo(() => debounce(() => dispatch(searchAssets(contentService, MAX_HITS, skip)), 250), [skip]);
     const updateTypeFilter = useCallback((type: string) => {

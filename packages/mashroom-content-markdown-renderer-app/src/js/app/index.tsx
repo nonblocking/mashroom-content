@@ -2,7 +2,7 @@
 import '../../sass/app/style.scss';
 
 import React from 'react';
-import {render, hydrate, unmountComponentAtNode} from 'react-dom';
+import {createRoot, hydrateRoot, type Root} from 'react-dom/client';
 import App from './App';
 import {EMPTY_STATE} from './reducer';
 import scrollToId from '../common/scrollToId';
@@ -34,18 +34,20 @@ const bootstrap: MashroomPortalAppPluginBootstrapFunction = (portalAppHostElemen
         initialState: preloadedStateStr ? JSON.parse(preloadedStateStr) : EMPTY_STATE,
     };
 
+    let root: Root;
     if (ssrHost) {
         // SSR
         console.info('SSR content found, hydrating App!');
-        hydrate(<App {...props} />, ssrHost);
+        root = hydrateRoot(ssrHost, <App {...props} />);
     } else {
         // CSR
-        render(<App {...props} />, portalAppHostElement);
+        root = createRoot(portalAppHostElement);
+        root.render(<App {...props} />);
     }
 
     return {
         willBeRemoved: () => {
-            unmountComponentAtNode(portalAppHostElement);
+            root.unmount();
         },
         updateAppConfig: ({contentType, contentId, style}) => {
             console.info('Rerending App because appConfig changed');
@@ -57,8 +59,9 @@ const bootstrap: MashroomPortalAppPluginBootstrapFunction = (portalAppHostElemen
                 initialState: EMPTY_STATE,
             }
 
-            unmountComponentAtNode(portalAppHostElement);
-            render(<App {...newProps} />, portalAppHostElement);
+            root.unmount();
+            root = createRoot(portalAppHostElement);
+            root.render(<App {...props} />);
         },
     };
 };

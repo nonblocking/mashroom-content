@@ -19,7 +19,7 @@ module.exports = merge(common,  {
             'react-markdown', 'unified', 'bail', 'trough',  'escape-string-regexp', 'decode-named-character-reference',
             'character-entities', 'property-information', 'hast-util-whitespace', 'space-separated-tokens',
             'comma-separated-tokens', 'ccount', 'parse-entities', 'character-entities-legacy', 'character-reference-invalid',
-            'stringify-entities', 'character-entities-html4', 'hastscript', 'hast-util-parse-selector',
+            'stringify-entities', 'character-entities-html4', 'hastscript', 'hast-util-parse-selector', 'trim-lines',
             /^react-syntax-highlighter/,
         ],
     })],

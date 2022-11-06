@@ -2,8 +2,9 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
-import {Controlled as CodeMirror} from 'react-codemirror2'
-import 'codemirror/mode/css/css';
+import CodeMirror from '@uiw/react-codemirror';
+import {githubLight} from '@uiw/codemirror-theme-github';
+import {css} from '@codemirror/lang-css';
 import {setStyle, setBelowFold, setFullscreenImageOnClick} from '../store/actions';
 
 import type {EditorState} from '../../types';
@@ -11,6 +12,9 @@ import type {EditorState} from '../../types';
 export default () => {
     const {style, belowFold, fullscreenImageOnClick} = useSelector((state: EditorState) => state.content);
     const dispatch = useDispatch();
+
+    const extensions = [];
+    extensions.push(css());
 
     return (
         <div className="content-edit-style">
@@ -30,12 +34,17 @@ export default () => {
                <div className="css-editor">
                    <CodeMirror
                        value={style || ''}
-                       options={{
-                           mode: 'css',
-                           theme: 'idea',
-                           lineNumbers: true
+                       theme={githubLight}
+                       extensions={extensions}
+                       basicSetup={{
+                           lineNumbers: false,
+                           foldGutter: false,
+                           syntaxHighlighting: true,
+                           autocompletion: true,
+                           closeBrackets: true,
+                           highlightActiveLine: false,
                        }}
-                       onBeforeChange={(editor, data, value) => {
+                       onChange={(value) => {
                            dispatch(setStyle(value));
                        }}
                    />

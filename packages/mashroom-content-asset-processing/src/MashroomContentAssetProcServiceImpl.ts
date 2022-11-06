@@ -90,11 +90,13 @@ export default class MashroomContentAssetProcServiceImpl implements MashroomCont
                         convert,
                         cacheFilePath,
                     }
-                    const worker = new Worker(resolve(__dirname, 'assetProcessingWorker'), {
+                    this._logger.debug(`Converting image ${assetUri}`, resize, convert);
+                    const worker = new Worker(resolve(__dirname, 'imageProcessingWorker'), {
                         workerData,
                     });
                     worker.on('message', (message: ImageProcessingWorkerResult) => {
                         delete this._currentlyProcessedAssets[assetHash];
+                        this._logger.debug(`Image converted: ${assetUri}`);
                         if (!message.success) {
                             this._logger.error('Image processing failed!', message.message, message.stack);
                         }

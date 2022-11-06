@@ -6,14 +6,14 @@ import {loadSearchHit, searchContent, setSearchQuery} from '../store/actions';
 import ContentSearchHits from './ContentSearchHits';
 import EditorContext from '../EditorContext';
 
-import type {EditorState} from '../../types';
+import type {EditorState, EditorDispatch} from '../../types';
 
 const MAX_HITS = 5;
 
 export default () => {
     const [skip, setSkip] = useState<number | undefined>();
     const {query, result, running, error} = useSelector((state: EditorState) => state.search);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch() as EditorDispatch;
     const {contentService} = useContext(EditorContext);
     const debouncedSearch = useMemo(() => debounce(() => dispatch(searchContent(contentService, MAX_HITS)), 250), []);
     const updateQuery = useCallback((query: string) => {

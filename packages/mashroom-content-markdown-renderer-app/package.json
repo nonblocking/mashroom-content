@@ -11,30 +11,30 @@
         "mashroom.json"
     ],
     "dependencies": {
-        "react": "^17.0.2",
-        "react-codemirror2": "^7.2.1",
-        "react-dom": "^17.0.2",
-        "react-intl": "^5.24.6",
-        "react-markdown": "^8.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-intl": "^6.2.1",
+        "react-markdown": "^8.0.3",
         "react-mde": "^11.5.0",
-        "react-redux": "^7.2.6",
-        "react-syntax-highlighter": "^15.4.5",
-        "redux": "^4.1.2",
-        "redux-thunk": "^2.4.1",
+        "react-redux": "^8.0.5",
+        "react-syntax-highlighter": "^15.5.0",
+        "redux": "^4.2.0",
+        "redux-thunk": "^2.4.2",
         "remark-directive": "^2.0.1",
-        "remark-directive-rehype": "^0.4.0",
-        "remark-gfm": "^2.0.0"
+        "remark-directive-rehype": "^0.4.2",
+        "remark-gfm": "^3.0.1"
     },
     "devDependencies": {
         "@mashroom-content/mashroom-content-api": "1.0.0-alpha.4",
-        "@types/codemirror": "^5.60.5",
-        "@types/lodash.debounce": "^4.0.6",
-        "@types/react": "^17.0.38",
-        "@types/react-dom": "^17.0.11",
-        "@types/react-syntax-highlighter": "^13.5.2",
-        "codemirror": "^5.65.2",
+        "@types/lodash.debounce": "^4.0.7",
+        "@types/react": "^18.0.25",
+        "@types/react-dom": "^18.0.8",
+        "@types/react-syntax-highlighter": "^15.5.5",
+        "@codemirror/lang-css": "^6.0.1",
+        "@uiw/codemirror-theme-github": "^4.12.4",
+        "@uiw/react-codemirror": "^4.12.4",
         "lodash.debounce": "^4.0.8",
-        "mini-css-extract-plugin": "^2.5.3",
+        "mini-css-extract-plugin": "^2.6.1",
         "webpack-node-externals": "^3.0.0"
     },
     "scripts": {
@@ -42,6 +42,6 @@
         "type-check": "tsc --noEmit",
         "dev": "webpack serve --config ./webpack.config.app.client.js --mode development",
         "dev:editor": "webpack serve --config ./webpack.config.editor.js --mode development",
-        "build": "webpack --config ./webpack.config.app.client.js --mode production && webpack --config ./webpack.config.app.server.js && webpack --config ./webpack.config.editor.js --mode production"
+        "build": "webpack --config ./webpack.config.app.client.js --mode development && webpack --config ./webpack.config.app.server.js && webpack --config ./webpack.config.editor.js --mode production"
     }
 }

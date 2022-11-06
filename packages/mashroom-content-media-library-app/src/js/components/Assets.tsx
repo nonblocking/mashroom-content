@@ -10,7 +10,7 @@ import DropTarget from './DropTarget';
 
 import type {MashroomPortalMessageBus} from '@mashroom/mashroom-portal/type-definitions';
 import type {MashroomContentClientService} from '@mashroom-content/mashroom-content-api/type-definitions';
-import type {State} from '../types';
+import type {State, Dispatch} from '../types';
 
 type Props = {
     messageBus: MashroomPortalMessageBus;
@@ -19,7 +19,7 @@ type Props = {
 
 export default ({messageBus, contentService}: Props) => {
     const {result, running, error, skip} = useSelector((state: State) => state.search);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch() as Dispatch;
     const showMore = useCallback(() => {
         dispatch(setSearchSkip((skip || 0) + MAX_HITS));
     }, [skip]);

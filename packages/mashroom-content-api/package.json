@@ -11,7 +11,7 @@
         "mashroom.json"
     ],
     "dependencies": {
-        "image-size": "^1.0.0",
+        "image-size": "^1.0.2",
         "multer": "^1.4.4"
     },
     "devDependencies": {
@@ -20,7 +20,7 @@
     },
     "scripts": {
         "test": "jest",
-        "build:backend": "babel -x .ts src -d ./dist",
+        "build:backend": "babel -x .ts src/backend -d ./dist/backend",
         "build:frontend": "webpack --mode production",
         "build": "npm run build:backend && npm run build:frontend",
         "dev": "nodemon --watch src/backend -e ts --exec \"npm run build && node dist/backend/api/dev_server.js\"",
