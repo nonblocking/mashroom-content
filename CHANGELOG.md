@@ -3,6 +3,8 @@
 
 ## [unreleased]
 
+## 1.0.0-alpha.5 (November 7, 2022)
+
  * Markdown Renderer App: Fixed server-side rendering
  * Asset Processor: Fixed image conversion and a streaming problem that lead to stuck image downloads under some circumstancs
  * Content Provider Strapi: Fixed writing captions for uploads
