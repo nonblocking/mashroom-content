@@ -11,7 +11,8 @@ This Portal App renders Markdown content and also provides the possibility to up
 ### Features
 
  * Images are automatically optimized for the target devices (and converted to webp/avif if possible)
- * Supports for hybrid rendering (server-side and client-side)
+ * Server-side rendering for SEO
+ * Simple integration of Videos from the local media library, Youtube or Vimeo
  * Extra CSS per instance which will only be applied to the content
 
 #### Markdown extensions
@@ -60,7 +61,7 @@ or
 
 If *node_modules/@mashroom* is configured as plugin path just add **@mashroom-content/mashroom-content-markdown-renderer-app** as *dependency*.
 
-After that you can Drag the App _Mashroom Content Markdown Renderer App_ onto any page via Admin Toolbar.
+After that you can Drag the App _Mashroom Display_ onto any page via Admin Toolbar.
 
 **Important note**: This App assumes a content type _markdown_ exists and has the following structure:
 

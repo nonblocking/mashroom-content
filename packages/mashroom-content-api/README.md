@@ -7,6 +7,14 @@ Part of the [Mashroom Content](https://github.com/nonblocking/mashroom) extensio
 This plugin adds an API abstraction that allows you to retrieve and manage content from a Headless CMS.
 It allows it to transparently switch the Headless CMS/Content Provider.
 
+## Features
+
+ * Allows you to retrieve and manage content from a Headless CMS
+ * The content services can be used on the server side and on the client side in *Microfrontends* (Portal Apps)
+ * Allows it to transparently switch the Headless CMS/Content Provider
+ * Automatic image proxying with optimizations (format conversion and resizing on-the-fly)
+ * CDN integration
+
 ## Usage
 
 If *node_modules/@mashroom* is configured as plugin path just add **@mashroom-content/mashroom-content-api** as *dependency*.
@@ -54,7 +62,6 @@ So, to make sure that normal users cannot update and delete content you should a
     }
 }
 ```
-
 
 ### Service
 

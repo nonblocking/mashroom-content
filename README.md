@@ -2,45 +2,32 @@
 
 Content (CMS) plugins for [Mashroom Server](https://www.mashroom-server.com).
 
-## Features
+At the moment it consists of three parts:
 
- * Brings an [API abstraction](packages/mashroom-content-api/README.md) that allows you to retrieve and manage content from a Headless CMS
- * The content services can be used on the server side and on the client side in *Microfrontends* (Portal Apps)
- * Allows it to transparently switch the Headless CMS/Content Provider
- * Includes two read-to-use content providers:
-     * One that [uses the internal _Mashroom Storage_](packages/mashroom-content-provider-internal-storage/README.md)
-     * One for [Strapi Headless CMS](packages/mashroom-content-provider-strapi/README.md)
- * Automatic image proxying with optimizations (format conversion and resizing on-the-fly)
- * CDN integration
- * Comes with a [_Media Library App_](packages/mashroom-content-provider-strapi/README.md),
+ * A [Content API](packages/mashroom-content-api/README.md) that allows you to retrieve and manage content from a Headless CMS.
+   The Headless CMS/Content Provider can transparently be switched.
+ * A [Media Library App](packages/mashroom-content-provider-strapi/README.md),
    which allows it to browse and manage your assets such as images and videos.
-   It can also be used by other Apps to select assets.
- * Includes a [Markdown Renderer App](packages/mashroom-content-markdown-renderer-app/README.md) with the following features:
-     * Images are automatically optimized for the target devices (and converted to webp/avif if possible)
-     * Server-side rendering for SEO
-     * Simple integration of Videos from the local media library, Youtube or Vimeo
-     * Extra CSS per instance which will only be applied to the content
-
-
-
-![Screenshot](screenshot1.png)
+   It can also be used by custom Apps to lookup assets.
+ * A demo [Markdown Renderer App](packages/mashroom-content-markdown-renderer-app/README.md) that shows how the Content API
+   can be used to manage content and how the Media Library App can be integrated.
 
 ## Requirements
 
  * Node >= 14
  * **Mashroom 2.x**
 
-## Usage
+## Basic Usage
 
-Add at least the following packages to dependencies for _Mashroom_ server:
+Install the following packages to dependencies for _Mashroom_ server:
 
  * @mashroom-content/mashroom-content-api
  * @mashroom-content/mashroom-content-asset-processing
  * @mashroom-content/mashroom-content-provider-internal-storage
- * @mashroom-content/mashroom-content-markdown-renderer-app
  * @mashroom-content/mashroom-content-media-library-app
+ * @mashroom-content/mashroom-content-markdown-renderer-app
 
-If you want to use the internal storage to save content add the following to your _Mashroom_ config file:
+And configure the plugins like this to use the internal storage:
 
 ```json
 {
@@ -63,6 +50,31 @@ If you want to use the internal storage to save content add the following to you
     }
 }
 ```
+
+ow you can use the API on the server-side like this:
+
+```typescript
+  const contentService: MashroomContentService = req.pluginContext.services.content.service;
+  const {data} = await contentService.getContent<any>(req, 'my-stuff', '1234567');
+```
+
+And on the client-side like this:
+
+```typescript
+const bootstrap: MashroomPortalAppPluginBootstrapFunction = async (portalAppHostElement, portalAppSetup, clientServices) => {
+    const contentService: MashroomContentClientService = clientServices.contentService;
+
+    const {data} = await contentService.getContent<any>('my-stuff', '1234567');
+
+    // ...
+}
+```
+
+And you can add the *Markdown Display* App to any page and show come content there:
+
+![Markdown Display](markdown-display-app.png)
+
+![Media Library](media-library-app.png)
 
 ### Strapi
 
@@ -117,5 +129,5 @@ To start the test server:
 The test server will be available at http://localhost:5050
 
 To load some test data call: http://localhost:5050/initContent
-To login, enter: http://localhost:5050/login
+To login, enter: http://localhost:5050/login - the Administrator credentials are admin/admin
 
