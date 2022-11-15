@@ -91,13 +91,15 @@ And you can add the *Markdown Display* App to any page to display some content t
 
 ![Media Library](media-library-app.png)
 
-### Strapi
+### Other Content Providers
 
-To use Strapi 4.x as content provider add
+To switch the provider just change the *provider* property of the *Mashroom Content Services* plugin.
+
+For example for the [Strapi Provider](packages/mashroom-content-provider-strapi/README.md) just add the plugin:
 
  * @mashroom-content/mashroom-content-provider-strapi
 
-to your dependencies and use a config like this:
+and update the config like this:
 
 ```json
 {
@@ -107,13 +109,6 @@ to your dependencies and use a config like this:
             "cacheEnable": true,
             "cacheTTLSec": 1800
         },
-        "Mashroom Content Asset Processing Services": {
-            "scaleUp": false,
-            "defaultQuality": 75,
-            "cacheEnable": true,
-            "cacheDefaultTTLSec": 31536000,
-            "cacheFolder": "./data/asset-proc-cache"
-        },
         "Mashroom Content Strapi Provider": {
             "strapiUrl": "http://localhost:1337",
             "apiToken": "xxxxxxx"
@@ -121,10 +116,6 @@ to your dependencies and use a config like this:
     }
 }
 ```
-
-Your Strapi instance needs at least an activated Internationalization Plugin with the same languages as configured in _Mashroom_
-
-Also, if you want to use the _Mashroom Content Markdown Renderer App_ you need to create a content type _markdown_ with two properties: _title_ (string), _content_ (rich text).
 
 ## Development
 

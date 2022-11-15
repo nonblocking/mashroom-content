@@ -32,4 +32,4 @@ You can override the default config in your Mashroom config file like this:
 
 Your Strapi instance needs at least an activated Internationalization Plugin with the same languages as configured in _Mashroom_
 
-Also, if you want to use the _Markdown Renderer App_ you need to create a content type _markdown_ with two properties: _title_ (string), _content_ (rich text).
+Also, if you want to use the _Mashroom Content Markdown Renderer App_ you need to create a content type _markdown_ with two properties: _title_ (string), _content_ (rich text).
