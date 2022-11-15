@@ -6,7 +6,7 @@ At the moment it consists of three parts:
 
  * A [Content API](packages/mashroom-content-api/README.md) that allows you to retrieve and manage content from a Headless CMS.
    The Headless CMS/Content Provider can transparently be switched.
- * A [Media Library App](packages/mashroom-content-provider-strapi/README.md)
+ * A [Media Library App](packages/mashroom-content-media-library-app/README.md)
    which allows it to browse and manage your assets such as images and videos.
    It can also be used by custom Apps to lookup assets.
  * A demo [Markdown Renderer App](packages/mashroom-content-markdown-renderer-app/README.md) which shows how the Content API
