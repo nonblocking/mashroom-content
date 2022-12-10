@@ -3,6 +3,8 @@
 
 ## [unreleased]
 
+ * Markdown Renderer App: Fixed re-rendering after saving in the editor
+
 ## 1.0.0-alpha.5 (November 7, 2022)
 
  * Markdown Renderer App: Fixed server-side rendering
