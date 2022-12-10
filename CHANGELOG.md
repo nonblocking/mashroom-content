@@ -3,6 +3,7 @@
 
 ## [unreleased]
 
+ * Content Provider Internal Storage: Added support for storing assets in subfolders (via path argument)
  * Markdown Renderer App: Fixed re-rendering after saving in the editor
 
 ## 1.0.0-alpha.5 (November 7, 2022)

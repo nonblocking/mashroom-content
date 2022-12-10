@@ -54,7 +54,6 @@ export default class MashroomContentProviderInternalStorageImpl implements Mashr
         }
 
         logger.info(`Content internal storage provider assets folder: ${this.#assetsFolder}`);
-        ensureDirSync(this.#assetsFolder);
     }
 
     async searchContent<T>(req: Request, type: string, filter?: MashroomContentApiFilter<T>, locale?: string, status?: MashroomContentApiStatus, sort?: MashroomContentApiSort<T>, limit?: number, skip?: number): Promise<MashroomContentApiContentSearchResult<T>> {
@@ -371,10 +370,17 @@ export default class MashroomContentProviderInternalStorageImpl implements Mashr
     async uploadAsset(req: Request, file: Readable, meta: MashroomContentAssetMeta, path?: string, contentRef?: MashroomContentAssetContentRef): Promise<MashroomContentAsset> {
         const logger = req.pluginContext.loggerFactory('mashroom.content.provider.internal-storage');
 
+        let subfolder = path ?? '';
+        if (subfolder.startsWith('/')) {
+            subfolder = subfolder.substring(1);
+        }
+        const targetFolder = resolve(this.#assetsFolder, subfolder);
+        ensureDirSync(targetFolder);
+
         const {fileName} = meta;
         const targetFileName = `${nanoid(8)}_${fileName}`;
-        const targetPath = resolve(this.#assetsFolder, targetFileName);
-        const url = `${DOWNLOADS_URL_PREFIX}/${encodeURIComponent(targetFileName)}`;
+        const targetPath = resolve(targetFolder, targetFileName);
+        const url = `${DOWNLOADS_URL_PREFIX}/${subfolder ? `${subfolder}/` : ''}${encodeURIComponent(targetFileName)}`;
 
         const target = createWriteStream(targetPath);
         file.pipe(target);

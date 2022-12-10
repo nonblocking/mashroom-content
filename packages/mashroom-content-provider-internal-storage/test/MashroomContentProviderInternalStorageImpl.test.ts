@@ -782,6 +782,50 @@ describe('MashroomContentProviderInternalStorageImpl', () => {
         expect(mockInsertOne.mock.calls[0][0].meta).toEqual(meta);
     });
 
+    it('stores assets in a subfolder', async () => {
+        const contentProvider = new MashroomContentProviderInternalStorageImpl(assetFolder, serverRootFolder, dummyLoggerFactory);
+
+        const mockInsertOne = jest.fn();
+        const req: any = {
+            pluginContext: {
+                loggerFactory: dummyLoggerFactory,
+                services: {
+                    storage: {
+                        service: {
+                            getCollection: () => ({
+                                insertOne: mockInsertOne,
+                            }),
+                        }
+                    }
+                }
+            }
+        };
+
+        const file = new Readable();
+        file.push('test2');
+        file.push(null);
+
+        const meta = {
+            title: 'test2.txt',
+            fileName: 'test2.txt',
+            mimeType: 'text/plain',
+        };
+
+        const result = await contentProvider.uploadAsset(req, file, meta, 'subfolder/another-subfolder');
+
+        expect(result).toBeTruthy();
+        expect(result.url).toContain('/downloads/subfolder/another-subfolder/');
+        expect(result.url).toContain('test2.txt');
+        const downloadFile = resolve(assetFolder, result.url.split('/').slice(2).join('/'));
+
+        expect(downloadFile).toContain('/tmp/subfolder/another-subfolder/');
+        expect(existsSync(downloadFile)).toBeTruthy();
+
+        expect(mockInsertOne.mock.calls.length).toBe(1);
+        expect(mockInsertOne.mock.calls[0][0].url).toBeTruthy();
+        expect(mockInsertOne.mock.calls[0][0].meta).toEqual(meta);
+    });
+
     it('links uploaded assets with existing entries', async () => {
         const contentProvider = new MashroomContentProviderInternalStorageImpl(assetFolder, serverRootFolder, dummyLoggerFactory);
 
