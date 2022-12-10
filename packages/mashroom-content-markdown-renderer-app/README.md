@@ -4,9 +4,8 @@
 Plugin for [Mashroom Server](https://www.mashroom-server.com), a **Microfrontend Integration Platform**.
 Part of the [Mashroom Content](https://github.com/nonblocking/mashroom) extension.
 
-This Portal App renders Markdown content and also provides the possibility to update/create content directly as Administrator.
-
-**NOTE**: This App is only intended as a demonstration how the *mashroom-content-api* and the image optimizations can be used.
+This Portal App renders Markdown content from a Headless CMS
+and also provides the possibility to update/create content directly as Administrator.
 
 ### Features
 

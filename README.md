@@ -4,13 +4,13 @@ Content (CMS) plugins for [Mashroom Server](https://www.mashroom-server.com).
 
 At the moment it consists of three parts:
 
- * A [Content API](packages/mashroom-content-api/README.md) that allows you to retrieve and manage content from a Headless CMS.
-   The Headless CMS/Content Provider can transparently be switched.
+ * A [Content API](packages/mashroom-content-api/README.md) that allows you to retrieve and manage content from a Headless CMS
+   in Mashroom plugins (e.g. Portal Apps). The Headless CMS/Content Provider can transparently be switched.
  * A [Media Library App](packages/mashroom-content-media-library-app/README.md)
    which allows it to browse and manage your assets such as images and videos.
    It can also be used by custom Apps to lookup assets.
- * A demo [Markdown Renderer App](packages/mashroom-content-markdown-renderer-app/README.md) which shows how the Content API
-   can be used to manage content and how the Media Library App can be integrated.
+ * A [Markdown Display App](packages/mashroom-content-markdown-renderer-app/README.md) which renders Markdown content
+   and also provides the possibility to update/create content directly as Administrator.
 
 ## Requirements
 

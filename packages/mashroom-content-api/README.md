@@ -4,7 +4,7 @@
 Plugin for [Mashroom Server](https://www.mashroom-server.com), a **Microfrontend Integration Platform**.
 Part of the [Mashroom Content](https://github.com/nonblocking/mashroom) extension.
 
-This plugin adds an API abstraction that allows you to retrieve and manage content from a Headless CMS.
+This plugin adds an API abstraction that allows you to retrieve and manage content from a Headless CMS in Mashroom plugins (e.g. Portal Apps).
 It allows it to transparently switch the Headless CMS/Content Provider.
 
 ## Features
