@@ -818,7 +818,7 @@ describe('MashroomContentProviderInternalStorageImpl', () => {
         expect(result.url).toContain('test2.txt');
         const downloadFile = resolve(assetFolder, result.url.split('/').slice(2).join('/'));
 
-        expect(downloadFile).toContain('/tmp/subfolder/another-subfolder/');
+        expect(downloadFile.replace(/\\/g, '/')).toContain('/tmp/subfolder/another-subfolder/');
         expect(existsSync(downloadFile)).toBeTruthy();
 
         expect(mockInsertOne.mock.calls.length).toBe(1);
