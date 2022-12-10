@@ -120,7 +120,7 @@ export interface MashroomContentService {
      */
     removeContentParts(req: Request, type: string, id: string, locales?: Array<string>, versions?: Array<number>): Promise<void>;
     /**
-     * Upload an asset (image or video).
+     * Upload an asset (image or video) to given path (if folders are supported by the provider).
      * If a contentRef is given the asset URL will be linked to given content.
      *
      * Will return download URL for the created asset.
@@ -299,8 +299,8 @@ export interface MashroomContentProvider {
      */
     removeContentParts(req: Request, type: string, id: string, locales?: Array<string>, versions?: Array<number>): Promise<void>;
     /**
-     * Upload an asset (image or video).
-     * The given path can be ignored if not supported.
+     * Upload an asset (image or video) to given path (if folders are supported by the provider).
+     * The path can be ignored if folders are not supported.
      * If a contentRef is given the asset URL should be linked to given content.
      *
      * Must return the download URL for the new asset. The URL will be translated if a corresponding URL proxy is set.

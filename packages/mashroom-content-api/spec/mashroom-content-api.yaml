@@ -479,7 +479,7 @@ components:
                     format: binary
                 path:
                     type: string
-                    description: Optional upload path (may be ignored)
+                    description: Optional upload path (if the provider supports folders, in that case it defaults to /)
                 contentRefType:
                     type: string
                 contentRefId:
