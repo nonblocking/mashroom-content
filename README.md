@@ -5,6 +5,9 @@ Content (CMS) plugins for [Mashroom Server](https://www.mashroom-server.com).
 It provides an API abstraction for plugins on the server-side and Microfrontends (SPAs) on the client-side to easily retrieve and
 update content from a Headless CMS. The actual Headless CMS backend can transparently be exchanged.
 
+It also comes with some neat features like automatic asset proxying, image optimizations (format conversion, resizing)
+and CDN support.
+
 At the moment it consists of:
 
  * A [Content API](packages/mashroom-content-api/README.md) that allows you to retrieve and manage content from a Headless CMS
