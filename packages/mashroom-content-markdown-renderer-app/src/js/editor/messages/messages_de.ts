@@ -29,11 +29,11 @@ export default {
     editorIconTitle_italic: 'Kursiv',
     editorIconTitle_strikethrough: 'Durchgestrichen',
     editorIconTitle_link: 'Verknüpfung',
-    'editorIconTitle_unordered-list': 'Liste',
-    'editorIconTitle_ordered-list': 'Aufzählung',
     editorIconTitle_image: 'Bild',
     editorIconTitle_video: 'Video',
     editorIconTitle_vimeo: 'Vimeo Video',
     editorIconTitle_youtube: 'Youtube Video',
     html5VideoNotSupported: 'Der Browser unterstützt das Abspielen von Videos nicht',
+    insertCommandDefaultText: 'Text',
+    linkCommandDefaultLabel: 'Link Text',
 };

@@ -4,10 +4,10 @@ import '../../sass/editor/style.scss';
 import React from 'react';
 import {Provider as ReduxProvider} from 'react-redux';
 import {createRoot} from 'react-dom/client';
+import scrollToId from '../common/scrollToId';
 import createStore from './store/store';
 import EditorContext from './EditorContext';
 import Editor from './components/Editor';
-import scrollToId from '../common/scrollToId';
 
 import type {MashroomPortalAppPluginBootstrapFunction} from '@mashroom/mashroom-portal/type-definitions';
 import type {MashroomContentClientService} from '@mashroom-content/mashroom-content-api/type-definitions';

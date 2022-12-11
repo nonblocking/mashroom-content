@@ -3,8 +3,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {IntlContext, FormattedMessage} from 'react-intl';
 import debounce from 'lodash.debounce';
 import {loadSearchHit, searchContent, setSearchQuery} from '../store/actions';
-import ContentSearchHits from './ContentSearchHits';
 import EditorContext from '../EditorContext';
+import ContentSearchHits from './ContentSearchHits';
 
 import type {EditorState, EditorDispatch} from '../../types';
 

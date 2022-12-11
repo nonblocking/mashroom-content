@@ -3,10 +3,10 @@ import React, {useContext, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
 import {addLanguage, loadContent, setEditorTab} from '../store/actions';
+import EditorContext from '../EditorContext';
 import ContentEditContent from './ContentEditContent';
 import ContentEditStyle from './ContentEditStyle';
 import ContentEditPreview from './ContentEditPreview';
-import EditorContext from '../EditorContext';
 
 import type {EditorState, EditorTab, EditorDispatch} from '../../types';
 

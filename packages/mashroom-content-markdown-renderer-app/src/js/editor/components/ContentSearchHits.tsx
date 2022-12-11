@@ -1,9 +1,9 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 
+import {FormattedMessage} from 'react-intl';
 import type {MashroomContentApiContentWrapper} from '@mashroom-content/mashroom-content-api/type-definitions';
 import type {EditorState} from '../../types';
-import {FormattedMessage} from 'react-intl';
 
 const MAX_CONTENT_PREVIEW_LENGTH = 100;
 

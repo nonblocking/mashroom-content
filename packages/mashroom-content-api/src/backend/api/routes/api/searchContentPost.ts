@@ -1,11 +1,10 @@
 
 import context from '../../../context';
 
+import type {MashroomContentApiError, MashroomContentService} from '../../../../../type-definitions';
 import type {Request, Response} from 'express';
 import type {MashroomSecurityService} from '@mashroom/mashroom-security/type-definitions';
-import type {MashroomContentService} from '../../../../../type-definitions';
 import type {paths} from '../../../../../type-definitions/rest-api';
-import {MashroomContentApiError} from '../../../../../type-definitions';
 
 export default async (req: Request, res: Response) => {
     const devMode = req.pluginContext.serverInfo.devMode;

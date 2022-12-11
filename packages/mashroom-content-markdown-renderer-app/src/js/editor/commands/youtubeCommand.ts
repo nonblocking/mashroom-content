@@ -1,9 +1,10 @@
-import type {Command} from 'react-mde';
+import insertAtSelection from './insertAtSelection';
+import type {EditorCommand} from '../../types';
 
-const youtubeCommand: Command = {
-    execute: (opts) => {
-        opts.textApi.replaceSelection('::youtube{id=z9eoubnO-pE}');
-    }
+const defaultConfiguration = 'id=z9eoubnO-pE';
+
+const youtubeCommand: EditorCommand = (cm) => {
+    insertAtSelection(cm, `::youtube{${defaultConfiguration}}`, 10, defaultConfiguration.length + 10);
 };
 
 export default youtubeCommand;

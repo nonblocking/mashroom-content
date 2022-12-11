@@ -3,9 +3,9 @@ import '../../sass/app/style.scss';
 
 import React from 'react';
 import {createRoot, hydrateRoot, type Root} from 'react-dom/client';
+import scrollToId from '../common/scrollToId';
 import App from './App';
 import {EMPTY_STATE} from './reducer';
-import scrollToId from '../common/scrollToId';
 
 import type {MashroomContentClientService} from '@mashroom-content/mashroom-content-api/type-definitions';
 import type {MashroomPortalAppPluginBootstrapFunction} from '@mashroom/mashroom-portal/type-definitions';

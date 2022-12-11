@@ -18,6 +18,7 @@ $FONT_ICON_BRANDS: var(--mashroom-portal-font-icon-brands, 'Font Awesome 6 Brand
     @import "MainActions";
     @import "ContentEdit";
     @import "ContentEditContent";
+    @import "ContentEditContentToolbar";
     @import "ContentEditStyle";
     @import "ContentSearch";
     @import "ContentSearchHits";

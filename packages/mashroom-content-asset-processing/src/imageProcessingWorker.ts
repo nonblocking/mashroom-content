@@ -1,12 +1,11 @@
 
 import {workerData, parentPort} from 'worker_threads';
 import {lookup as lookupMimeType} from 'mime-types';
-import type {MashroomContentAssetProcImageConvert, MashroomContentAssetProcImageResize} from '../type-definitions';
-import {MashroomContentAssetProc} from '../type-definitions';
 import fetchHttpAsset from './fetchHttpAsset';
 import fetchFileAsset from './fetchFileAsset';
 import processAsset from './processAsset';
 import {writeCacheEntry} from './cache';
+import type {MashroomContentAssetProc, MashroomContentAssetProcImageConvert, MashroomContentAssetProcImageResize} from '../type-definitions';
 
 // Processes an image and puts it into cache
 // Supposed to run in a worker thread

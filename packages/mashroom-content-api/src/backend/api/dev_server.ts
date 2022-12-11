@@ -1,13 +1,11 @@
 
 import {tmpdir} from 'os';
 import {createServer} from 'http';
-import {Readable} from 'stream';
 import express from 'express';
 import {dummyLoggerFactory as loggerFactory} from '@mashroom/mashroom-utils/lib/logging_utils';
 import routes from './routes';
-
-import type {Request} from 'express';
 import type {
+    MashroomContentAssetSearchResult,
     MashroomContentApiContentUpdateInsert,
     MashroomContentApiFilter,
     MashroomContentApiSort,
@@ -17,7 +15,9 @@ import type {
     MashroomContentService,
     MashroomContentAssetMeta,
 } from '../../../type-definitions';
-import {MashroomContentAssetSearchResult} from '../../../type-definitions';
+import type {Readable} from 'stream';
+
+import type {Request} from 'express';
 
 const tmpUploadDir = `${tmpdir()}/mashroom-content/dev-server/upload`;
 

@@ -1,7 +1,6 @@
 
-import type {MashroomContentClientService, MashroomContentApiContentSearchResult} from '@mashroom-content/mashroom-content-api/type-definitions';
+import type {MashroomContentClientService, MashroomContentApiContentSearchResult,MashroomContentApiContentWrapper} from '@mashroom-content/mashroom-content-api/type-definitions';
 import type {EditorConfig, EditorDispatch, EditorMode, EditorState, EditorTab} from '../../types';
-import {MashroomContentApiContentWrapper} from '@mashroom-content/mashroom-content-api/type-definitions';
 
 export const SET_EDITOR_CONFIG = 'SET_EDITOR_CONFIG';
 export const SET_EDITOR_MODE = 'SET_EDITOR_MODE';

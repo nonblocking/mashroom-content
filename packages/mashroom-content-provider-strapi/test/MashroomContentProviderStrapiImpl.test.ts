@@ -1,5 +1,5 @@
-import {dummyLoggerFactory} from '@mashroom/mashroom-utils/lib/logging_utils';
 import {Readable} from 'stream';
+import {dummyLoggerFactory} from '@mashroom/mashroom-utils/lib/logging_utils';
 import nock from 'nock';
 import MashroomContentProviderStrapiImpl from '../src/MashroomContentProviderStrapiImpl';
 

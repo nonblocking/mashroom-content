@@ -1,5 +1,5 @@
-import {readJSONSync, writeJSONSync} from 'fs-extra';
 import {createReadStream, createWriteStream, statSync} from 'fs';
+import {readJSONSync, writeJSONSync} from 'fs-extra';
 
 import type {MashroomContentAssetProc, MashroomContentAssetProcMeta} from '../type-definitions';
 import type {MashroomLogger} from '@mashroom/mashroom/type-definitions';

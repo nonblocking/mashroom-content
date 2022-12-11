@@ -22,7 +22,7 @@
             "cacheEnable": false
         },
         "Mashroom Content Strapi Provider": {
-            "strapiUrl": "http://localhost:1337",
+            "strapiUrl": "http://127.0.0.1:1337",
             "apiToken": "ccee78070a449ac76011ad765255a243ed66d5feddfce43d28c2cf079f6ec37821c4856e10e94c5f70fc304c4949919e8d91354ebf1389a56b98d32840c41a007e90a21a41281f685af5bcd0a595a29aafcad79215e1ff33bf8a463edfc0f9d8dbca8690149ac8e7fb2fa0de5262ec40fac3ec65da52f8fd8d20b74f5b7da194",
             "defaultLocale": "en",
             "availableLocales": ["en", "de"]

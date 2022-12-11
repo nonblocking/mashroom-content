@@ -1,5 +1,5 @@
 
-import {PromiseWithProgressAndCancel} from '../../../type-definitions';
+import type {PromiseWithProgressAndCancel} from '../../../type-definitions';
 
 export default class PromiseWithProgressAndCancelDeferred<T> {
     cancelCallback: () => void;

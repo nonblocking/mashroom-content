@@ -1,10 +1,10 @@
 
 import type {Store as ReduxStore, AnyAction} from 'redux';
 import type {ThunkActionDispatch} from 'redux-thunk';
-import type {MashroomContentApiContentSearchResult} from '@mashroom-content/mashroom-content-api/type-definitions';
-import {MashroomContentClientService} from '@mashroom-content/mashroom-content-api/type-definitions';
-import {MashroomPortalUserService} from '@mashroom/mashroom-portal/type-definitions';
-import {MashroomPortalAppService, MashroomPortalMessageBus} from '@mashroom/mashroom-portal/type-definitions/api';
+import type {MashroomContentApiContentSearchResult,MashroomContentClientService} from '@mashroom-content/mashroom-content-api/type-definitions';
+import type {MashroomPortalUserService} from '@mashroom/mashroom-portal/type-definitions';
+import type {MashroomPortalAppService, MashroomPortalMessageBus} from '@mashroom/mashroom-portal/type-definitions/api';
+import type {ReactCodeMirrorRef} from '@uiw/react-codemirror';
 
 export type AppState = {
     readonly markdown: string | undefined;
@@ -66,3 +66,5 @@ export type EditorContext = {
     portalAppService: MashroomPortalAppService;
     messageBus: MashroomPortalMessageBus;
 }
+
+export type EditorCommand = (cm: ReactCodeMirrorRef) => void;

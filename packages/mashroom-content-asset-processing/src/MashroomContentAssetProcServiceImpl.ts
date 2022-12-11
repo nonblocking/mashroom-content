@@ -1,6 +1,5 @@
 
 import {isAbsolute, resolve} from 'path';
-import {Readable} from 'stream';
 import {createHash} from 'crypto';
 import {Worker} from 'worker_threads';
 import {ensureDirSync} from 'fs-extra';
@@ -9,6 +8,7 @@ import fetchFileAsset from './fetchFileAsset';
 import fetchHttpAsset from './fetchHttpAsset';
 import processAsset from './processAsset';
 import {readCacheEntry, writeCacheEntry} from './cache';
+import type {Readable} from 'stream';
 
 import type {MashroomLogger, MashroomPluginContextHolder} from '@mashroom/mashroom/type-definitions';
 import type {

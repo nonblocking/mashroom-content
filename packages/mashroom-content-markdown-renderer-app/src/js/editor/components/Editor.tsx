@@ -2,10 +2,6 @@
 import React, {useEffect, useState, useContext} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {IntlProvider} from 'react-intl';
-import MainActions from './MainActions';
-import GlobalMessages from './GlobalMessages';
-import ContentSearch from './ContentSearch';
-import ContentEdit from './ContentEdit';
 import {
     setPossibleLanguages,
     setBelowFold,
@@ -18,6 +14,10 @@ import {
 } from '../store/actions';
 import loadMessages from '../messages';
 import EditorContext from '../EditorContext';
+import MainActions from './MainActions';
+import GlobalMessages from './GlobalMessages';
+import ContentSearch from './ContentSearch';
+import ContentEdit from './ContentEdit';
 
 import type {MashroomPortalConfigEditorTarget} from '@mashroom/mashroom-portal/type-definitions';
 import type {EditorState} from '../../types';

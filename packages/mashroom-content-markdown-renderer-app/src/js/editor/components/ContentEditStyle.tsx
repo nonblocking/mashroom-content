@@ -13,9 +13,6 @@ export default () => {
     const {style, belowFold, fullscreenImageOnClick} = useSelector((state: EditorState) => state.content);
     const dispatch = useDispatch();
 
-    const extensions = [];
-    extensions.push(css());
-
     return (
         <div className="content-edit-style">
             <div className='form-row'>
@@ -35,7 +32,7 @@ export default () => {
                    <CodeMirror
                        value={style || ''}
                        theme={githubLight}
-                       extensions={extensions}
+                       extensions={[css()]}
                        basicSetup={{
                            lineNumbers: false,
                            foldGutter: false,

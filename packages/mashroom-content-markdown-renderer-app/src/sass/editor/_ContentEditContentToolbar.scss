@@ -1,0 +1,54 @@
+
+.content-edit-content-toolbar {
+    display: flex;
+    margin-top: 5px;
+    padding: 2px 10px;
+    gap: 10px;
+    background-color: #EEE;
+    border: 1px solid var(--mashroom-portal-color-black, black);
+    border-bottom: none;
+
+    div {
+        cursor: pointer;
+
+    }
+
+    .icon-bold {
+        @include toolbarIcon('\f032');
+    }
+
+    .icon-italic {
+        @include toolbarIcon('\f033');
+    }
+
+    .icon-strikethrough {
+        @include toolbarIcon('\f0cc');
+    }
+
+    .icon-link {
+        @include toolbarIcon('\f0c1');
+    }
+
+    .icon-image {
+        @include toolbarIcon('\f03e');
+    }
+
+    .icon-video {
+        @include toolbarIcon('\f008');
+    }
+
+    .icon-youtube {
+        @include toolbarIcon('\f167');
+        &:before {
+            font-family: $FONT_ICON_BRANDS;
+        }
+    }
+
+    .icon-vimeo {
+        @include toolbarIcon('\f40a');
+        &:before {
+            font-family: $FONT_ICON_BRANDS;
+        }
+    }
+
+}

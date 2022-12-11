@@ -3,6 +3,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'
 import remarkDirective from 'remark-directive'
+// eslint-disable-next-line import/no-unresolved
 import remarkDirectiveRehype from 'remark-directive-rehype'
 
 import Anchor from './Anchor';

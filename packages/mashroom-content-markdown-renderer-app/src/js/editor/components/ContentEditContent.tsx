@@ -1,24 +1,21 @@
 
-import React, {useContext} from 'react';
-import ReactMde from 'react-mde';
+import React, {useRef} from 'react';
+import CodeMirror, {type ReactCodeMirrorRef} from '@uiw/react-codemirror';
+import {githubLight} from '@uiw/codemirror-theme-github';
+import {markdown as markdownEditor} from '@codemirror/lang-markdown';
 import {useSelector, useDispatch} from 'react-redux';
-import {FormattedMessage, IntlContext} from 'react-intl';
-import imageCommand from '../commands/imageCommand';
-import videoCommand from '../commands/videoCommand';
-import youtubeCommand from '../commands/youtubeCommand';
-import vimeoCommand from '../commands/vimeoCommand';
+import {FormattedMessage} from 'react-intl';
 import {setContentMarkdown, setContentTitle, setSelectedLanguage, removeEditorLanguage} from '../store/actions';
-import ContentEditorIcon from './ContentEditorIcon';
-import EditorContext from '../EditorContext';
 
+
+import ContentEditorContentToolbar from './ContentEditorContentToolbar';
 import type {EditorState, EditorDispatch} from '../../types';
 
 export default () => {
     const {contentType, contentProp, titleProp} = useSelector((state: EditorState) => state.config);
     const {contentId, i18nContent, selectedLanguage, defaultLanguage, possibleLanguages, loading, loadingError} = useSelector((state: EditorState) => state.content);
     const dispatch = useDispatch() as EditorDispatch;
-    const {portalAppService, messageBus} = useContext(EditorContext);
-    const {formatMessage} = useContext(IntlContext);
+    const cmRef = useRef<ReactCodeMirrorRef>(null);
 
     if (!selectedLanguage || !i18nContent[selectedLanguage]) {
         return null;
@@ -90,24 +87,29 @@ export default () => {
                         <label htmlFor="markdownContent">
                             <FormattedMessage id='contentMarkdown' />
                         </label>
-                        <ReactMde
-                            toolbarCommands={[
-                                ['bold', 'italic', 'strikethrough'],
-                                ['link', 'unordered-list', 'ordered-list'],
-                                ['image', 'video', 'vimeo', 'youtube']
-                            ]}
-                            commands={{
-                                image: imageCommand(formatMessage({ id: 'selectImage' }), portalAppService, messageBus),
-                                video: videoCommand(formatMessage({ id: 'selectVideo' }), portalAppService, messageBus),
-                                vimeo: vimeoCommand,
-                                youtube: youtubeCommand,
-                            }}
-                            getIcon={(iconName) => <ContentEditorIcon iconName={iconName} />}
-                            value={markdown}
-                            onChange={(markdown) => dispatch(setContentMarkdown(selectedLanguage, contentProp, markdown))}
-                            minEditorHeight={350}
-                            disablePreview
-                        />
+                        <div className='markdown-editor'>
+                            <ContentEditorContentToolbar codeMirrorRef={cmRef} />
+                            <CodeMirror
+                                ref={cmRef}
+                                value={markdown}
+                                height="auto"
+                                theme={githubLight}
+                                minHeight="100px"
+                                basicSetup={{
+                                    lineNumbers: false,
+                                    foldGutter: false,
+                                    syntaxHighlighting: true,
+                                    autocompletion: true,
+                                    closeBrackets: true,
+                                    highlightActiveLine: false,
+                                }}
+                                extensions={[markdownEditor()]}
+                                onChange={(value) => {
+                                    dispatch(setContentMarkdown(selectedLanguage, contentProp, value))
+                                }}
+                            />
+                        </div>
+
                     </div>
                 </>
             )}

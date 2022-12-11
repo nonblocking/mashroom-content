@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
-import type {ImgHTMLAttributes, SourceHTMLAttributes} from 'react';
 import OverlayImage from './OverlayImage';
+import type {ImgHTMLAttributes, SourceHTMLAttributes} from 'react';
 
 const DIMENSION_METADATA_IN_HASH = /(\d+)x(\d+)/;
 

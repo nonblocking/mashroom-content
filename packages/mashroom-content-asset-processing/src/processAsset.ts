@@ -1,6 +1,6 @@
-import {Duplex, Readable} from 'stream';
-import {MashroomContentAssetProcImageConvert, MashroomContentAssetProcImageResize} from '../type-definitions';
 import sharp from 'sharp';
+import type {MashroomContentAssetProcImageConvert, MashroomContentAssetProcImageResize} from '../type-definitions';
+import type {Duplex, Readable} from 'stream';
 
 export default async (asset: Readable, defaultQuality: number, scaleUp: boolean, resize?: MashroomContentAssetProcImageResize, convert?: MashroomContentAssetProcImageConvert): Promise<Readable> => {
     if (!resize?.width && !resize?.height && !convert?.format) {
