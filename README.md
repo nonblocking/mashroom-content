@@ -2,6 +2,9 @@
 
 Content (CMS) plugins for [Mashroom Server](https://www.mashroom-server.com).
 
+It provides an API to plugins on the server-side and Microfrontends (SPAs) on the client-side to easily retrieve and
+update content from a Headless CMS.
+
 At the moment it consists of three parts:
 
  * A [Content API](packages/mashroom-content-api/README.md) that allows you to retrieve and manage content from a Headless CMS
@@ -11,6 +14,10 @@ At the moment it consists of three parts:
    It can also be used by custom Apps to lookup assets.
  * A [Markdown Display App](packages/mashroom-content-markdown-renderer-app/README.md) which renders Markdown content
    and also provides the possibility to update/create content directly as Administrator.
+
+## Architecture
+
+![Mashroom Content Architecture](architecture.png)
 
 ## Requirements
 
