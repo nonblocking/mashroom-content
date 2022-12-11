@@ -2,10 +2,10 @@
 
 Content (CMS) plugins for [Mashroom Server](https://www.mashroom-server.com).
 
-It provides an API to plugins on the server-side and Microfrontends (SPAs) on the client-side to easily retrieve and
-update content from a Headless CMS.
+It provides an API abstraction for plugins on the server-side and Microfrontends (SPAs) on the client-side to easily retrieve and
+update content from a Headless CMS. The actual Headless CMS backend can transparently be exchanged.
 
-At the moment it consists of three parts:
+At the moment it consists of:
 
  * A [Content API](packages/mashroom-content-api/README.md) that allows you to retrieve and manage content from a Headless CMS
    in Mashroom plugins (e.g. Portal Apps). The Headless CMS/Content Provider can transparently be switched.
@@ -14,6 +14,9 @@ At the moment it consists of three parts:
    It can also be used by custom Apps to lookup assets.
  * A [Markdown Display App](packages/mashroom-content-markdown-renderer-app/README.md) which renders Markdown content
    and also provides the possibility to update/create content directly as Administrator.
+   This is more like a *demo* how the Content API can be used.
+ * A [provider](packages/mashroom-content-provider-internal-storage/README.md) that uses the internal Mashroom storage as backend
+ * A [provider](packages/mashroom-content-provider-strapi/README.md) for the [strapi Headless CMS](https://strapi.io).
 
 ## Architecture
 
