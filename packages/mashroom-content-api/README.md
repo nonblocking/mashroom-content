@@ -12,6 +12,8 @@ It allows it to transparently switch the Headless CMS/Content Provider.
  * Allows you to retrieve and manage content from a Headless CMS
  * The content services can be used on the server side and on the client side in *Microfrontends* (Portal Apps)
  * Allows it to transparently switch the Headless CMS/Content Provider
+ * Support for versioning and i18n (if supported by the Headless CMS)
+ * Asset Uploads
  * Automatic image proxying with optimizations (format conversion and resizing on-the-fly)
  * CDN integration
 
