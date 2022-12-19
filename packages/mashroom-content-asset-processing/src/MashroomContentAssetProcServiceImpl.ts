@@ -12,7 +12,7 @@ import type {Readable} from 'stream';
 
 import type {MashroomLogger, MashroomPluginContextHolder} from '@mashroom/mashroom/type-definitions';
 import type {
-    MashroomContentAssetProc,
+    MashroomContentAssetProcResult,
     MashroomContentAssetProcService,
     MashroomContentAssetProcImageConvert,
     MashroomContentAssetProcImageResize,
@@ -39,7 +39,7 @@ export default class MashroomContentAssetProcServiceImpl implements MashroomCont
         }
     }
 
-    async processAssetFromUri(assetUri: string, resize?: MashroomContentAssetProcImageResize, convert?: MashroomContentAssetProcImageConvert): Promise<MashroomContentAssetProc> {
+    async processAssetFromUri(assetUri: string, resize?: MashroomContentAssetProcImageResize, convert?: MashroomContentAssetProcImageConvert): Promise<MashroomContentAssetProcResult> {
         const cacheFilePath = resolve(this._cacheFolder, this._getCacheKey(assetUri, resize, convert));
         const assetHash = Buffer.from(cacheFilePath).toString('base64');
 
@@ -54,7 +54,7 @@ export default class MashroomContentAssetProcServiceImpl implements MashroomCont
             }
         }
 
-        let asset: MashroomContentAssetProc;
+        let asset: MashroomContentAssetProcResult;
         if (assetUri.startsWith('http://') || assetUri.startsWith('https://')) {
             asset = await fetchHttpAsset(assetUri);
         } else {

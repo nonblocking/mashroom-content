@@ -7,9 +7,6 @@
             "type": "services",
             "namespace": "content",
             "bootstrap": "./dist/backend/services/mashroom-bootstrap-services.js",
-            "requires": [
-                "Mashroom Content Asset Processing Services"
-            ],
             "defaultConfig": {
                 "provider": "Mashroom Content Internal Storage Provider",
                 "cacheEnable": true,

@@ -2,9 +2,9 @@ import {createReadStream, statSync} from 'fs';
 import {basename} from 'path';
 import {lookup as lookupMimeType} from 'mime-types';
 
-import type {MashroomContentAssetProc} from '../type-definitions';
+import type {MashroomContentAssetProcResult} from '../type-definitions';
 
-export default async (fileUri: string): Promise<MashroomContentAssetProc> => {
+export default async (fileUri: string): Promise<MashroomContentAssetProcResult> => {
     const filePath = fileUri.replace('file://', '');
     let fileStats;
     try {

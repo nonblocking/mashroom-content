@@ -1,5 +1,6 @@
 
 import {stringify} from 'querystring';
+import getUri from 'get-uri';
 import context from '../../../context';
 
 import type {Request, Response} from 'express';
@@ -12,8 +13,8 @@ const FILE_EXT_REGEX = /\.(\w{3,4})(?:$|\?)/;
 
 export default async (req: Request, res: Response) => {
     const urlRewriteService: MashroomContentUrlRewriteService = req.pluginContext.services.content.rewrite;
-    const assetProcessor: MashroomContentAssetProcService = req.pluginContext.services.assetProc.service;
-    const cacheControlService: MashroomCacheControlService = req.pluginContext.services.browserCache?.cacheControl;
+    const assetProcessor: MashroomContentAssetProcService | undefined = req.pluginContext.services.assetProc?.service;
+    const cacheControlService: MashroomCacheControlService | undefined = req.pluginContext.services.browserCache?.cacheControl;
     const logger = req.pluginContext.loggerFactory('mashroom.content-api.service');
 
     const { _w, _format, _q, _sourceFormat } = req.query as paths['/content/assets/{proxyName}/{assetPath}']['get']['parameters']['query'];
@@ -54,38 +55,45 @@ export default async (req: Request, res: Response) => {
     }
 
     try {
-        let asset;
-        if (proxyConfig?.allowImageProcessing) {
-            let resize, convert;
-            const width = _w ? parseInt(_w) : undefined;
-            if (width) {
-                if (context.imageBreakpoints.indexOf(width) !== -1) {
-                    resize = { width };
-                } else {
-                    logger.warn(`Image resizing rejected because given width is no valid breakpoint: ${width}`);
+        if (assetProcessor) {
+            let asset;
+            if (proxyConfig?.allowImageProcessing) {
+                let resize, convert;
+                const width = _w ? parseInt(_w) : undefined;
+                if (width) {
+                    if (context.imageBreakpoints.indexOf(width) !== -1) {
+                        resize = {width};
+                    } else {
+                        logger.warn(`Image resizing rejected because given width is no valid breakpoint: ${width}`);
+                    }
                 }
-            }
-            if (format) {
-                if (context.imagePreferredFormats.indexOf(format) !== -1) {
-                    convert = { format, quality: _q ? parseInt(_q) : undefined };
-                } else {
-                    logger.warn(`Image conversion rejected because format is not valid: ${format}`);
+                if (format) {
+                    if (context.imagePreferredFormats.indexOf(format) !== -1) {
+                        convert = {format, quality: _q ? parseInt(_q) : undefined};
+                    } else {
+                        logger.warn(`Image conversion rejected because format is not valid: ${format}`);
+                    }
                 }
+                asset = await assetProcessor.processAssetFromUri(fullDownloadUri, resize, convert);
+            } else {
+                asset = await assetProcessor.processAssetFromUri(fullDownloadUri);
             }
-            asset = await assetProcessor.processAssetFromUri(fullDownloadUri, resize, convert);
+
+            res.setHeader('Content-Type', asset.meta.mimeType);
+            if (asset.meta.size) {
+                res.setHeader('Content-Length', asset.meta.size);
+            }
+
+            if (cacheControlService) {
+                cacheControlService.addCacheControlHeader('PRIVATE_IF_AUTHENTICATED', req, res);
+            }
+
+            asset.stream.pipe(res);
         } else {
-            asset = await assetProcessor.processAssetFromUri(fullDownloadUri);
+            logger.warn('MashroomContentAssetProcService not found, image processing and caching won\'t work. Please install plugin @mashroom-content/mashroom-content-asset-processing');
+            const stream = await getUri(fullDownloadUri);
+            stream.pipe(res);
         }
-        res.setHeader('Content-Type', asset.meta.mimeType);
-        if (asset.meta.size) {
-            res.setHeader('Content-Length', asset.meta.size);
-        }
-
-        if (cacheControlService) {
-            cacheControlService.addCacheControlHeader('PRIVATE_IF_AUTHENTICATED', req, res);
-        }
-
-        asset.stream.pipe(res);
     } catch (e) {
         logger.error(`Fetching asset ${downloadUrl} failed!`, e);
         res.sendStatus(500);

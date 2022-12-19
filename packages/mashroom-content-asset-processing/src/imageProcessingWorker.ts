@@ -5,7 +5,7 @@ import fetchHttpAsset from './fetchHttpAsset';
 import fetchFileAsset from './fetchFileAsset';
 import processAsset from './processAsset';
 import {writeCacheEntry} from './cache';
-import type {MashroomContentAssetProc, MashroomContentAssetProcImageConvert, MashroomContentAssetProcImageResize} from '../type-definitions';
+import type {MashroomContentAssetProcResult, MashroomContentAssetProcImageConvert, MashroomContentAssetProcImageResize} from '../type-definitions';
 
 // Processes an image and puts it into cache
 // Supposed to run in a worker thread
@@ -31,7 +31,7 @@ const processAssetAndPutToCache = async () => {
     try {
 
         // Read asset
-        let asset: MashroomContentAssetProc;
+        let asset: MashroomContentAssetProcResult;
         if (params.assetUri.startsWith('http://') || params.assetUri.startsWith('https://')) {
             asset = await fetchHttpAsset(params.assetUri);
         } else {

@@ -3,9 +3,9 @@ import {basename} from 'path';
 import {URL} from 'url';
 import fetch from 'node-fetch';
 
-import type {MashroomContentAssetProc} from '../type-definitions';
+import type {MashroomContentAssetProcResult} from '../type-definitions';
 
-export default async (httpUri: string): Promise<MashroomContentAssetProc> => {
+export default async (httpUri: string): Promise<MashroomContentAssetProcResult> => {
     const response = await fetch(httpUri);
     if (!response.ok) {
         throw new Error(`Http asset not found: ${httpUri}`);

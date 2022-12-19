@@ -1,17 +1,17 @@
 import {createReadStream, createWriteStream, statSync} from 'fs';
 import {readJSONSync, writeJSONSync} from 'fs-extra';
 
-import type {MashroomContentAssetProc, MashroomContentAssetProcMeta} from '../type-definitions';
+import type {MashroomContentAssetProcResult, MashroomContentAssetProcMeta} from '../type-definitions';
 import type {MashroomLogger} from '@mashroom/mashroom/type-definitions';
 
-export const writeCacheEntry = async (cacheFilePath: string, asset: MashroomContentAssetProc): Promise<void> => {
+export const writeCacheEntry = async (cacheFilePath: string, asset: MashroomContentAssetProcResult): Promise<void> => {
     writeJSONSync(`${cacheFilePath}_meta.json`, asset.meta);
     asset.stream.pipe(createWriteStream(cacheFilePath), {
         end: false,
     });
 }
 
-export const readCacheEntry = async (cacheFilePath: string, cacheDefaultTTLSec: number, logger: MashroomLogger): Promise<MashroomContentAssetProc | undefined> => {
+export const readCacheEntry = async (cacheFilePath: string, cacheDefaultTTLSec: number, logger: MashroomLogger): Promise<MashroomContentAssetProcResult | undefined> => {
     let cacheFileStat;
     try {
         cacheFileStat = statSync(cacheFilePath);

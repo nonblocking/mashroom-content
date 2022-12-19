@@ -9,7 +9,7 @@ export type MashroomContentAssetProcMeta = {
     readonly expires?: number;
 }
 
-export type MashroomContentAssetProc = {
+export type MashroomContentAssetProcResult = {
     readonly stream: Readable;
     readonly meta: MashroomContentAssetProcMeta;
 }
@@ -32,7 +32,7 @@ export interface MashroomContentAssetProcService {
     /**
      * Process and return given asset from URI - result will be cached
      */
-    processAssetFromUri(assetUri: string, resize?: MashroomContentAssetProcImageResize, convert?: MashroomContentAssetProcImageConvert): Promise<MashroomContentAssetProc>;
+    processAssetFromUri(assetUri: string, resize?: MashroomContentAssetProcImageResize, convert?: MashroomContentAssetProcImageConvert): Promise<MashroomContentAssetProcResult>;
 
     /**
      * Process given asset
