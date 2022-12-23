@@ -12,7 +12,7 @@ Here some text and even an **image**:
 
 ## And some video
 
-::vimeo{id=612710291 privateKey=dba51808e0}
+::vimeo{id=766020840}
 
 
 ## And a table

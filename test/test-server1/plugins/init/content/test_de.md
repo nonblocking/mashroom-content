@@ -12,7 +12,7 @@ Hier einiger Text und sogar ein **Bild**:
 
 ## Und ein Video
 
-::vimeo{id=612710291 privateKey=dba51808e0}
+::vimeo{id=766020840}
 
 
 ## Und eine Tabelle
