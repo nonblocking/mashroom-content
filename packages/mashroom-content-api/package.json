@@ -1,6 +1,6 @@
 {
     "name": "@mashroom-content/mashroom-content-api",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Mashroom Content API",
     "homepage": "https://www.mashroom-server.com",
     "repository": "github:nonblocking/mashroom-content",
@@ -16,7 +16,7 @@
         "multer": "^1.4.4"
     },
     "devDependencies": {
-        "@mashroom-content/mashroom-content-asset-processing": "1.0.1",
+        "@mashroom-content/mashroom-content-asset-processing": "1.0.2",
         "babel-plugin-transform-async-to-promises": "^0.8.18"
     },
     "scripts": {
