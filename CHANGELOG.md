@@ -3,6 +3,9 @@
 
 ## [unreleased]
 
+## 1.0.1 (December 28, 2022)
+
+ * Markdown Renderer App: Fixed the icons in the editor toolbar
 
 ## 1.0.0 (December 28, 2022)
 

@@ -1,5 +1,5 @@
 
-$FONT_ICON: var(--mashroom-portal-font-icon-brands, 'Font Awesome 6 Free');
+$FONT_ICON: var(--mashroom-portal-font-icon, 'Font Awesome 6 Free');
 $FONT_ICON_BRANDS: var(--mashroom-portal-font-icon-brands, 'Font Awesome 6 Brands');
 
 @mixin toolbarIcon($content) {
