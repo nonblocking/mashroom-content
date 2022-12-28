@@ -3,6 +3,9 @@
 
 ## [unreleased]
 
+
+## 1.0.0 (December 28, 2022)
+
  * Markdown Renderer App: Replaced react-mde by CodeMirror for Markdown editing
  * Content Provider Internal Storage: Added support for storing assets in subfolders (via path argument)
  * Markdown Renderer App: Fixed re-rendering after saving in the editor

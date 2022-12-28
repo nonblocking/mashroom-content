@@ -32,7 +32,7 @@ At the moment it consists of:
 
 ## Basic Usage
 
-Add the following packages to dependencies for _Mashroom_ server:
+Add the following packages to dependencies to your _Mashroom Server_ project:
 
  * @mashroom-content/mashroom-content-api
  * @mashroom-content/mashroom-content-asset-processing
@@ -40,14 +40,11 @@ Add the following packages to dependencies for _Mashroom_ server:
  * @mashroom-content/mashroom-content-media-library-app
  * @mashroom-content/mashroom-content-markdown-renderer-app
 
-And add it to the plugin lookup path in the server config:
+And add the following to the plugin lookup path in the server config:
 
 ```json
 {
     "pluginPackageFolders": [
-        {
-            "path": "./node_modules/@mashroom"
-        },
         {
             "path": "./node_modules/@mashroom-content"
         }
@@ -55,7 +52,7 @@ And add it to the plugin lookup path in the server config:
 }
 ```
 
-And configure the plugins like this to use the internal storage:
+Configure the plugins like this to use the internal storage:
 
 ```json
 {
@@ -79,22 +76,32 @@ And configure the plugins like this to use the internal storage:
 }
 ```
 
-Now you can use the API on the server-side like this:
+Now you can use the service on the server-side (e.g. in a SSR bootstrap) like this:
 
 ```typescript
-  const contentService: MashroomContentService = req.pluginContext.services.content.service;
-  const {data} = await contentService.getContent<any>(req, 'my-stuff', '1234567');
+    const contentService: MashroomContentService | undefined = req.pluginContext.services.content?.service;
+    if (contentService) {
+        // Search
+        const result = await contentService.searchContent<WebContent>(req, 'web-content', {tags: {$in: ['foo']}}, 'de', 'published', { foo: 'desc' }, 100);
+        // Fetch
+        const {data} = await contentService.getContent<WebContent>(req, 'web-content', '1234567');
+        //...
+    }
 ```
 
 And on the client-side like this:
 
 ```typescript
 const bootstrap: MashroomPortalAppPluginBootstrapFunction = async (portalAppHostElement, portalAppSetup, clientServices) => {
-    const contentService: MashroomContentClientService = clientServices.contentService;
+    const contentService: MashroomContentClientService | undefined = clientServices.contentService;
 
-    const {data} = await contentService.getContent<any>('my-stuff', '1234567');
-
-    // ...
+    if (contentService) {
+        // Search
+        const result = await contentService.searchContent<WebContent>('web-content', {tags: {$in: ['foo']}}, 'de', 'published', { foo: 'desc' }, 100);
+        // Fetch
+        const {data} = await contentService.getContent<WebContent>('web-content', '1234567');
+        // ...
+    }
 }
 ```
 

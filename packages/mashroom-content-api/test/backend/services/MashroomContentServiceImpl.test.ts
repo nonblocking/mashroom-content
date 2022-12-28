@@ -38,7 +38,7 @@ describe('MashroomContentServiceImpl', () => {
             meta: { total: 1 },
         }));
 
-        const result1 = await service.searchContent<WebContent>(req, 'web-content', {tags: {$in: ['foo']}}, undefined, 'published', { foo: 'desc' }, 100, undefined,);
+        const result1 = await service.searchContent<WebContent>(req, 'web-content', {tags: {$in: ['foo']}}, undefined, 'published', { foo: 'desc' }, 100);
         const result2 = await service.searchContent<WebContent>(req, 'web-content', {$or: [{foo: {$exists: true}}, {html: {$containsi: 'test'}}]});
 
         expect(result1).toBeTruthy();
