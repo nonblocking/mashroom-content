@@ -59,8 +59,7 @@ Configure the plugins like this to use the internal storage:
     "plugins": {
         "Mashroom Content Services": {
             "provider": "Mashroom Content Internal Storage Provider",
-            "cacheEnable": true,
-            "cacheTTLSec": 1800
+            "cacheEnable": false
         },
         "Mashroom Content Asset Processing Services": {
             "scaleUp": false,

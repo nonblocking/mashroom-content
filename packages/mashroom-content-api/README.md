@@ -16,6 +16,7 @@ It allows it to transparently switch the Headless CMS/Content Provider.
  * Support for versioning and i18n (if supported by the Headless CMS)
  * Asset Uploads and Downloads
  * Automatic image proxying with optimizations (format conversion and resizing on-the-fly)
+ * Caching (requires the *@mashroom/mashroom-memory-cache* plugin)
  * CDN integration
 
 ## Usage
