@@ -3,6 +3,10 @@
 
 ## [unreleased]
 
+## 1.0.2 (December 28, 2022)
+
+ * Media Library App: Fixed icons
+
 ## 1.0.1 (December 28, 2022)
 
  * Markdown Renderer App: Fixed the icons in the editor toolbar
