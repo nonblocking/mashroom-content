@@ -22,9 +22,6 @@
         },
         "test": {
             "outputs": [
-                "{projectRoot}/test-data",
-                "{projectRoot}/tmp",
-                "{projectRoot}/log"
             ]
         }
     }
