@@ -1,6 +1,6 @@
 {
     "name": "@mashroom-content/mashroom-content-markdown-renderer-app",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Mashroom Content Simple Markdown Renderer App",
     "homepage": "https://www.mashroom-server.com",
     "repository": "github:nonblocking/mashroom-content",
@@ -24,9 +24,9 @@
         "remark-gfm": "^3.0.1"
     },
     "devDependencies": {
-        "@mashroom-content/mashroom-content-api": "1.0.2",
         "@codemirror/lang-css": "^6.2.0",
         "@codemirror/lang-markdown": "^6.2.0",
+        "@mashroom-content/mashroom-content-api": "1.0.3",
         "@types/lodash.debounce": "^4.0.7",
         "@types/react": "^18.2.17",
         "@types/react-dom": "^18.2.7",
