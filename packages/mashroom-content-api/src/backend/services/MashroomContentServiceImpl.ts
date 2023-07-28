@@ -193,7 +193,7 @@ export default class MashroomContentServiceImpl implements MashroomContentServic
     }
 
     async uploadAsset(req: Request, file: Readable, meta: MashroomContentAssetMeta, path?: string, contentRef?: MashroomContentAssetContentRef): Promise<MashroomContentAsset> {
-        const urlRewriteService: MashroomContentUrlRewriteService = req.pluginContext.services.content.rewrite;
+        const urlRewriteService: MashroomContentUrlRewriteService = req.pluginContext.services.content!.rewrite;
         const result = await this._getProvider().uploadAsset(req, file, meta, path, contentRef);
         const rewrittenResult = {
             ...result,
@@ -203,7 +203,7 @@ export default class MashroomContentServiceImpl implements MashroomContentServic
     }
 
     async searchAssets(req: Request, type: string, titleContains?: string, limit?: number, skip?: number): Promise<MashroomContentAssetSearchResult> {
-        const urlRewriteService: MashroomContentUrlRewriteService = req.pluginContext.services.content.rewrite;
+        const urlRewriteService: MashroomContentUrlRewriteService = req.pluginContext.services.content!.rewrite;
         const result = await this._getProvider().searchAssets(req, type, titleContains, limit, skip);
         const rewrittenResult = {
             hits: result.hits.map(({id, url, meta}) => ({
@@ -221,7 +221,7 @@ export default class MashroomContentServiceImpl implements MashroomContentServic
     }
 
     private _rewriteContent(req: Request, content: any, reverse = false): any {
-        const urlRewriteService: MashroomContentUrlRewriteService = req.pluginContext.services.content.rewrite;
+        const urlRewriteService: MashroomContentUrlRewriteService = req.pluginContext.services.content!.rewrite;
         Object.keys(content).forEach((propName) => {
             const prop = content[propName];
             if (!propName.startsWith('_')) {

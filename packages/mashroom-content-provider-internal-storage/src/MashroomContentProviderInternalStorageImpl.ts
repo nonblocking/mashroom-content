@@ -548,7 +548,7 @@ export default class MashroomContentProviderInternalStorageImpl implements Mashr
     }
 
     private getStorageService(req: Request): MashroomStorageService {
-        return req.pluginContext.services.storage.service;
+        return req.pluginContext.services.storage!.service;
     }
 
     private getDefaultLocale(req: Request): string {

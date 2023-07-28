@@ -12,7 +12,7 @@ import type {MashroomContentUrlRewriteService} from '../../../../../type-definit
 const FILE_EXT_REGEX = /\.(\w{3,4})(?:$|\?)/;
 
 export default async (req: Request, res: Response) => {
-    const urlRewriteService: MashroomContentUrlRewriteService = req.pluginContext.services.content.rewrite;
+    const urlRewriteService: MashroomContentUrlRewriteService = req.pluginContext.services.content!.rewrite;
     const assetProcessor: MashroomContentAssetProcService | undefined = req.pluginContext.services.assetProc?.service;
     const cacheControlService: MashroomCacheControlService | undefined = req.pluginContext.services.browserCache?.cacheControl;
     const logger = req.pluginContext.loggerFactory('mashroom.content-api.service');

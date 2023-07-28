@@ -7,7 +7,7 @@ import type {MashroomContentService, MashroomContentAssetContentRef} from '../..
 import type {paths} from '../../../../../type-definitions/rest-api';
 
 export default async (req: Request, res: Response) => {
-    const contentService: MashroomContentService = req.pluginContext.services.content.service;
+    const contentService: MashroomContentService = req.pluginContext.services.content!.service;
     const logger = req.pluginContext.loggerFactory('mashroom.content-api.service');
 
     const body = req.body as paths['/content/assets']['post']['requestBody']['content']['multipart/form-data'];

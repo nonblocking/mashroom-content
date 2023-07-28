@@ -9,7 +9,7 @@ import type {MashroomContentService} from '@mashroom-content/mashroom-content-ap
 const bootstrap: MashroomPortalAppPluginSSRBootstrapFunction = async (portalAppSetup, req) => {
     const {appId, appConfig: {contentType, contentProp, contentId, style, belowFold, fullscreenImageOnClick}, lang} = portalAppSetup;
 
-    const contentService: MashroomContentService = req.pluginContext.services.content.service;
+    const contentService: MashroomContentService = req.pluginContext.services.content!.service;
     const {data} = await contentService.getContent<any>(req, contentType, contentId);
     const markdown = data[contentProp];
 

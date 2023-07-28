@@ -53,7 +53,7 @@ export default ({imgProps, belowFold, fullscreenImageOnClick, imageBreakpoints, 
         }
     }
 
-    const smallImage = processedImgProps.width && imageBreakpoints.length > 0 && processedImgProps.width < imageBreakpoints[0];
+    const smallImage = processedImgProps.width && imageBreakpoints.length > 0 && (processedImgProps.width as number) < imageBreakpoints[0];
 
     if (responsive && smallImage) {
         // Small images don't have to be responsive

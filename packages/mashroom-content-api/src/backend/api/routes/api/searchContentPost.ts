@@ -9,7 +9,7 @@ import type {paths} from '../../../../../type-definitions/rest-api';
 export default async (req: Request, res: Response) => {
     const devMode = req.pluginContext.serverInfo.devMode;
     const securityService: MashroomSecurityService = req.pluginContext.services.security?.service;
-    const contentService: MashroomContentService = req.pluginContext.services.content.service;
+    const contentService: MashroomContentService = req.pluginContext.services.content!.service;
     const logger = req.pluginContext.loggerFactory('mashroom.content-api.service');
 
     logger.debug('Received search request:',  req.body);

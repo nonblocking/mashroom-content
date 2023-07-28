@@ -4,7 +4,7 @@ import type {MashroomContentService, MashroomContentApiError} from '../../../../
 import type {paths} from '../../../../../type-definitions/rest-api';
 
 export default async (req: Request, res: Response) => {
-    const contentService: MashroomContentService = req.pluginContext.services.content.service;
+    const contentService: MashroomContentService = req.pluginContext.services.content!.service;
     const logger = req.pluginContext.loggerFactory('mashroom.content-api.service');
 
     const { type: contentType, id } = req.params as paths['/content/api/{type}/{id}']['put']['parameters']['path'];

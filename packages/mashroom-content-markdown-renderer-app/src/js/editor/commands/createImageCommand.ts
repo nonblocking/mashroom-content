@@ -1,4 +1,3 @@
-import * as util from 'util';
 import randomId from './randomId';
 import insertAtSelection from './insertAtSelection';
 import type {MashroomPortalAppService, MashroomPortalMessageBus} from '@mashroom/mashroom-portal/type-definitions/api';

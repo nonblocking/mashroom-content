@@ -12,10 +12,10 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.5.4",
-    "@strapi/plugin-users-permissions": "4.5.4",
-    "@strapi/plugin-i18n": "4.5.4",
-    "sqlite3": "5.1.4"
+    "@strapi/strapi": "4.12.0",
+    "@strapi/plugin-users-permissions": "4.12.0",
+    "@strapi/plugin-i18n": "4.12.0",
+    "sqlite3": "5.1.6"
   },
   "strapi": {
     "uuid": "f21eda51-f887-429c-87b2-2814894aef7f"

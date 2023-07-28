@@ -10,12 +10,12 @@
         "mashroom.json"
     ],
     "dependencies": {
-        "node-fetch": "^2.6.7"
+        "node-fetch": "^2.6.12"
     },
     "devDependencies": {
         "@mashroom-content/mashroom-content-api": "1.0.2",
-        "@types/node-fetch": "^2.6.2",
-        "nock": "^13.2.9"
+        "@types/node-fetch": "^2.6.4",
+        "nock": "^13.3.2"
     },
     "scripts": {
         "test": "jest",
