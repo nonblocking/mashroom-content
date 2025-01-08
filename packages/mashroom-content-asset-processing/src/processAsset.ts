@@ -23,4 +23,4 @@ export default async (asset: Readable, defaultQuality: number, scaleUp: boolean,
     }
 
     return procs.reduce((stream, proc) => stream.pipe(proc), asset);
-}
+};

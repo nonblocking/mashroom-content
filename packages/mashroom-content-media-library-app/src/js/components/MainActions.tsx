@@ -42,5 +42,5 @@ export default ({contentService}: Props) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

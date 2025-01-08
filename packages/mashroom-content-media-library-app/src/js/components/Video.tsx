@@ -11,5 +11,5 @@ export default ({url}: Props) => {
                 <source src={url} />
             </video>
         </div>
-    )
-}
+    );
+};

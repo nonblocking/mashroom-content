@@ -10,4 +10,4 @@ export default (defaultText: string) => {
         }
     };
     return createBoldCommand;
-}
+};

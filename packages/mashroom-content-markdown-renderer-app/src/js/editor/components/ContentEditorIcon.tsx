@@ -12,4 +12,4 @@ export default ({iconName, onClick}: Props) => {
     return (
         <div className={`icon-${iconName}`} title={title} onClick={onClick} />
     );
-}
+};

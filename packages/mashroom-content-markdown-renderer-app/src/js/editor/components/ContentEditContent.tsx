@@ -105,7 +105,7 @@ export default () => {
                                 }}
                                 extensions={[markdownEditor()]}
                                 onChange={(value) => {
-                                    dispatch(setContentMarkdown(selectedLanguage, contentProp, value))
+                                    dispatch(setContentMarkdown(selectedLanguage, contentProp, value));
                                 }}
                             />
                         </div>

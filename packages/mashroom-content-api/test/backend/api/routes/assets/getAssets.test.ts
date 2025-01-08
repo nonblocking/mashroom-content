@@ -48,10 +48,10 @@ describe('getAsset', () => {
                 _w: 1000,
                 _format: 'webp'
             }
-        }
+        };
         const res: any = {
             setHeader: (key: string, value: any) => headers[key] = value,
-        }
+        };
 
         await getAsset(req, res);
 
@@ -84,10 +84,10 @@ describe('getAsset', () => {
                 _sourceFormat: 'png',
                 x: 2,
             }
-        }
+        };
         const res: any = {
             setHeader: (key: string, value: any) => headers[key] = value,
-        }
+        };
 
         await getAsset(req, res);
 

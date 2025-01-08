@@ -35,4 +35,4 @@ export default (cssPrefixClass: string, style: string): string => {
     });
 
     return result;
-}
+};

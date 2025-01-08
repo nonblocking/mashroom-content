@@ -10,17 +10,17 @@
         "mashroom.json"
     ],
     "dependencies": {
-        "fs-extra": "^11.1.1",
-        "nanoid": "^3.3.6"
+        "fs-extra": "^11.2.0",
+        "nanoid": "^3.3.8"
     },
     "devDependencies": {
         "@mashroom-content/mashroom-content-api": "1.0.3",
-        "@types/fs-extra": "^11.0.1"
+        "@types/fs-extra": "^11.0.4"
     },
     "scripts": {
         "test": "jest",
         "build": "babel -x .ts src -d ./dist",
-        "lint": "eslint --quiet --ext .ts --fix ./src ./test",
+        "lint": "eslint --fix",
         "type-check": "tsc --noEmit"
     }
 }

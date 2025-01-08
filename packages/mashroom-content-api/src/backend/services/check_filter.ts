@@ -33,6 +33,6 @@ export default (filter: MashroomContentApiFilter<any>): boolean => {
             }
             return true;
         });
-    }
+    };
     return checkOps(filter);
-}
+};

@@ -2,7 +2,7 @@
 import {existsSync} from 'fs';
 import {resolve} from 'path';
 import {Readable} from 'stream';
-import {dummyLoggerFactory} from '@mashroom/mashroom-utils/lib/logging_utils';
+import {dummyLoggerFactory} from '@mashroom/mashroom-utils/lib/logging-utils';
 import MashroomContentProviderInternalStorageImpl from '../src/MashroomContentProviderInternalStorageImpl';
 
 const serverRootFolder = __dirname;
@@ -215,11 +215,11 @@ describe('MashroomContentProviderInternalStorageImpl', () => {
         let inserts = 0;
         mockInsertOne.mockImplementation(({_contentId}) => {
             if (inserts === 0) {
+                inserts ++;
                 return Promise.resolve({
                     ...MOCK_STORED_MASTER_ENTRY,
                     _contentId,
                 });
-                inserts ++;
             } else {
                 return Promise.resolve({
                     ...MOCK_STORED_ENTRY,

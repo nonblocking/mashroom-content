@@ -44,10 +44,10 @@ describe('uploadAsset', () => {
                 mimetype: 'image/png',
                 size: 1234,
             }
-        }
+        };
         const res: any = {
             json: (json: any) => jsonResponse = json,
-        }
+        };
 
         await uploadAsset(req, res);
 

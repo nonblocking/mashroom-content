@@ -28,5 +28,5 @@ export default ({src, width}: Props) => {
                 <FormattedMessage id="html5VideoNotSupported" />
             </video>
         </div>
-    )
+    );
 };

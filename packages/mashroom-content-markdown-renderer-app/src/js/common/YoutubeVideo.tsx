@@ -32,5 +32,5 @@ export default ({id, width}: Props) => {
                 />
             </div>
         </div>
-    )
+    );
 };

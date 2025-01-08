@@ -74,7 +74,7 @@ export default class MashroomContentAssetProcServiceImpl implements MashroomCont
                             mimeType: newMimeType,
                             size: undefined,
                         }
-                    }
+                    };
                 } catch (e) {
                     this._logger.error('Image processing failed!', e);
                 }
@@ -89,7 +89,7 @@ export default class MashroomContentAssetProcServiceImpl implements MashroomCont
                         resize,
                         convert,
                         cacheFilePath,
-                    }
+                    };
                     this._logger.debug(`Converting image ${assetUri}`, resize, convert);
                     const worker = new Worker(resolve(__dirname, 'imageProcessingWorker'), {
                         workerData,

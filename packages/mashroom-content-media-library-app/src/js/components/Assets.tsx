@@ -58,5 +58,5 @@ export default ({messageBus, contentService}: Props) => {
                 )}
             </DropTarget>
         </div>
-    )
-}
+    );
+};

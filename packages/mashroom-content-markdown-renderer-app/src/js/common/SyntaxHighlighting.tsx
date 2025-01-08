@@ -12,17 +12,18 @@ export default ({language, code, className}: Props) => {
     if (language) {
         return (
             <SyntaxHighlighter
-                children={code}
                 language={language}
                 style={darcula}
                 PreTag="div"
-            />
-        )
+            >
+                {code}
+            </SyntaxHighlighter>
+        );
     }
 
     return (
         <code className={className}>
             {code}
         </code>
-    )
+    );
 };

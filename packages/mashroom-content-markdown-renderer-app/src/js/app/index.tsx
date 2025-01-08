@@ -57,7 +57,7 @@ const bootstrap: MashroomPortalAppPluginBootstrapFunction = (portalAppHostElemen
                 contentId,
                 style,
                 initialState: EMPTY_STATE,
-            }
+            };
             root.unmount();
             root = createRoot(portalAppHostElement);
             root.render(<App {...newProps} />);

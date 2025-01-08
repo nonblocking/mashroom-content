@@ -4,7 +4,7 @@
  */
 
 export interface paths {
-  "/content/api/{type}": {
+  '/content/api/{type}': {
     get: {
       parameters: {
         path: {
@@ -17,7 +17,7 @@ export interface paths {
           /** Deliver content for given locale */
           locale?: string;
           /** Only content with some specific status */
-          status?: components["schemas"]["ContentStatus"];
+          status?: components['schemas']['ContentStatus'];
           /** Sort the result by given properties */
           sort?: { [key: string]: unknown };
           /** Limit the number of hits */
@@ -30,13 +30,13 @@ export interface paths {
         /** Successfully returned a list of contents */
         200: {
           content: {
-            "application/json": components["schemas"]["ContentSearchResult"];
+            'application/json': components['schemas']['ContentSearchResult'];
           };
         };
         /** Invalid request */
         400: {
           content: {
-            "application/json": {
+            'application/json': {
               message?: string;
             };
           };
@@ -54,18 +54,18 @@ export interface paths {
         /** Successfully created a content */
         200: {
           content: {
-            "application/json": components["schemas"]["ContentWrapper"];
+            'application/json': components['schemas']['ContentWrapper'];
           };
         };
       };
       requestBody: {
         content: {
-          "application/json": components["schemas"]["NewOrPartialContent"];
+          'application/json': components['schemas']['NewOrPartialContent'];
         };
       };
     };
   };
-  "/content/api/{type}/searches": {
+  '/content/api/{type}/searches': {
     post: {
       parameters: {
         path: {
@@ -77,13 +77,13 @@ export interface paths {
         /** Successfully returned a list of contents */
         200: {
           content: {
-            "application/json": components["schemas"]["ContentSearchResult"];
+            'application/json': components['schemas']['ContentSearchResult'];
           };
         };
         /** Invalid request */
         400: {
           content: {
-            "application/json": {
+            'application/json': {
               message?: string;
             };
           };
@@ -91,12 +91,12 @@ export interface paths {
       };
       requestBody: {
         content: {
-          "application/json": components["schemas"]["ContentSearchRequest"];
+          'application/json': components['schemas']['ContentSearchRequest'];
         };
       };
     };
   };
-  "/content/api/{type}/{id}": {
+  '/content/api/{type}/{id}': {
     get: {
       parameters: {
         path: {
@@ -116,7 +116,7 @@ export interface paths {
         /** Successfully returned a content */
         200: {
           content: {
-            "application/json": components["schemas"]["ContentWrapper"];
+            'application/json': components['schemas']['ContentWrapper'];
           };
         };
       };
@@ -134,13 +134,13 @@ export interface paths {
         /** Successfully updated */
         200: {
           content: {
-            "application/json": components["schemas"]["ContentWrapper"];
+            'application/json': components['schemas']['ContentWrapper'];
           };
         };
       };
       requestBody: {
         content: {
-          "application/json": components["schemas"]["NewOrPartialContent"];
+          'application/json': components['schemas']['NewOrPartialContent'];
         };
       };
     };
@@ -165,7 +165,7 @@ export interface paths {
       };
     };
   };
-  "/content/api/{type}/{id}/versions": {
+  '/content/api/{type}/{id}/versions': {
     get: {
       parameters: {
         path: {
@@ -183,13 +183,13 @@ export interface paths {
         /** Successfully returned a content */
         200: {
           content: {
-            "application/json": components["schemas"]["ContentVersionsResult"];
+            'application/json': components['schemas']['ContentVersionsResult'];
           };
         };
       };
     };
   };
-  "/content/assets": {
+  '/content/assets': {
     get: {
       parameters: {
         query: {
@@ -207,13 +207,13 @@ export interface paths {
         /** Successfully returned a list of assets */
         200: {
           content: {
-            "application/json": components["schemas"]["AssetSearchResult"];
+            'application/json': components['schemas']['AssetSearchResult'];
           };
         };
         /** Invalid request */
         400: {
           content: {
-            "application/json": {
+            'application/json': {
               message?: string;
             };
           };
@@ -225,18 +225,18 @@ export interface paths {
         /** Successfully uploaded */
         200: {
           content: {
-            "application/json": components["schemas"]["Asset"];
+            'application/json': components['schemas']['Asset'];
           };
         };
       };
       requestBody: {
         content: {
-          "multipart/form-data": components["schemas"]["AssetUpload"];
+          'multipart/form-data': components['schemas']['AssetUpload'];
         };
       };
     };
   };
-  "/content/assets/{id}": {
+  '/content/assets/{id}': {
     delete: {
       parameters: {
         path: {
@@ -252,25 +252,25 @@ export interface paths {
       };
     };
   };
-  "/content/assets/{proxyName}/{assetPath}": {
+  '/content/assets/{proxyName}/{assetPath}': {
     get: {
       parameters: {
         query: {
           /** Resize to given with (only if asset processing enabled) */
           _w?: string;
           /** Convert image to given format (only if asset processing enabled) */
-          _format?: components["schemas"]["AssetImageFormats"];
+          _format?: components['schemas']['AssetImageFormats'];
           /** Convert with given quality in percent (only if asset processing enabled) */
           _q?: string;
           /** The format can also be given as extension, in that case you have to pass the source format here (only if asset processing enabled) */
-          _sourceFormat?: components["schemas"]["AssetImageFormats"];
+          _sourceFormat?: components['schemas']['AssetImageFormats'];
         };
       };
       responses: {
         /** The asset content */
         200: {
           content: {
-            "*/*": string;
+            '*/*': string;
           };
         };
       };
@@ -283,7 +283,7 @@ export interface components {
     ContentSearchRequest: {
       filter?: { [key: string]: unknown };
       locale?: string;
-      status?: components["schemas"]["ContentStatus"];
+      status?: components['schemas']['ContentStatus'];
       sort?: { [key: string]: unknown };
       limit?: number;
       skip?: number;
@@ -292,33 +292,33 @@ export interface components {
       total: number;
     };
     ContentSearchResult: {
-      hits: components["schemas"]["ContentWrapper"][];
-      meta: components["schemas"]["SearchResultMeta"];
+      hits: components['schemas']['ContentWrapper'][];
+      meta: components['schemas']['SearchResultMeta'];
     };
     Content: { [key: string]: unknown };
-    ContentStatus: "published" | "draft";
+    ContentStatus: 'published' | 'draft';
     ContentMeta: {
       locale?: string;
       availableLocales?: string[];
       version?: string;
-      status?: components["schemas"]["ContentStatus"];
+      status?: components['schemas']['ContentStatus'];
     };
     ContentWrapper: {
       id: string;
-      data: components["schemas"]["Content"];
-      meta: components["schemas"]["ContentMeta"];
+      data: components['schemas']['Content'];
+      meta: components['schemas']['ContentMeta'];
     };
     NewOrPartialContent: {
       data: { [key: string]: unknown };
       meta?: {
         locale?: string;
-        status?: components["schemas"]["ContentStatus"];
+        status?: components['schemas']['ContentStatus'];
       };
     };
     ContentVersionsResult: {
-      versions: components["schemas"]["ContentWrapper"][];
+      versions: components['schemas']['ContentWrapper'][];
     };
-    AssetImageFormats: "png" | "jpeg" | "jpg" | "webp" | "avif";
+    AssetImageFormats: 'png' | 'jpeg' | 'jpg' | 'webp' | 'avif';
     AssetUpload: {
       /** Format: binary */
       file: string;
@@ -330,13 +330,13 @@ export interface components {
       contentRefLocale?: string;
     };
     AssetSearchResult: {
-      hits: components["schemas"]["Asset"][];
-      meta: components["schemas"]["SearchResultMeta"];
+      hits: components['schemas']['Asset'][];
+      meta: components['schemas']['SearchResultMeta'];
     };
     Asset: {
       id: string;
       url: string;
-      meta: components["schemas"]["AssetMeta"];
+      meta: components['schemas']['AssetMeta'];
     };
     AssetMeta: {
       title: string;

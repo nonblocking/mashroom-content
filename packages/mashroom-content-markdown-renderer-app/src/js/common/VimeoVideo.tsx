@@ -33,5 +33,5 @@ export default ({id, privateKey, width}: Props) => {
                 />
             </div>
         </div>
-    )
+    );
 };

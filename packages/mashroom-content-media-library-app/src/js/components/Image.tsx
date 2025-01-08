@@ -7,5 +7,5 @@ type Props = {
 export default ({url}: Props) => {
     return (
         <div className="mashroom-content-media-library-asset-image" style={{backgroundImage: `url(${url})`}}/>
-    )
-}
+    );
+};

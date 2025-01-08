@@ -24,5 +24,5 @@ export default async (fileUri: string): Promise<MashroomContentAssetProcResult> 
             mimeType,
             filename,
         }
-    }
-}
+    };
+};

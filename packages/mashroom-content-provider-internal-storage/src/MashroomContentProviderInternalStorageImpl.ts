@@ -139,7 +139,7 @@ export default class MashroomContentProviderInternalStorageImpl implements Mashr
         if (result.length > 0) {
             return {
                 versions: result.map((e) => this.mapContentEntryToResult<any>(e, locale!)),
-            }
+            };
         }
 
         // Check if we have the entry in the default lang
@@ -392,12 +392,12 @@ export default class MashroomContentProviderInternalStorageImpl implements Mashr
             id,
             url,
             meta,
-        }
+        };
         const assetEntry: AssetEntry = {
             _assetId: id,
             _assetCreated: Date.now(),
             ...asset,
-        }
+        };
         const assetCollection = await this.getAssetsCollection(req);
         await assetCollection.insertOne(assetEntry);
 
@@ -430,16 +430,16 @@ export default class MashroomContentProviderInternalStorageImpl implements Mashr
         if (type || titleContains) {
             filter = {
                 $and: []
-            }
+            };
             if (type) {
                 filter.$and!.push({
                     'meta.mimeType': { $regex: type, $options: 'i' },
-                })
+                });
             }
             if (titleContains) {
                 filter.$and!.push({
                     'meta.title': { $regex: titleContains, $options: 'i' },
-                })
+                });
             }
         }
 
@@ -487,7 +487,7 @@ export default class MashroomContentProviderInternalStorageImpl implements Mashr
                 allowImageProcessing: true,
                 toFullUri: (path) => {
                     const cleanPath = path.split('?')[0];
-                    return `file://${this.#assetsFolder}${cleanPath.substring(DOWNLOADS_URL_PREFIX.length)}`
+                    return `file://${this.#assetsFolder}${cleanPath.substring(DOWNLOADS_URL_PREFIX.length)}`;
                 },
             }
         };
@@ -503,7 +503,7 @@ export default class MashroomContentProviderInternalStorageImpl implements Mashr
                 status: entry._contentStatus === 'published' || entry._contentStatus === 'draft' ? entry._contentStatus : undefined,
                 version: String(entry._contentVersion),
             }
-        }
+        };
     }
 
     private mapAssetEntryToResult(entry: MashroomStorageObject<AssetEntry>): MashroomContentAsset {
@@ -587,7 +587,7 @@ export default class MashroomContentProviderInternalStorageImpl implements Mashr
                 default:
                     parent[op] = target;
             }
-        }
+        };
         const map = (props: any): any => {
             if (!props ) {
                 return props;
@@ -608,7 +608,7 @@ export default class MashroomContentProviderInternalStorageImpl implements Mashr
                 rewriteOperator(propKey, target, result);
             });
             return result;
-        }
+        };
         return map(filter);
     }
 }

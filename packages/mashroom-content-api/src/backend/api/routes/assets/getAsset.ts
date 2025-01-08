@@ -1,6 +1,6 @@
 
 import {stringify} from 'querystring';
-import getUri from 'get-uri';
+import {getUri} from 'get-uri';
 import context from '../../../context';
 
 import type {Request, Response} from 'express';
@@ -48,7 +48,7 @@ export default async (req: Request, res: Response) => {
         } else {
             fullDownloadUri = rewrittenDownloadUrl;
         }
-        logger.debug(`Determined download URI: ${downloadUrl} -> ${fullDownloadUri}`)
+        logger.debug(`Determined download URI: ${downloadUrl} -> ${fullDownloadUri}`);
     } else {
         res.sendStatus(404);
         return;

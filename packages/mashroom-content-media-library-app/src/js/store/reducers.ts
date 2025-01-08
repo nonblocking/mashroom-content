@@ -16,9 +16,9 @@ import {
 } from './actions';
 
 import type {Reducer} from 'redux';
-import type {Config, Search, State, Uploads} from '../types';
+import type {Action, Config, Search, Uploads} from '../types';
 
-const config: Reducer<Config> = (state, action): Config => {
+const config: Reducer<Config, Action> = (state, action): Config => {
     if (!state) {
         return {
             modalMode: false,
@@ -36,7 +36,7 @@ const config: Reducer<Config> = (state, action): Config => {
     }
 };
 
-const search: Reducer<Search> = (state, action): Search => {
+const search: Reducer<Search, Action> = (state, action): Search => {
     if (!state) {
         return {
             typeFilter: null,
@@ -85,7 +85,7 @@ const search: Reducer<Search> = (state, action): Search => {
                         total: state.result?.meta.total || 1,
                     }
                 }
-            }
+            };
         }
         case SEARCH_RESULT_REMOVE_ASSET: {
             return {
@@ -96,7 +96,7 @@ const search: Reducer<Search> = (state, action): Search => {
                     }),
                     meta: state.result?.meta || { total: 0 },
                 }
-            }
+            };
         }
         case SET_SEARCH_RUNNING: {
             return {
@@ -115,7 +115,7 @@ const search: Reducer<Search> = (state, action): Search => {
     }
 };
 
-const uploads: Reducer<Uploads> = (state, action): Uploads => {
+const uploads: Reducer<Uploads, Action> = (state, action): Uploads => {
     if (!state) {
         return [];
     }
@@ -159,7 +159,7 @@ const uploads: Reducer<Uploads> = (state, action): Uploads => {
     }
 };
 
-export default combineReducers<State>({
+export default combineReducers({
     config,
     search,
     uploads,

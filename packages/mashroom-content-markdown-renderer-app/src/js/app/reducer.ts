@@ -22,4 +22,4 @@ export default (state: AppState, action: Action) => {
         default:
             throw new Error(`Invalid action: ${JSON.stringify(action)}`);
     }
-}
+};

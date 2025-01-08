@@ -63,5 +63,5 @@ export default ({codeMirrorRef}: Props) => {
             <ContentEditorIcon iconName='vimeo' onClick={executeCommand(codeMirrorRef, vimeoCommand)} />
             <ContentEditorIcon iconName='youtube' onClick={executeCommand(codeMirrorRef, youtubeCommand)} />
         </div>
-    )
-}
+    );
+};

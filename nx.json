@@ -1,28 +1,28 @@
 {
-    "tasksRunnerOptions": {
-        "default": {
-            "runner": "nx/tasks-runners/default",
-            "options": {
-                "cacheableOperations": [
-                    "test",
-                    "build",
-                    "lint",
-                    "type-check"
-                ]
-            }
-        }
+  "targetDefaults": {
+    "test": {
+      "cache": true,
+      "dependsOn": [],
+      "outputs": [
+        "{projectRoot}/test-reports"
+      ]
     },
-    "targetDefaults": {
-        "build": {
-            "outputs": [
-                "{projectRoot}/dist",
-                "{projectRoot}/lib",
-                "{projectRoot}/public"
-            ]
-        },
-        "test": {
-            "outputs": [
-            ]
-        }
+    "type-check": {
+      "cache": true,
+      "dependsOn": []
+    },
+    "build": {
+      "cache": true,
+      "dependsOn": [],
+      "outputs": [
+        "{projectRoot}/dist",
+        "{projectRoot}/lib",
+        "{projectRoot}/public"
+      ]
+    },
+    "lint": {
+      "cache": true,
+      "dependsOn": []
     }
+  }
 }

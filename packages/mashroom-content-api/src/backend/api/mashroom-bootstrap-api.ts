@@ -1,7 +1,7 @@
 
 import {isAbsolute, resolve} from 'path';
 import {tmpdir} from 'os';
-import context from '../context'
+import context from '../context';
 import routes from './routes';
 import type {MashroomApiPluginBootstrapFunction} from '@mashroom/mashroom/type-definitions';
 

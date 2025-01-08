@@ -13,12 +13,12 @@ import type {State} from '../types';
 
 const getPreviewComponent = ({url, meta}: MashroomContentAsset) => {
     if (meta.mimeType?.indexOf('image/') === 0) {
-        return <Image url={url} />
+        return <Image url={url} />;
     } else if (meta.mimeType?.indexOf('video/') === 0) {
         return <Video url={url} />;
     }
-    return <GenericDocument mimeType={meta.mimeType} />
-}
+    return <GenericDocument mimeType={meta.mimeType} />;
+};
 
 type Props = {
     messageBus: MashroomPortalMessageBus;
@@ -90,4 +90,4 @@ export default ({messageBus, contentService}: Props) => {
             }
         </div>
     );
-}
+};

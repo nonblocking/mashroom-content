@@ -42,4 +42,4 @@ export default ({hits, onOpen}: Props) => {
             })}
         </div>
     );
-}
+};

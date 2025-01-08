@@ -11,9 +11,9 @@
         "mashroom.json"
     ],
     "dependencies": {
-        "get-uri": "^4.0.0",
-        "image-size": "^1.0.2",
-        "multer": "^1.4.4"
+        "get-uri": "^6.0.4",
+        "image-size": "^1.2.0",
+        "multer": "^1.4.5-lts.1"
     },
     "devDependencies": {
         "@mashroom-content/mashroom-content-asset-processing": "1.0.3",
@@ -25,7 +25,7 @@
         "build:frontend": "webpack --mode production",
         "build": "npm run build:backend && npm run build:frontend",
         "dev": "nodemon --watch src/backend -e ts --exec \"npm run build && node dist/backend/api/dev_server.js\"",
-        "lint": "eslint --quiet --ext .ts --fix ./src ./test",
+        "lint": "eslint --fix",
         "type-check": "tsc --noEmit",
         "gen-api-types": "openapi-typescript spec/mashroom-content-api.yaml --output type-definitions/rest-api.ts"
     }

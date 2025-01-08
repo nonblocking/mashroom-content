@@ -27,7 +27,7 @@ At the moment it consists of:
 
 ## Requirements
 
- * Node >= 16
+ * Node >= 18
  * **Mashroom 2.x**
 
 ## Basic Usage

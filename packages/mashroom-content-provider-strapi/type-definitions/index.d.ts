@@ -25,7 +25,7 @@ export type StrapiContent<T> = {
         updatedAt: string;
         publishedAt: string;
         locale?: string;
-        localizations?: StrapiContentLocalizations;
+        localizations?: StrapiContentLocalizations<any>;
     }
 }
 

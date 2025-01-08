@@ -29,9 +29,9 @@ import {
 } from './actions';
 
 import type {Reducer} from 'redux';
-import type {EditorConfig, EditorContent, EditorMode, EditorSearch, EditorState, EditorTab} from '../../types';
+import type {EditorConfig, EditorContent, EditorMode, EditorSearch, EditorTab, Action} from '../../types';
 
-const config: Reducer<EditorConfig> = (state, action): EditorConfig => {
+const config: Reducer<EditorConfig, Action> = (state, action): EditorConfig => {
     if (!state) {
         return {
             contentType: 'markdown',
@@ -49,7 +49,7 @@ const config: Reducer<EditorConfig> = (state, action): EditorConfig => {
     }
 };
 
-const mode: Reducer<EditorMode> = (state, action): EditorMode => {
+const mode: Reducer<EditorMode, Action> = (state, action): EditorMode => {
     if (!state) {
         return 'search';
     }
@@ -63,7 +63,7 @@ const mode: Reducer<EditorMode> = (state, action): EditorMode => {
     }
 };
 
-const tab: Reducer<EditorTab> = (state, action): EditorTab => {
+const tab: Reducer<EditorTab, Action> = (state, action): EditorTab => {
     if (!state) {
         return 'content';
     }
@@ -77,7 +77,7 @@ const tab: Reducer<EditorTab> = (state, action): EditorTab => {
     }
 };
 
-const content: Reducer<EditorContent> = (state, action): EditorContent => {
+const content: Reducer<EditorContent, Action> = (state, action): EditorContent => {
     if (!state) {
         return {
             contentId: undefined,
@@ -243,7 +243,7 @@ const content: Reducer<EditorContent> = (state, action): EditorContent => {
     }
 };
 
-const search: Reducer<EditorSearch> = (state, action): EditorSearch => {
+const search: Reducer<EditorSearch, Action> = (state, action): EditorSearch => {
     if (!state) {
         return {
             query: '',
@@ -295,7 +295,7 @@ const search: Reducer<EditorSearch> = (state, action): EditorSearch => {
     }
 };
 
-export default combineReducers<EditorState>({
+export default combineReducers({
     config,
     mode,
     tab,

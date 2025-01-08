@@ -20,7 +20,7 @@ export default ({upload: {id, error, progress}}: Props) => {
                         <div className="progress" style={{width: `${progress}%`}} />
                     </div>
                     <div className="upload-cancel">
-                        <a href="javascript:void(0)" onClick={() => { dispatch(cancelUploadFile(id))} }>
+                        <a href="javascript:void(0)" onClick={() => { dispatch(cancelUploadFile(id));} }>
                             <FormattedMessage id='cancel' />
                         </a>
                     </div>
@@ -34,5 +34,5 @@ export default ({upload: {id, error, progress}}: Props) => {
                </div>
             )}
         </div>
-    )
-}
+    );
+};

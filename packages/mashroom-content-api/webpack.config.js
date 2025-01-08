@@ -1,8 +1,8 @@
 
 module.exports = {
-    entry: __dirname + '/src/frontend/clientservice/index.ts',
+    entry: `${__dirname  }/src/frontend/clientservice/index.ts`,
     output: {
-        path: __dirname + '/dist/public',
+        path: `${__dirname  }/dist/public`,
         filename: 'contentClientService.js'
     },
     target: ['web', 'es5'],

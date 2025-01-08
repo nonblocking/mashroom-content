@@ -4,7 +4,7 @@
     "port": 5050,
     "pluginPackageFolders": [
         {
-            "path": "./node_modules/@mashroom",
+            "path": "../../node_modules/@mashroom",
             "devMode": false
         },
         {
@@ -36,7 +36,9 @@
         "Mashroom Portal WebApp": {
             "adminApp": "Mashroom Portal Admin App",
             "defaultTheme": "Mashroom Portal Default Theme",
-            "warnBeforeAuthenticationExpiresSec": 120,
+            "authenticationExpiration": {
+                "warnBeforeExpirationSec": 120
+            },
             "addDemoPages": false
         },
         "Mashroom Portal Default Theme": {

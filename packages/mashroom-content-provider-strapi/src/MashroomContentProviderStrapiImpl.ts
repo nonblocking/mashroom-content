@@ -95,7 +95,7 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
                 meta: {
                     total: searchResult.meta.pagination.total,
                 }
-            }
+            };
         } catch (e) {
             logger.error('Searching content failed!', e);
             const error: MashroomContentApiError = 'Provider Internal Error';
@@ -130,7 +130,7 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
                 ...content.data,
                 locale: content.meta?.locale,
             }
-        }
+        };
 
         let result;
         try {
@@ -191,7 +191,7 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
                 data: {
                     ...content.data,
                 }
-            }
+            };
 
             let result;
             try {
@@ -230,7 +230,7 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
             const data: StrapiContentInsertLocalization<T> = {
                 ...content.data as any,
                 locale: content.meta?.locale,
-            }
+            };
 
             let result;
             try {
@@ -439,7 +439,7 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
                 meta: {
                     total,
                 }
-            }
+            };
         } catch (e) {
             logger.error('Searching assets failed!', e);
             const error: MashroomContentApiError = 'Provider Internal Error';
@@ -608,7 +608,7 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
                 default:
                     parent[op] = target;
             }
-        }
+        };
         const map = (props: any): any => {
             if (!props ) {
                 return props;
@@ -629,7 +629,7 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
                 rewriteOperator(propKey, target, result);
             });
             return result;
-        }
+        };
         return map(filter);
     }
 }

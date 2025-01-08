@@ -5,6 +5,7 @@ lib/
 test-data/
 tmp/
 log/
+.nx/
 
 .idea
 *.iml
@@ -17,4 +18,5 @@ packages/mashroom-content-asset-processing/test/asset-cache
 packages/mashroom-content-provider-internal-storage/test/tmp
 test/test-server1/data
 test/test-server2/data
-test/test-server2/strapi4/.strapi-updater.json
+test/test-server2/strapi5/.strapi
+test/test-server2/strapi5/.strapi-updater.json

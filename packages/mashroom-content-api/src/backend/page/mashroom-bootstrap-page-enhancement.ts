@@ -28,7 +28,7 @@ const bootstrap: MashroomPortalPageEnhancementPluginBootstrapFunction = () => {
                 `;
             }
         }
-    }
+    };
 };
 
 export default bootstrap;

@@ -54,5 +54,5 @@ export default async (httpUri: string): Promise<MashroomContentAssetProcResult> 
             filename,
             expires,
         }
-    }
-}
+    };
+};

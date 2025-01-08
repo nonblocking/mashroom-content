@@ -29,4 +29,4 @@ export default (title: string, portalAppService: MashroomPortalAppService, messa
             });
         });
     };
-}
+};

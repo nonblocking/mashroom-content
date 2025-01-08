@@ -97,7 +97,7 @@ export const uploadFile = (contentService: MashroomContentClientService, file: F
         ({progress}) => {
             dispatch(setUploadProgress(id, progress));
         }
-    )
+    );
 };
 
 export const cancelUploadFile = (id: string) => (dispatch: Dispatch) => {

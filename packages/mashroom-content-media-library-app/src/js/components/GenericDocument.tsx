@@ -21,7 +21,7 @@ const MIME_TYPE_MAPPING: Record<string, string> = {
     'application/x-7z-compressed': 'icon-archive',
     'application/vnd.rar': 'icon-archive',
     'audio/': 'icon-audio',
-}
+};
 
 type Props = {
     mimeType: string;
@@ -37,7 +37,7 @@ export default ({mimeType}: Props) => {
             if (mimeType.indexOf(mime) === 0) {
                 iconClass = MIME_TYPE_MAPPING[mime];
             }
-        })
+        });
     }
     if (!iconClass) {
         iconClass = 'icon-file';
@@ -46,5 +46,5 @@ export default ({mimeType}: Props) => {
         <div className="mashroom-content-media-library-asset-generic-document">
             <div className={iconClass} />
         </div>
-    )
-}
+    );
+};

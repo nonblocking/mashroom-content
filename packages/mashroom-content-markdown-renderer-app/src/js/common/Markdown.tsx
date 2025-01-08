@@ -1,10 +1,10 @@
 
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm'
-import remarkDirective from 'remark-directive'
-// eslint-disable-next-line import/no-unresolved
-import remarkDirectiveRehype from 'remark-directive-rehype'
+import remarkGfm from 'remark-gfm';
+import remarkDirective from 'remark-directive';
+
+import remarkDirectiveRehype from 'remark-directive-rehype';
 
 import Anchor from './Anchor';
 import Button from './Button';
@@ -33,7 +33,6 @@ export default ({markdown, style, cssPrefixClass, belowFold, fullscreenImageOnCl
                 <style dangerouslySetInnerHTML={{__html: prefixStyleRules(cssPrefixClass, style)}} />
             )}
             <ReactMarkdown
-                children={markdown}
                 remarkPlugins={[
                     remarkDirective,
                     remarkDirectiveRehype,
@@ -58,7 +57,7 @@ export default ({markdown, style, cssPrefixClass, belowFold, fullscreenImageOnCl
                     code({className, children}) {
                         const match = /language-(\w+)/.exec(className || '');
                         const language = match?.[1];
-                        const code = String(children).replace(/\n$/, '')
+                        const code = String(children).replace(/\n$/, '');
                         return (
                             <SyntaxHighlighting code={code} language={language} className={className} />
                         );
@@ -81,7 +80,9 @@ export default ({markdown, style, cssPrefixClass, belowFold, fullscreenImageOnCl
                         );
                     }
                 }}
-            />
+            >
+                {markdown}
+            </ReactMarkdown>
         </div>
     );
 };

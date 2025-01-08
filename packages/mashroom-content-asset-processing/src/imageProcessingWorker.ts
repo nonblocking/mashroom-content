@@ -47,7 +47,7 @@ const processAssetAndPutToCache = async () => {
                 mimeType: newMimeType,
                 size: undefined,
             }
-        }
+        };
 
         await writeCacheEntry(params.cacheFilePath, asset);
 

@@ -1,20 +1,19 @@
-const ESLintPlugin = require("eslint-webpack-plugin");
 
 module.exports = (env, argv) => {
     let entry;
     if (argv.mode !== 'production') {
         entry = [
             '@mashroom/mashroom-portal-default-theme/dist/public/portal.css',
-            __dirname + '/src/js',
+            `${__dirname  }/src/js`,
         ];
     } else {
-        entry =__dirname + '/src/js';
+        entry =`${__dirname  }/src/js`;
     }
 
     return {
         entry,
         output: {
-            path: __dirname + '/dist',
+            path: `${__dirname  }/dist`,
             filename: 'index.js',
         },
         module: {
@@ -68,12 +67,6 @@ module.exports = (env, argv) => {
         resolve: {
             extensions: ['.js', '.ts', '.tsx'],
         },
-        plugins: [
-            new ESLintPlugin({
-                extensions: ['.js', '.ts', '.tsx'],
-                fix: true,
-            })
-        ],
         devServer: {
             host: '0.0.0.0',
             allowedHosts: 'all',

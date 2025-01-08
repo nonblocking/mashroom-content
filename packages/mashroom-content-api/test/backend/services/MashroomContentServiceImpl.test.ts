@@ -3,11 +3,11 @@ import MashroomContentServiceImpl from '../../../src/backend/services/MashroomCo
 const searchContentMock = jest.fn();
 const dummyProvider: any = {
     searchContent: searchContentMock,
-}
+};
 
 const registry: any = {
     getContentProvider: () => dummyProvider,
-}
+};
 
 describe('MashroomContentServiceImpl', () => {
 
@@ -32,7 +32,7 @@ describe('MashroomContentServiceImpl', () => {
         };
         const req: any = {
             pluginContext,
-        }
+        };
         searchContentMock.mockReturnValue(Promise.resolve({
             hits: [{ id: 'test', data: { html: '<img src="/uploads/foo.png></img>' } }],
             meta: { total: 1 },
@@ -70,7 +70,7 @@ describe('MashroomContentServiceImpl', () => {
         };
         const req: any = {
             pluginContext,
-        }
+        };
         searchContentMock.mockReturnValue(Promise.resolve({
             hits: [{ id: 'test', data: { tags: ['/uploads/bar.png'], whatever: { x: { y: { z: '<a href="/uploads/foo.png">Click me</a>' }}}, html: '<img src="/uploads/foo.png></img>' } }],
             meta: { total: 1 },
@@ -92,7 +92,7 @@ describe('MashroomContentServiceImpl', () => {
                     }
                 }
             }
-        })
+        });
     });
 
 });

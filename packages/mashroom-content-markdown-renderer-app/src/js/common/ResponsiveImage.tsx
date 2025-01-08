@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-
 import OverlayImage from './OverlayImage';
-import type {ImgHTMLAttributes, SourceHTMLAttributes} from 'react';
+import type {ImgHTMLAttributes, ReactNode} from 'react';
 
 const DIMENSION_METADATA_IN_HASH = /(\d+)x(\d+)/;
 
@@ -19,7 +18,7 @@ const createImageUrl = (src: string, format: string | undefined, width: number |
         return `${url}&${query.join('&')}${hash ? `#${hash}` : ''}`;
     }
     return `${url}?${query.join('&')}${hash ? `#${hash}` : ''}`;
-}
+};
 
 type Props = {
     imgProps: ImgHTMLAttributes<HTMLImageElement>;
@@ -70,7 +69,7 @@ export default ({imgProps, belowFold, fullscreenImageOnClick, imageBreakpoints, 
     }
 
     if (responsive) {
-        const altSources: Array<SourceHTMLAttributes<HTMLSourceElement>> = [];
+        const altSources: Array<ReactNode> = [];
         const originalSrc = processedImgProps.src;
         const widths = imageBreakpoints.length > 0 ? [...imageBreakpoints] : [undefined];
         const formats = [...imagePreferredFormats, undefined];
@@ -94,10 +93,8 @@ export default ({imgProps, belowFold, fullscreenImageOnClick, imageBreakpoints, 
         return (
             <>
                 <picture className={className} title={title} onClick={onClickHandler}>
-                    <>
-                        {altSources}
-                        <img {...processedImgProps} />
-                    </>
+                    {altSources}
+                    <img {...processedImgProps} />
                 </picture>
                 {fullscreenImageOnClick && <OverlayImage src={imgProps.src} show={showOverlay} onClose={() => setShowOverlay(false)}/>}
             </>
@@ -109,5 +106,5 @@ export default ({imgProps, belowFold, fullscreenImageOnClick, imageBreakpoints, 
             <img className={className} title={title} onClick={onClickHandler} {...processedImgProps} />
             {fullscreenImageOnClick && <OverlayImage src={imgProps.src} show={showOverlay} onClose={() => setShowOverlay(false)}/>}
         </>
-    )
+    );
 };

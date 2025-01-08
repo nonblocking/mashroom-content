@@ -131,7 +131,7 @@ export default class MashroomContentServiceImpl implements MashroomContentServic
                     ...content.meta,
                     locale: this._getDefaultLocale(req),
                 }
-            }
+            };
         }
         const insertedContent = await this._getProvider().insertContent(req, type, content);
         return {
@@ -153,7 +153,7 @@ export default class MashroomContentServiceImpl implements MashroomContentServic
                     ...content.meta,
                     locale: this._getDefaultLocale(req),
                 }
-            }
+            };
         }
         const updatedContent = await this._getProvider().updateContent(req, type, id, content);
 
@@ -183,7 +183,7 @@ export default class MashroomContentServiceImpl implements MashroomContentServic
                 if (!checkLocale(locale)) {
                     throw new Error(`Invalid locale: ${locale}`);
                 }
-            })
+            });
         }
 
         await this._getProvider().removeContentParts(req, type, id, locales, versions);
@@ -198,7 +198,7 @@ export default class MashroomContentServiceImpl implements MashroomContentServic
         const rewrittenResult = {
             ...result,
             url: urlRewriteService.rewriteUrl(req, result.url),
-        }
+        };
         return rewrittenResult;
     }
 
@@ -212,7 +212,7 @@ export default class MashroomContentServiceImpl implements MashroomContentServic
                 meta,
             })),
             meta: result.meta,
-        }
+        };
         return rewrittenResult;
     }
 

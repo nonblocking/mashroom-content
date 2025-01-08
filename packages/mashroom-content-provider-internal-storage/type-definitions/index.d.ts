@@ -1,4 +1,4 @@
-import {MashroomContentAsset} from '@mashroom-content/mashroom-content-api/type-definitions';
+import type {MashroomContentAsset} from '@mashroom-content/mashroom-content-api/type-definitions';
 
 export type ContentStatus = 'published' | 'draft' | 'historic';
 

@@ -2,9 +2,9 @@ const {merge} = require('webpack-merge');
 const common = require('./webpack.config.app.common');
 
 module.exports = merge(common,  {
-    entry: __dirname + '/src/js/app',
+    entry: `${__dirname  }/src/js/app`,
     output: {
-        path: __dirname + '/dist',
+        path: `${__dirname  }/dist`,
         filename: 'app.js',
     },
     devServer: {

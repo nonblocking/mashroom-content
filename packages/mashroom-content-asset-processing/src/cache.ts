@@ -9,7 +9,7 @@ export const writeCacheEntry = async (cacheFilePath: string, asset: MashroomCont
     asset.stream.pipe(createWriteStream(cacheFilePath), {
         end: false,
     });
-}
+};
 
 export const readCacheEntry = async (cacheFilePath: string, cacheDefaultTTLSec: number, logger: MashroomLogger): Promise<MashroomContentAssetProcResult | undefined> => {
     let cacheFileStat;
@@ -27,13 +27,13 @@ export const readCacheEntry = async (cacheFilePath: string, cacheDefaultTTLSec: 
         const meta = {
             ...metaFromCacheEntry,
             size: cacheFileStat.size,
-        }
+        };
         const stream = createReadStream(cacheFilePath);
         return {
             stream,
             meta,
-        }
+        };
     }
     return undefined;
-}
+};
 

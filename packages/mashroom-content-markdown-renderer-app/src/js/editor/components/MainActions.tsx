@@ -28,7 +28,7 @@ const saveAndClose = (style: string | undefined | null, belowFold: boolean, full
     ).catch((e: any) => {
        console.error('Save and close failed', e);
     });
-}
+};
 
 export default ({editorTarget}: Props) => {
     const mode = useSelector((state: EditorState) => state.mode);
@@ -64,4 +64,4 @@ export default ({editorTarget}: Props) => {
             </a>
         </div>
     );
-}
+};

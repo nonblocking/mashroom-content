@@ -34,10 +34,10 @@ export default ({contentType, contentProp, contentId, appId, style, lang, initia
                 ).catch((error) => {
                     console.error('Error loading content', error);
                     dispatch({ type: 'error' });
-                })
+                });
             }
         }
-    }, [])
+    }, []);
 
     const {error, markdown} = state;
     const localizedMessages = messages[lang] || messages.en;

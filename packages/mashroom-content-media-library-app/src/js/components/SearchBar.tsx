@@ -60,5 +60,5 @@ export default ({contentService}: Props) => {
                        onChange={(e) => updateQuery(e.target.value)} value={query || ''} />
             </div>
         </div>
-    )
-}
+    );
+};

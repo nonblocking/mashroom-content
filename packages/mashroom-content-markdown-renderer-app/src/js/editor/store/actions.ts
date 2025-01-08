@@ -115,7 +115,7 @@ export const saveContent = (contentService: MashroomContentClientService) => (di
             })
             .catch((e) => {
                 dispatch(setContentSaving(false));
-                dispatch(setContentSavingError(true))
+                dispatch(setContentSavingError(true));
                 throw e;
             });
     } else if (defaultLanguage && i18nContent[defaultLanguage]) {
@@ -150,12 +150,12 @@ export const saveContent = (contentService: MashroomContentClientService) => (di
                 })
                 .catch((e) => {
                     dispatch(setContentSaving(false));
-                    dispatch(setContentSavingError(true))
+                    dispatch(setContentSavingError(true));
                     throw e;
                 });
         }).catch((e) => {
             dispatch(setContentSaving(false));
-            dispatch(setContentSavingError(true))
+            dispatch(setContentSavingError(true));
             throw e;
         });
     }

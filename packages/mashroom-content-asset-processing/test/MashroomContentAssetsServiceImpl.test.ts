@@ -2,11 +2,10 @@
 jest.setTimeout(30000);
 
 import {resolve} from 'path';
-import {writeFileSync, mkdtempSync} from 'fs';
-import {emptyDirSync, readdir} from 'fs-extra';
+import {writeFileSync} from 'fs';
 import nock from 'nock';
 import imageSizeOf from 'image-size';
-import {dummyLoggerFactory} from '@mashroom/mashroom-utils/lib/logging_utils';
+import {dummyLoggerFactory} from '@mashroom/mashroom-utils/lib/logging-utils';
 import MashroomContentAssetProcServiceImpl from '../src/MashroomContentAssetProcServiceImpl';
 
 describe('MashroomContentAssetsServiceImpl', () => {
@@ -22,7 +21,7 @@ describe('MashroomContentAssetsServiceImpl', () => {
     };
     const pluginContextHolder = {
         getPluginContext: () => pluginContext,
-    }
+    };
 
     it('fetches a file asset and processes it', async () => {
         const service = new MashroomContentAssetProcServiceImpl(false, 75, false, 0, '.', pluginContextHolder);
@@ -36,7 +35,7 @@ describe('MashroomContentAssetsServiceImpl', () => {
             asset.stream.on('data', d => buffers.push(d));
             asset.stream.on('end', () => {
                 resolve(Buffer.concat(buffers));
-            })
+            });
         });
 
         expect(asset.meta).toBeTruthy();
@@ -57,7 +56,7 @@ describe('MashroomContentAssetsServiceImpl', () => {
                 'content-type': 'image/png',
                 'content-length': '12345',
                 'cache-control': 'max-age=31536000, public',
-                'expires': 'Mon, 30 Jan 2023 09:54:50 GMT',
+                expires: 'Mon, 30 Jan 2023 09:54:50 GMT',
                 'content-disposition': 'inline; filename="mashroom_portal_ui_v3.png"',
             });
 
@@ -72,7 +71,7 @@ describe('MashroomContentAssetsServiceImpl', () => {
             asset.stream.on('data', d => buffers.push(d));
             asset.stream.on('end', () => {
                 resolve(Buffer.concat(buffers));
-            })
+            });
         });
 
         expect(asset.meta).toBeTruthy();
@@ -112,9 +111,9 @@ describe('MashroomContentAssetsServiceImpl', () => {
         // @ts-ignore
         const cacheKey = service._getCacheKey(assetUri);
         // @ts-ignore
-        writeFileSync(resolve(service._cacheFolder, `${cacheKey}_meta.json`), JSON.stringify({}))
+        writeFileSync(resolve(service._cacheFolder, `${cacheKey}_meta.json`), JSON.stringify({}));
         // @ts-ignore
-        writeFileSync(resolve(service._cacheFolder, cacheKey), 'test')
+        writeFileSync(resolve(service._cacheFolder, cacheKey), 'test');
 
         const asset = await service.processAssetFromUri(assetUri);
         const assetBuffer = await new Promise<Buffer>((resolve) => {
@@ -122,7 +121,7 @@ describe('MashroomContentAssetsServiceImpl', () => {
             asset.stream.on('data', d => buffers.push(d));
             asset.stream.on('end', () => {
                 resolve(Buffer.concat(buffers));
-            })
+            });
         });
 
         expect(assetBuffer.toString('utf-8')).toBe('test');
@@ -141,7 +140,7 @@ describe('MashroomContentAssetsServiceImpl', () => {
             asset.stream.on('data', d => buffers.push(d));
             asset.stream.on('end', () => {
                 resolve(Buffer.concat(buffers));
-            })
+            });
         });
 
         expect(asset.meta).toBeTruthy();
@@ -162,7 +161,7 @@ describe('MashroomContentAssetsServiceImpl', () => {
             asset.stream.on('data', d => buffers.push(d));
             asset.stream.on('end', () => {
                 resolve(Buffer.concat(buffers));
-            })
+            });
         });
 
         expect(asset.meta).toBeTruthy();

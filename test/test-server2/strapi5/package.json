@@ -10,12 +10,14 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.12.0",
-    "@strapi/plugin-users-permissions": "4.12.0",
-    "@strapi/plugin-i18n": "4.12.0",
-    "sqlite3": "5.1.6"
+    "@strapi/plugin-users-permissions": "^5.6.0",
+    "@strapi/strapi": "^5.6.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.1",
+    "better-sqlite3": "^11.7.2",
+    "styled-components": "^6.1.14"
   },
   "strapi": {
     "uuid": "f21eda51-f887-429c-87b2-2814894aef7f"

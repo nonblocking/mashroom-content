@@ -11,7 +11,7 @@ const dummyProvider: any = {
             urlPrefix: 'http://localhost:1234'
         }
     }),
-}
+};
 context.pluginRegistry.registerContentProvider('dummy', dummyProvider);
 
 const pluginContext: any = {
@@ -26,7 +26,7 @@ describe('MashroomContentUrlRewriteServiceImpl', () => {
 
         const req: any = {
             pluginContext,
-        }
+        };
 
         const content = `
             URL in markdown: ![the image](http://localhost:1234/foo/bar.png)
@@ -56,7 +56,7 @@ describe('MashroomContentUrlRewriteServiceImpl', () => {
 
         const req: any = {
             pluginContext,
-        }
+        };
 
         const content = `
             URL in markdown: ![the image](/content/assets/p2/foo/bar.png)
@@ -86,7 +86,7 @@ describe('MashroomContentUrlRewriteServiceImpl', () => {
 
         const req: any = {
             pluginContext,
-        }
+        };
 
         const content = `
             URL in markdown: ![the image](http://localhost:1234/foo/bar.png)
@@ -125,7 +125,7 @@ describe('MashroomContentUrlRewriteServiceImpl', () => {
                     }
                 }
             },
-        }
+        };
 
         const content = `
             URL in markdown: ![the image](http://localhost:1234/foo/bar.png)

@@ -2,7 +2,7 @@
 import {tmpdir} from 'os';
 import {createServer} from 'http';
 import express from 'express';
-import {dummyLoggerFactory as loggerFactory} from '@mashroom/mashroom-utils/lib/logging_utils';
+import {dummyLoggerFactory as loggerFactory} from '@mashroom/mashroom-utils/lib/logging-utils';
 import routes from './routes';
 import type {
     MashroomContentAssetSearchResult,
@@ -44,7 +44,7 @@ const contentService: MashroomContentService = {
           versions: [
               (await this.getContent(req, type, id))!,
           ]
-      }
+      };
     },
     async insertContent<T>(req: Request, type: string, content: MashroomContentApiContentUpdateInsert<T>) {
         return {
@@ -80,7 +80,7 @@ const contentService: MashroomContentService = {
             meta: {
                 total: 2,
             }
-        }
+        };
     },
     async updateContent<T>(req: Request, type: string, id: string, content: MashroomContentApiContentUpdateInsert<Partial<T>>) {
         const existingData: any = {};
@@ -120,12 +120,12 @@ const contentService: MashroomContentService = {
             meta: {
                 total: 1,
             }
-        }
+        };
     },
     async removeAsset(req: Request, id: string): Promise<void> {
         // Nothing to do
     }
-}
+};
 
 // Dummy context
 const pluginContext: any = {
