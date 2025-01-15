@@ -27,7 +27,7 @@
                     "en": "Displays Markdown Content from the CMS System",
                     "de": "Zeigt Markdown Inhalt an aus dem CMS System"
                 },
-                "category": "Content",
+                "category": "Demo",
                 "editor": {
                     "editorPortalApp": "Mashroom Content Markdown Renderer App Config Editor",
                     "position": "in-place"

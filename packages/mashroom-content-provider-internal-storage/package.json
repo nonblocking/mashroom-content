@@ -17,6 +17,23 @@
         "@mashroom-content/mashroom-content-api": "1.0.3",
         "@types/fs-extra": "^11.0.4"
     },
+    "jest": {
+        "testEnvironment": "node",
+        "roots": [
+            "<rootDir>/test"
+        ],
+        "testRegex": "(\\.(test|spec))\\.ts",
+        "transform": {
+            "^.+\\.ts$": "ts-jest"
+        },
+        "reporters": [
+            "default",
+            "jest-junit"
+        ]
+    },
+    "jest-junit": {
+        "outputDirectory": "./test-reports"
+    },
     "scripts": {
         "test": "jest",
         "build": "babel -x .ts src -d ./dist",

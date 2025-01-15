@@ -37,6 +37,23 @@
         "mini-css-extract-plugin": "^2.9.2",
         "webpack-node-externals": "^3.0.0"
     },
+    "jest": {
+        "testEnvironment": "node",
+        "roots": [
+            "<rootDir>/test"
+        ],
+        "testRegex": "(\\.(test|spec))\\.ts",
+        "transform": {
+            "^.+\\.ts$": "ts-jest"
+        },
+        "reporters": [
+            "default",
+            "jest-junit"
+        ]
+    },
+    "jest-junit": {
+        "outputDirectory": "./test-reports"
+    },
     "scripts": {
         "lint": "eslint --fix",
         "type-check": "tsc --noEmit",
