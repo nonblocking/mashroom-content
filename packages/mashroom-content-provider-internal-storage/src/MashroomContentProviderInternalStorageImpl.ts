@@ -494,13 +494,18 @@ export default class MashroomContentProviderInternalStorageImpl implements Mashr
     }
 
     private mapContentEntryToResult<T>(entry: MashroomStorageObject<ContentEntry<T>>, locale: string): MashroomContentApiContentWrapper<T> {
+        const {_id, _contentId, _contentStatus, _contentType, _contentUpdated, _contentCreated, _contentVersion, _contentAvailableLanguages, ...otherProps} = entry;
         return {
             id: entry._contentId,
-            data: this.cleanEntry(entry),
+            data: {
+                ...otherProps as any,
+            },
             meta: {
                 locale,
                 availableLocales: entry._contentAvailableLanguages,
-                status: entry._contentStatus === 'published' || entry._contentStatus === 'draft' ? entry._contentStatus : undefined,
+                createdAt: new Date(_contentCreated).toISOString(),
+                updatedAt: new Date(_contentUpdated).toISOString(),
+                status: _contentStatus === 'published' ? 'published' : 'draft',
                 version: String(entry._contentVersion),
             }
         };
@@ -512,16 +517,6 @@ export default class MashroomContentProviderInternalStorageImpl implements Mashr
             url: entry.url,
             meta: entry.meta,
         };
-    }
-
-    private cleanEntry(entry: any): any {
-        const result: any = {};
-        Object.keys(entry).forEach((key) => {
-           if (!key.startsWith('_content') && key !== '_id') {
-               result[key] = entry[key];
-           }
-        });
-        return result;
     }
 
     private async getMasterEntry(req: Request, type: string, id: string): Promise<ContentMasterEntry | null | undefined> {

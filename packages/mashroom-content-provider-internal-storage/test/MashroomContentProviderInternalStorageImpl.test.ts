@@ -15,6 +15,8 @@ const MOCK_STORED_MASTER_ENTRY = {
         'de',
         'en'
     ],
+    _contentCreated: 0,
+    _contentUpdated: 0,
     _id: '5Y4ATOty'
 };
 
@@ -23,6 +25,8 @@ const MOCK_STORED_ENTRY = {
     _contentType: 'foo',
     _contentVersion: 1,
     _contentStatus: 'historic',
+    _contentCreated: 0,
+    _contentUpdated: 0,
     _contentAvailableLanguages: [
         'de',
         'en'
@@ -135,7 +139,10 @@ describe('MashroomContentProviderInternalStorageImpl', () => {
                     'en'
                 ],
                 locale: 'de',
-                version: '1'
+                version: '1',
+                createdAt: '1970-01-01T00:00:00.000Z',
+                updatedAt: '1970-01-01T00:00:00.000Z',
+                status: 'draft',
             }
         });
         expect(mockFindOne.mock.calls.length).toBe(1);
@@ -286,8 +293,16 @@ describe('MashroomContentProviderInternalStorageImpl', () => {
         // Existing versions
         mockFind.mockResolvedValueOnce({
             result: [
-                { _contentVersion: 2 },
-                { _contentVersion: 1 },
+                {
+                    _contentVersion: 2,
+                    _contentCreated: 0,
+                    _contentUpdated: 0,
+                },
+                {
+                    _contentVersion: 1,
+                    _contentCreated: 0,
+                    _contentUpdated: 0,
+                },
             ]
         });
         mockInsertOne.mockImplementation(({_contentId}) => Promise.resolve({
@@ -307,10 +322,10 @@ describe('MashroomContentProviderInternalStorageImpl', () => {
         expect(mockFindOne.mock.calls[0][0]).toEqual({
             $and: [
                 {
-                    _contentType: 'my-content'
+                    _contentType: 'my-content',
                 },
                 {
-                    _contentId: 'Rc2DJ8Tm'
+                    _contentId: 'Rc2DJ8Tm',
                 }
             ]
         });
@@ -487,8 +502,16 @@ describe('MashroomContentProviderInternalStorageImpl', () => {
         // Existing versions
         mockFind.mockResolvedValueOnce({
             result: [
-                { _contentVersion: 2 },
-                { _contentVersion: 1 },
+                {
+                    _contentVersion: 2,
+                    _contentCreated: 0,
+                    _contentUpdated: 0,
+                },
+                {
+                    _contentVersion: 1,
+                    _contentCreated: 0,
+                    _contentUpdated: 0,
+                },
             ]
         });
         mockInsertOne.mockImplementation(({_contentId}) => Promise.resolve({
@@ -864,8 +887,16 @@ describe('MashroomContentProviderInternalStorageImpl', () => {
         // Existing versions
         mockFind.mockResolvedValueOnce({
             result: [
-                { _contentVersion: 2 },
-                { _contentVersion: 1 },
+                {
+                    _contentVersion: 2,
+                    _contentCreated: 0,
+                    _contentUpdated: 0,
+                },
+                {
+                    _contentVersion: 1,
+                    _contentCreated: 0,
+                    _contentUpdated: 0,
+                },
             ]
         });
         mockInsertOne.mockImplementation(({_contentId}) => Promise.resolve({

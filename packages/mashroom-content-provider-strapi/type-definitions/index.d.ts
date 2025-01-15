@@ -1,4 +1,38 @@
 
+export type StrapiContent<T> = T &{
+    readonly id: number;
+    readonly documentId: string;
+    readonly createdAt: string;
+    readonly updatedAt: string;
+    readonly publishedAt: string;
+    readonly locale?: string;
+    readonly localizations?: Array<StrapiContent<T>>;
+}
+
+export type StrapiContentSearchResult<T> = {
+    readonly data: Array<StrapiContent<T>>;
+    readonly meta: {
+        readonly pagination: {
+            readonly page: number;
+            readonly pageSize: number;
+            readonly pageCount: number;
+            readonly total: number;
+        }
+    }
+}
+
+export type StrapiContentWrapper<T> = {
+    readonly data: StrapiContent<T>;
+}
+
+export type StrapiContentInsert<T> = {
+    readonly data: T;
+}
+
+export type StrapiContentUpdate<T> = {
+    readonly data: Partial<T>;
+}
+
 export type StrapiUpload = {
     id: string;
     name: string;
@@ -14,65 +48,62 @@ export type StrapiUpload = {
 
 export type StrapiUploads = Array<StrapiUpload>;
 
-export type StrapiContentLocalizations<T> = {
-    data: Array<StrapiContent<T>>;
+// Strapi 4 stuff
+
+export type Strapi4ContentLocalizations<T> = {
+    readonly data: Array<Strapi4Content<T>>;
 }
 
-export type StrapiContent<T> = {
-    id: number;
-    attributes: T & {
-        createdAt: string;
-        updatedAt: string;
-        publishedAt: string;
-        locale?: string;
-        localizations?: StrapiContentLocalizations<any>;
+export type Strapi4Content<T> = {
+    readonly id: number;
+    readonly attributes: T & {
+        readonly createdAt: string;
+        readonly updatedAt: string;
+        readonly publishedAt: string;
+        readonly locale?: string;
+        readonly localizations?: Strapi4ContentLocalizations<any>;
     }
 }
 
-export type StrapiContentWrapper<T> = {
-   data: StrapiContent<T>;
-   meta: any;
+export type Strapi4ContentWrapper<T> = {
+   readonly data: Strapi4Content<T>;
 }
 
-export type StrapiContentSearchResult<T> = {
-    data: Array<StrapiContent<T>>;
-    meta: {
-        pagination: {
-            page: number;
-            pageSize: number;
-            pageCount: number;
-            total: number;
+export type Strapi4ContentSearchResult<T> = {
+    readonly data: Array<Strapi4Content<T>>;
+    readonly meta: {
+        readonly pagination: {
+            readonly page: number;
+            readonly pageSize: number;
+            readonly pageCount: number;
+            readonly total: number;
         }
     }
 }
 
-export type StrapiContentInsert<T> = {
-    data: T & {
-        locale?: string;
+export type Strapi4ContentInsert<T> = {
+    readonly data: T & {
+        readonly locale?: string;
     }
 }
 
-export type StrapiContentInsertLocalization<T> = T & {
-    locale: string;
+export type Strapi4ContentInsertLocalization<T> = T & {
+    readonly locale: string;
 }
 
-export type StrapiContentInsertLocalizationResult<T> = T & {
-    id: string;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-    locale: string;
-    localizations: Array<T & {
-        id: string;
-        createdAt: string;
-        updatedAt: string;
-        publishedAt: string;
-        locale: string;
+export type Strapi4ContentInsertLocalizationResult<T> = T & {
+    readonly id: string;
+    readonly createdAt: string;
+    readonly updatedAt: string;
+    readonly publishedAt: string;
+    readonly locale: string;
+    readonly localizations: Array<T & {
+        readonly id: string;
+        readonly createdAt: string;
+        readonly updatedAt: string;
+        readonly publishedAt: string;
+        readonly locale: string;
     }>
-}
-
-export type StrapiContentUpdate<T> = {
-    data: Partial<T>;
 }
 
 

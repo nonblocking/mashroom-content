@@ -7,6 +7,7 @@
             "type": "content-provider",
             "bootstrap": "./dist/mashroom-bootstrap.js",
             "defaultConfig": {
+                "strapiVersion": 5,
                 "strapiUrl": "http://localhost:1337",
                 "apiToken": null
             }

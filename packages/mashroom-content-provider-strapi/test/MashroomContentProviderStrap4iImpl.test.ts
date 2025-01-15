@@ -1,7 +1,7 @@
 import {Readable} from 'stream';
 import {dummyLoggerFactory} from '@mashroom/mashroom-utils/lib/logging-utils';
 import nock from 'nock';
-import MashroomContentProviderStrapiImpl from '../src/MashroomContentProviderStrapiImpl';
+import MashroomContentProviderStrapi4Impl from '../src/MashroomContentProviderStrapi4Impl';
 
 describe('MashroomContentProviderStrapiImpl', () => {
 
@@ -42,7 +42,7 @@ describe('MashroomContentProviderStrapiImpl', () => {
                 }
             });
 
-        const contentProvider = new MashroomContentProviderStrapiImpl('http://localhost:1337', 'xxx');
+        const contentProvider = new MashroomContentProviderStrapi4Impl('http://localhost:1337', 'xxx');
 
         const req: any = {
             pluginContext: {
@@ -75,6 +75,8 @@ describe('MashroomContentProviderStrapiImpl', () => {
                 meta: {
                     locale: 'en',
                     status: 'published',
+                    createdAt: '2022-03-26T08:54:12.786Z',
+                    updatedAt: '2022-03-26T08:55:53.219Z',
                     availableLocales: ['en'],
                 }
             },
@@ -87,6 +89,8 @@ describe('MashroomContentProviderStrapiImpl', () => {
                 meta: {
                     locale: 'en',
                     status: 'draft',
+                    createdAt: '2022-04-06T13:02:15.002Z',
+                    updatedAt: '2022-04-06T13:03:59.341Z',
                     availableLocales: ['en'],
                 }
             }
@@ -126,7 +130,7 @@ describe('MashroomContentProviderStrapiImpl', () => {
                 meta: {}
             });
 
-        const contentProvider = new MashroomContentProviderStrapiImpl('http://localhost:1337', 'xxx');
+        const contentProvider = new MashroomContentProviderStrapi4Impl('http://localhost:1337', 'xxx');
 
         const req: any = {
             pluginContext: {
@@ -145,6 +149,8 @@ describe('MashroomContentProviderStrapiImpl', () => {
             },
             meta: {
                 locale: 'de',
+                createdAt: '2022-03-26T08:55:30.220Z',
+                updatedAt: '2022-03-26T08:56:07.103Z',
                 status: 'published',
                 availableLocales: ['en', 'de'],
             }
@@ -169,7 +175,7 @@ describe('MashroomContentProviderStrapiImpl', () => {
                 meta: {}
             });
 
-        const contentProvider = new MashroomContentProviderStrapiImpl('http://localhost:1337', 'xxx');
+        const contentProvider = new MashroomContentProviderStrapi4Impl('http://localhost:1337', 'xxx');
 
         const req: any = {
             pluginContext: {
@@ -196,6 +202,8 @@ describe('MashroomContentProviderStrapiImpl', () => {
                     'en'
                 ],
                 locale: 'en',
+                createdAt: '2022-03-26T08:54:12.786Z',
+                updatedAt: '2022-03-26T08:55:53.219Z',
                 status: 'published'
             }
         });
@@ -236,7 +244,7 @@ describe('MashroomContentProviderStrapiImpl', () => {
                 meta: {}
             });
 
-        const contentProvider = new MashroomContentProviderStrapiImpl('http://localhost:1337', 'xxx');
+        const contentProvider = new MashroomContentProviderStrapi4Impl('http://localhost:1337', 'xxx');
 
         const req: any = {
             pluginContext: {
@@ -263,6 +271,8 @@ describe('MashroomContentProviderStrapiImpl', () => {
                     'en'
                 ],
                 locale: 'en',
+                createdAt: '2022-03-26T08:54:12.786Z',
+                updatedAt: '2022-03-26T08:55:53.219Z',
                 status: 'published'
             }
         });
@@ -304,7 +314,7 @@ describe('MashroomContentProviderStrapiImpl', () => {
                 ]
             });
 
-        const contentProvider = new MashroomContentProviderStrapiImpl('http://localhost:1337', 'xxx');
+        const contentProvider = new MashroomContentProviderStrapi4Impl('http://localhost:1337', 'xxx');
 
         const req: any = {
             pluginContext: {
@@ -361,7 +371,7 @@ describe('MashroomContentProviderStrapiImpl', () => {
             .delete('/api/my-content/1')
             .reply(200);
 
-        const contentProvider = new MashroomContentProviderStrapiImpl('http://localhost:1337', 'xxx');
+        const contentProvider = new MashroomContentProviderStrapi4Impl('http://localhost:1337', 'xxx');
 
         const req: any = {
             pluginContext: {
@@ -427,7 +437,7 @@ describe('MashroomContentProviderStrapiImpl', () => {
             .delete('/api/my-content/2')
             .reply(200);
 
-        const contentProvider = new MashroomContentProviderStrapiImpl('http://localhost:1337', 'xxx');
+        const contentProvider = new MashroomContentProviderStrapi4Impl('http://localhost:1337', 'xxx');
 
         const req: any = {
             pluginContext: {
@@ -451,7 +461,7 @@ describe('MashroomContentProviderStrapiImpl', () => {
                 width: 200,
             }]);
 
-        const contentProvider = new MashroomContentProviderStrapiImpl('http://localhost:1337', 'xxx');
+        const contentProvider = new MashroomContentProviderStrapi4Impl('http://localhost:1337', 'xxx');
 
         const req: any = {
             pluginContext: {
@@ -498,7 +508,7 @@ describe('MashroomContentProviderStrapiImpl', () => {
                 width: 200,
             }]);
 
-        const contentProvider = new MashroomContentProviderStrapiImpl('http://localhost:1337', 'xxx');
+        const contentProvider = new MashroomContentProviderStrapi4Impl('http://localhost:1337', 'xxx');
 
         const req: any = {
             pluginContext: {
@@ -528,7 +538,7 @@ describe('MashroomContentProviderStrapiImpl', () => {
             .delete('/api/upload/files/123123')
             .reply(200);
 
-        const contentProvider = new MashroomContentProviderStrapiImpl('http://localhost:1337', 'xxx');
+        const contentProvider = new MashroomContentProviderStrapi4Impl('http://localhost:1337', 'xxx');
 
         const req: any = {
             pluginContext: {

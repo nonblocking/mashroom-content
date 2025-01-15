@@ -28,15 +28,13 @@ import type {
     StrapiContentSearchResult,
     StrapiContentInsert,
     StrapiContentUpdate,
-    StrapiContentInsertLocalization,
     StrapiContentWrapper,
-    StrapiContentInsertLocalizationResult,
 } from '../type-definitions';
 
 const UPLOADS_URL_PREFIX = '/upload';
 
 // API reference: https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/rest-api.html
-export default class MashroomContentProviderStrapiImpl implements MashroomContentProvider {
+export default class MashroomContentProviderStrapi4Impl implements MashroomContentProvider {
 
     constructor(private strapiUrl: string, private apiToken: string) {
     }
@@ -82,7 +80,7 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
         if (result.status === 403) {
             const error: MashroomContentApiError = 'Access Denied';
             throw new Error(error);
-        } else if (result.status !== 200) {
+        } else if (!result.ok) {
             logger.error(`Searching content failed with status ${result.status}`);
             const error: MashroomContentApiError = 'Provider Internal Error';
             throw new Error(error);
@@ -150,7 +148,7 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
         if (result.status === 403) {
             const error: MashroomContentApiError = 'Access Denied';
             throw new Error(error);
-        } else if (result.status !== 200) {
+        } else if (!result.ok) {
             logger.error(`Adding content ${type} failed with status ${result.status}`);
             const error: MashroomContentApiError = 'Provider Internal Error';
             throw new Error(error);
@@ -171,99 +169,55 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
 
         const targetLocale = content.meta?.locale;
         const existingEntry: StrapiContent<T> = (await this.getStrapiContent<T>(req, type, id)).data;
+        const currentAvailableLocales = this.getAvailableLocales(existingEntry);
 
-        let mode: 'updateTargetEntry' | 'insertNewLocalization' = 'updateTargetEntry';
-        let targetEntry = existingEntry;
-
-        if (targetLocale && targetLocale !== existingEntry.attributes.locale) {
-            const existingI18n = existingEntry.attributes.localizations?.data?.find((lc: StrapiContent<any>) => lc.attributes.locale === targetLocale);
-            if (existingI18n) {
-                // Update i18n
-                targetEntry = existingI18n;
-            } else {
-               mode = 'insertNewLocalization';
+        const data: StrapiContentUpdate<T> = {
+            data: {
+                ...content.data,
             }
+        };
+
+        let result;
+        try {
+            result = await fetch(`${this.strapiUrl}/api/${type}/${id}${targetLocale ? `?locale=${targetLocale}`: ''}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${this.apiToken}`,
+                },
+                body: JSON.stringify(data),
+            });
+        } catch (e) {
+            logger.error(`Updating content ${type}:${id} failed!`, e);
+            const error: MashroomContentApiError = 'Provider Internal Error';
+            throw new Error(error);
+        }
+        if (result.status === 403) {
+            const error: MashroomContentApiError = 'Access Denied';
+            throw new Error(error);
+        } else if (!result.ok) {
+            logger.error(`Updating content ${type}:${id} failed with status ${result.status}`);
+            const error: MashroomContentApiError = 'Provider Internal Error';
+            throw new Error(error);
         }
 
-        if (mode === 'updateTargetEntry') {
-            const targetId = targetEntry.id;
-            const data: StrapiContentUpdate<T> = {
-                data: {
-                    ...content.data,
+        try {
+            const content = await result.json() as StrapiContentWrapper<T>;
+            const mappedContent = this.mapFromStrapiContent(content.data);
+            if (targetLocale && currentAvailableLocales.indexOf(targetLocale) === -1) {
+                currentAvailableLocales.push(targetLocale);
+            }
+            return {
+                ...mappedContent,
+                meta: {
+                    ...mappedContent.meta,
+                    availableLocales: currentAvailableLocales,
                 }
             };
-
-            let result;
-            try {
-                result = await fetch(`${this.strapiUrl}/api/${type}/${targetId}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${this.apiToken}`,
-                    },
-                    body: JSON.stringify(data),
-                });
-            } catch (e) {
-                logger.error(`Updating content ${type}:${targetId} failed!`, e);
-                const error: MashroomContentApiError = 'Provider Internal Error';
-                throw new Error(error);
-            }
-            if (result.status === 403) {
-                const error: MashroomContentApiError = 'Access Denied';
-                throw new Error(error);
-            } else if (result.status !== 200) {
-                logger.error(`Updating content ${type}:${targetId} failed with status ${result.status}`);
-                const error: MashroomContentApiError = 'Provider Internal Error';
-                throw new Error(error);
-            }
-
-            try {
-                const content = await result.json() as StrapiContentWrapper<T>;
-                return this.mapFromStrapiContent(content.data);
-            } catch (e) {
-                logger.error(`Updating content ${type}:${targetId} failed!`, e);
-                const error: MashroomContentApiError = 'Provider Internal Error';
-                throw new Error(error);
-            }
-        } else {
-            const targetId = existingEntry.id;
-            const data: StrapiContentInsertLocalization<T> = {
-                ...content.data as any,
-                locale: content.meta?.locale,
-            };
-
-            let result;
-            try {
-                result = await fetch(`${this.strapiUrl}/api/${type}/${targetId}/localizations`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${this.apiToken}`,
-                    },
-                    body: JSON.stringify(data),
-                });
-            } catch (e) {
-                logger.error(`Adding localized content ${type}:${targetId} failed!`, e);
-                const error: MashroomContentApiError = 'Provider Internal Error';
-                throw new Error(error);
-            }
-            if (result.status === 403) {
-                const error: MashroomContentApiError = 'Access Denied';
-                throw new Error(error);
-            } else if (result.status !== 200) {
-                logger.error(`Adding localized content ${type}:${targetId} failed with status ${result.status}`);
-                const error: MashroomContentApiError = 'Provider Internal Error';
-                throw new Error(error);
-            }
-
-            try {
-                const content = await result.json() as StrapiContentInsertLocalizationResult<T>;
-                return this.mapFromStrapiI118NContent(content);
-            } catch (e) {
-                logger.error(`Adding localized content ${type}:${targetId} failed!`, e);
-                const error: MashroomContentApiError = 'Provider Internal Error';
-                throw new Error(error);
-            }
+        } catch (e) {
+            logger.error(`Updating content ${type}:${id} failed!`, e);
+            const error: MashroomContentApiError = 'Provider Internal Error';
+            throw new Error(error);
         }
     }
 
@@ -289,7 +243,7 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
         if (result.status === 403) {
             const error: MashroomContentApiError = 'Access Denied';
             throw new Error(error);
-        } else if (result.status !== 200) {
+        } else if (!result.ok) {
             logger.error(`Removing content ${type}:${id} with status ${result.status}`);
             const error: MashroomContentApiError = 'Provider Internal Error';
             throw new Error(error);
@@ -304,18 +258,26 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
             throw new Error(error);
         }
         if (locales) {
-            const existingEntry = await this.getStrapiContent<any>(req, type, id);
             for (let i = 0; i < locales.length; i++) {
                 const locale = locales[i];
+                let result;
                 try {
-                    const targetId = existingEntry.data.attributes.localizations?.data?.find((lc: StrapiContent<any>) => lc.attributes.locale === locale)?.id;
-                    if (targetId) {
-                        await this.removeContent(req, type, targetId);
-                    } else {
-                        logger.warn(`No locale ${locale} found for content ${type}:${id}`);
-                    }
+                    result = await fetch(`${this.strapiUrl}/api/${type}/${id}?locale=${locale}`, {
+                        method: 'DELETE',
+                        headers: {
+                            Authorization: `Bearer ${this.apiToken}`,
+                        },
+                    });
                 } catch (e) {
-                    logger.warn(`Removing locale ${locale} of content ${type}:${id} failed`, e);
+                    logger.error(`Removing content ${type}:${id} failed!`, e);
+                    const error: MashroomContentApiError = 'Provider Internal Error';
+                    throw new Error(error);
+                }
+                if (result.status === 403) {
+                    const error: MashroomContentApiError = 'Access Denied';
+                    throw new Error(error);
+                } else if (!result.ok) {
+                    logger.error(`Removing content ${type}:${id} with status ${result.status}`);
                     const error: MashroomContentApiError = 'Provider Internal Error';
                     throw new Error(error);
                 }
@@ -361,7 +323,7 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
         if (result.status === 403) {
             const error: MashroomContentApiError = 'Access Denied';
             throw new Error(error);
-        } else if (result.status !== 200) {
+        } else if (!result.ok) {
             logger.error(`Searching assets failed with status ${result.status}`);
             const error: MashroomContentApiError = 'Provider Internal Error';
             throw new Error(error);
@@ -416,7 +378,7 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
         if (result.status === 403) {
             const error: MashroomContentApiError = 'Access Denied';
             throw new Error(error);
-        } else if (result.status !== 200) {
+        } else if (!result.ok) {
             logger.error(`Searching assets failed with status ${result.status}`);
             const error: MashroomContentApiError = 'Provider Internal Error';
             throw new Error(error);
@@ -428,7 +390,7 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
             const total = assets.length;
 
             // The Media Library API does support paging but does not deliver the total count,
-            // so, we fetch just everything and extract the wanted slice, even if it is inefficient.
+            // so, we fetch just everything and extract the wanted slice, even if this is very inefficient.
             let hits = assets;
             if (limit || skip) {
                 hits = assets.slice(skip || 0, limit ? (skip || 0) + limit : undefined);
@@ -512,7 +474,7 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
         } else if (result.status === 404) {
             const error: MashroomContentApiError = 'Not Found';
             throw new Error(error);
-        } else if (result.status !== 200) {
+        } else if (!result.ok) {
             logger.error(`Finding content ${type}:${id} failed with status ${result.status}`);
             const error: MashroomContentApiError = 'Provider Internal Error';
             throw new Error(error);
@@ -527,52 +489,41 @@ export default class MashroomContentProviderStrapiImpl implements MashroomConten
         }
     }
 
-    private mapFromStrapiContent<T>(content: StrapiContent<T>, wantedLocale?: string): MashroomContentApiContentWrapper<T> {
-        const availableLocales = [];
-        if (content.attributes.locale) {
-            availableLocales.push(content.attributes.locale);
+    private getAvailableLocales(content: StrapiContent<unknown>): Array<string> {
+        const availableLocales: Array<string> = [];
+        if (content.locale) {
+            availableLocales.push(content.locale);
         }
 
-        if (content.attributes.localizations) {
-            content.attributes.localizations.data.forEach((c: StrapiContent<any>) => {
-                if (c.attributes.locale) {
-                    availableLocales.push(c.attributes.locale);
+        if (content.localizations) {
+            content.localizations.forEach((c: StrapiContent<unknown>) => {
+                if (c.locale && availableLocales.indexOf(c.locale) === -1) {
+                    availableLocales.push(c.locale);
                 }
             });
-            if (wantedLocale) {
-                // Find wanted locale
-                const i18nContent = content.attributes.localizations.data.find((c: StrapiContent<any>) => c.attributes.locale === wantedLocale);
-                if (i18nContent) {
-                    content = i18nContent;
-                }
+        }
+        return availableLocales;
+    }
+
+    private mapFromStrapiContent<T>(content: StrapiContent<T>, wantedLocale?: string): MashroomContentApiContentWrapper<T> {
+        const availableLocales = this.getAvailableLocales(content);
+
+        if (wantedLocale && content.localizations) {
+            // Find wanted locale
+            const i18nContent = content.localizations.find((c: StrapiContent<T>) => c.locale === wantedLocale);
+            if (i18nContent) {
+                content = i18nContent;
             }
         }
 
-        const {id, attributes} = content;
-        const {locale, publishedAt, createdAt, updatedAt, localizations, ...otherAttributes} = attributes;
+        const {id, documentId, locale, publishedAt, createdAt, updatedAt, localizations, ...otherAttributes} = content;
         return {
-            id: String(id),
+            id: documentId,
             data: otherAttributes as any,
             meta: {
                 locale,
-                status: publishedAt ? 'published' : 'draft',
-                availableLocales,
-            },
-        };
-    }
-
-    private mapFromStrapiI118NContent<T>(content: StrapiContentInsertLocalizationResult<T>): MashroomContentApiContentWrapper<T> {
-        const {id, createdAt, updatedAt, publishedAt, locale, localizations, ...otherAttributes} = content;
-        const availableLocales = [locale];
-        localizations.forEach((localization) => {
-            availableLocales.push(localization.locale);
-        });
-
-        return {
-            id: String(id),
-            data: otherAttributes as any,
-            meta: {
-                locale,
+                createdAt,
+                updatedAt,
                 status: publishedAt ? 'published' : 'draft',
                 availableLocales,
             },

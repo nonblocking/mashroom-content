@@ -22,7 +22,9 @@ export type MashroomContentApiContentMeta = {
     readonly locale?: string;
     readonly availableLocales?: Array<string>;
     readonly version?: string;
-    readonly status?: MashroomContentApiStatus;
+    readonly createdAt: string;
+    readonly updatedAt: string;
+    readonly status: MashroomContentApiStatus;
 }
 
 export type MashroomContentApiContentWrapper<T> = {

@@ -18,6 +18,7 @@ You can override the default config in your Mashroom config file like this:
 {
     "plugins": {
         "Mashroom Content Strapi Provider": {
+            "strapiVersion": 5,
             "strapiUrl": "http://localhost:1337",
             "apiToken": "xxxxxxx"
         }
@@ -25,6 +26,7 @@ You can override the default config in your Mashroom config file like this:
 }
 ```
 
+* _strapiVersion_: The Strapi version, possible values: 5, 4 (Default: 5)
 * _strapiUrl_: Strapi server base URL
 * _apiToken_: Strapi API token
 

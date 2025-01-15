@@ -3,6 +3,9 @@
 
 ## [unreleased]
 
+ * Content Provider Strapi: Added support for Strapi 5
+ * Added properties *createdAt* and *updatedAt* to content entry metadata
+
 ## 1.0.2 (December 28, 2022)
 
  * Media Library App: Fixed icons

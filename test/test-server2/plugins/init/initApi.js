@@ -19,7 +19,7 @@ const api = () => {
                 "contentType": CONTENT_TYPE,
                 "contentProp": CONTENT_PROP,
                 "titleProp": TITLE_PROP,
-                "contentId": "2",
+                "contentId": "lgubkouy0fkge5hmjbu9eya3",
                 "style": null,
                 "belowFold": false,
                 "fullscreenImageOnClick": true

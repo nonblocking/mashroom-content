@@ -35,6 +35,9 @@ const contentService: MashroomContentService = {
             data,
             meta: {
                 version: '1',
+                status: 'draft',
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
                 locale,
             }
         };
@@ -54,6 +57,9 @@ const contentService: MashroomContentService = {
             },
             meta: {
                 ...content.meta,
+                status: 'draft',
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
             }
         };
     },
@@ -92,6 +98,9 @@ const contentService: MashroomContentService = {
             },
             meta: {
                 ...content.meta,
+                status: 'draft',
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
             }
         };
     },
