@@ -37,7 +37,7 @@ export default ({lang, responseChannelTopic, modalMode, typeFilter, messageBus, 
 
     return (
         <IntlProvider messages={messages} locale={lang}>
-            <div className="mashroom-content-media-library-app">
+            <div className={`mashroom-content-media-library-app ${modalMode ? 'modal-mode' : ''}`}>
                 <Assets messageBus={messageBus} contentService={contentService} />
             </div>
         </IntlProvider>

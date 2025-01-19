@@ -36,7 +36,6 @@ export default ({contentService}: Props) => {
 
     return (
         <div className="mashroom-content-media-library-search-bar">
-            {query && running && <div className="searching"/>}
             <div className="type-filter">
                 <select
                     value={typeFilter || undefined}
@@ -59,6 +58,7 @@ export default ({contentService}: Props) => {
                        placeholder={formatMessage({ id: 'nameFilter' })}
                        onChange={(e) => updateQuery(e.target.value)} value={query || ''} />
             </div>
+            {query && running && <div className="searching"/>}
         </div>
     );
 };

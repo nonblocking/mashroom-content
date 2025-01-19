@@ -11,7 +11,7 @@ $FONT_ICON_BRANDS: var(--mashroom-portal-font-icon-brands, 'Font Awesome 6 Brand
 }
 
 .mashroom-content-markdown-renderer-app-config-editor {
-    padding: 10px;
+    padding: var(--mashroom-portal-spacing-default, 10px);
 
     @import "../common/style";
 

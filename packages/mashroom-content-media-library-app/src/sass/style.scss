@@ -2,7 +2,13 @@
 $FONT_ICON: var(--mashroom-portal-font-icon, 'Font Awesome 6 Free');
 
 .mashroom-content-media-library-app {
-    padding: 10px;
+    padding: var(--mashroom-portal-spacing-default, 10px);
+    width: 100%;
+
+    &.modal-mode {
+        min-width: 80vw;
+        min-height: 50vh;
+    }
 
     @import "DropTarget";
     @import "MainActions";

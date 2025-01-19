@@ -10,22 +10,16 @@
             display: inline-block;
 
             label {
-                background-color: var(--mashroom-portal-color-primary, #504B88);
+                background-color: var(--mashroom-portal-light-theme-color-button, #504B88);
                 color: white;
-                border-radius: 0;
+                border-radius: 3px;
                 border: none;
-                padding: 6px 12px;
+                display: inline-block;
+                padding: var(--mashroom-portal-padding-button, 6px 12px);
                 cursor: pointer;
-                outline: none !important;
-                font-family: var(--mashroom-portal-font-default, 'Helvetica Neue', Helvetica, Arial, sans-serif);
-                font-size: 1em;
 
                 &:hover {
-                    background-color: var(--mashroom-portal-color-primary-dark, #3d3967);
-                }
-
-                &:active {
-                    background-color: var(--mashroom-portal-color-primary-dark, #3d3967);
+                    background-color: var(--mashroom-portal-light-theme-color-button-hover, #3d3967);
                 }
 
                 .icon-upload:before {

@@ -15,7 +15,7 @@ After that you can Drag the App _Mashroom Content Media Library App_ onto any pa
 And you can also use it in your custom Portal Apps to lookup assets like this:
 
 ```typescript
-const responseChannelTopic = `__selected_video_${randomId()}__`;
+const responseChannelTopic = `__selected_image_${randomId()}__`;
 const mediaLibraryAppConfig = {
     modalMode: true,
     typeFilter: 'image',
