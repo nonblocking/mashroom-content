@@ -2,7 +2,8 @@
 import React, {useRef} from 'react';
 import CodeMirror, {type ReactCodeMirrorRef} from '@uiw/react-codemirror';
 import {githubLight} from '@uiw/codemirror-theme-github';
-import {markdown as markdownEditor} from '@codemirror/lang-markdown';
+import {markdown as markdownEditor, markdownLanguage} from '@codemirror/lang-markdown';
+import {languages} from '@codemirror/language-data';
 import {useSelector, useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
 import {setContentMarkdown, setContentTitle, setSelectedLanguage, removeEditorLanguage} from '../store/actions';
@@ -92,9 +93,8 @@ export default () => {
                             <CodeMirror
                                 ref={cmRef}
                                 value={markdown}
-                                height="auto"
+                                height="3ßßpx"
                                 theme={githubLight}
-                                minHeight="100px"
                                 basicSetup={{
                                     lineNumbers: false,
                                     foldGutter: false,
@@ -103,7 +103,10 @@ export default () => {
                                     closeBrackets: true,
                                     highlightActiveLine: false,
                                 }}
-                                extensions={[markdownEditor()]}
+                                extensions={[markdownEditor({
+                                    base: markdownLanguage,
+                                    codeLanguages: languages
+                                })]}
                                 onChange={(value) => {
                                     dispatch(setContentMarkdown(selectedLanguage, contentProp, value));
                                 }}

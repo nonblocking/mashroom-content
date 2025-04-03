@@ -13,19 +13,20 @@
     "dependencies": {
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
-        "react-intl": "^7.1.0",
-        "react-markdown": "^9.0.3",
+        "react-intl": "^7.1.10",
+        "react-markdown": "^10.1.0",
         "react-redux": "^9.2.0",
         "react-syntax-highlighter": "^15.6.1",
         "redux": "^5.0.1",
         "redux-thunk": "^3.1.0",
-        "remark-directive": "^3.0.0",
+        "remark-directive": "^4.0.0",
         "remark-directive-rehype": "^0.4.2",
-        "remark-gfm": "^4.0.0"
+        "remark-gfm": "^4.0.1"
     },
     "devDependencies": {
         "@codemirror/lang-css": "^6.3.1",
         "@codemirror/lang-markdown": "^6.3.1",
+        "@codemirror/language-data": "^6.5.1",
         "@mashroom-content/mashroom-content-api": "1.0.3",
         "@types/lodash.debounce": "^4.0.9",
         "@types/react": "^18.3.18",

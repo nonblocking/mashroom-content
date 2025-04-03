@@ -10,8 +10,8 @@
         "mashroom.json"
     ],
     "dependencies": {
-        "fs-extra": "^11.2.0",
-        "nanoid": "^3.3.8"
+        "fs-extra": "^11.3.0",
+        "nanoid": "^3.3.11"
     },
     "devDependencies": {
         "@mashroom-content/mashroom-content-api": "1.0.3",

@@ -54,8 +54,6 @@ describe('MashroomContentAssetsServiceImpl', () => {
             .get('/assets/mashroom_portal_ui.png?foo=bar')
             .replyWithFile(200, `${resolve(__dirname, 'assets', 'mashroom_portal_ui.png')}`, {
                 'content-type': 'image/png',
-                'content-length': '12345',
-                'cache-control': 'max-age=31536000, public',
                 expires: 'Mon, 30 Jan 2023 09:54:50 GMT',
                 'content-disposition': 'inline; filename="mashroom_portal_ui_v3.png"',
             });

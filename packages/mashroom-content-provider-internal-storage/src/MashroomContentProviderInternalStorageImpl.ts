@@ -384,7 +384,7 @@ export default class MashroomContentProviderInternalStorageImpl implements Mashr
 
         const target = createWriteStream(targetPath);
         file.pipe(target);
-        await new Promise((resolve) => target.on('finish', resolve));
+        await new Promise((resolve) => target.on('finish', () => resolve(null)));
 
         const id = nanoid(8);
 
