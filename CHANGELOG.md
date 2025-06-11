@@ -3,7 +3,7 @@
 
 ## [unreleased]
 
-## 1.0.3 (June 11, 2025)
+## 1.0.4 (June 11, 2025)
 
  * Content Provider Strapi: Added support for Strapi 5
  * Added properties *createdAt* and *updatedAt* to content entry metadata
